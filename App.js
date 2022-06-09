@@ -5,8 +5,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 
+import { GlobalProvider } from './src/GlobalContext';
 import Initial from './src/screens/Initial/Initial'
 import SignIn from './src/screens/SignIn/SignIn';
+import Home from './src/screens/Home/Home';
 
 const Stack = createNativeStackNavigator()
 
@@ -24,12 +26,15 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style='light' backgroundColor='#212529' />
-      <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen name="Initial" component={Initial} options={{headerShown: false}} />
-                <Stack.Screen name="SignIn" component={SignIn} options={{headerShown: false}}/>
-            </Stack.Navigator>
+      <GlobalProvider>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="Initial" component={Initial} options={{ headerShown: false }} />
+            <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }} />
+            <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+          </Stack.Navigator>
         </NavigationContainer>
+      </GlobalProvider>
     </View>
   );
 }

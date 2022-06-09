@@ -4,6 +4,7 @@ import React from 'react'
 import GoBack from '../../components/GoBack/GoBack'
 import colors from '../../../assets/constants/colors'
 import Loading from '../../components/Loading/Loading'
+import { GlobalContext } from '../../GlobalContext'
 
 import { API_URL } from '../../../env.iroment'
 
@@ -11,12 +12,12 @@ export default function SignIn({ navigation }) {
     const [loading, setLoading] = React.useState(false);
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const {user, dispatch} = React.useContext(GlobalContext)
 
     async function handleSubmit(){
         //validation
         setLoading(true)
         try{
-            console.log(API_URL + '/sign-in')
             const json = await fetch(API_URL + '/sign-in', {
                 method: 'POST',
                 headers:{
@@ -27,8 +28,9 @@ export default function SignIn({ navigation }) {
                     password
                 })
             })
-            const user = await json.json()
-            console.log(user)
+            const response = await json.json()
+            dispatch({type: 'ADD', user: response.data})
+            navigation.navigate('Home')
         }catch(e){
             console.log(e)
         }finally{
