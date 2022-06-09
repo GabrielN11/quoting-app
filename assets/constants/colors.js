@@ -1,5 +1,5 @@
 const colors = {
-    BACKGROUND: '#212529',
+    BACKGROUND: '#16181b',
     FONT_DEFAULT_COLOR: '#fff',
     FONT_SECONDARY_COLOR: '#191919',
     FONT_DEFAULT_PLACEHOLDER: '#CCC',

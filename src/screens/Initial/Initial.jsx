@@ -9,7 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { API_URL } from '../../../env.iroment';
 
 const Initial = ({navigation}) => {
-    const {user, dispatch} = React.useContext(GlobalContext)
+    const {user, setUser} = React.useContext(GlobalContext)
     const [loading, setLoading] = React.useState(true)
     React.useEffect(() => {
         const fetchUser = async () => {
@@ -22,7 +22,8 @@ const Initial = ({navigation}) => {
                         }
                     })
                     const response = await json.json()
-                    dispatch({type: 'ADD', user: response.data})
+                    response.data['token'] = token
+                    setUser(response.data)
                     navigation.navigate('Home')
                     return
                 }

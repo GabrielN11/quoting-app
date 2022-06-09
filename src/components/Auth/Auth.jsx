@@ -11,7 +11,7 @@ export default function Auth({navigation}) {
       <FontAwesomeIcon icon={faUserPen} size={50} color={colors.FONT_DEFAULT_PLACEHOLDER}/>
       <View style={{marginBottom: 25, marginTop: 25}}>
         <AuthText>Create a new account...</AuthText>
-        <AuthButton style={{backgroundColor: colors.BUTTON_BACKGROUND_PRIMARY}}>
+        <AuthButton style={{backgroundColor: colors.BUTTON_BACKGROUND_PRIMARY}} onPress={() => navigation.navigate('SignUp')}>
           <AuthBtnText>Sign up</AuthBtnText>
         </AuthButton>
       </View>
