@@ -11,10 +11,10 @@ import { API_URL } from '../../../env.iroment'
 import Loading from '../../components/Loading/Loading'
 
 export default function UpdateName({route, navigation}) {
-    const {newAccount, newUser} = route.params
+    const {newAccount} = route.params
     const [name, setName] = React.useState('')
     const [loading, setLoading] = React.useState(false)
-    const {user, setUser} = React.useCallback(GlobalContext)
+    const {user, setUser} = React.useContext(GlobalContext)
 
     const createAlert = (title='Alert Title', message='Alert Message') =>
     Alert.alert(
@@ -28,20 +28,20 @@ export default function UpdateName({route, navigation}) {
     async function handleSubmit(){
         if(name === '') return createAlert('Missing name', 'Type a display name.')
         if(name.length < 3) return createAlert('Invalid name length', 'Your display name is too short.')
-        if(!user && !newUser) return
+        if(!user) return
         setLoading(true)
         try{
-            const json = await fetch(`${API_URL}/alter-name/${newAccount ? newUser.id : user.id}`, {
+            const json = await fetch(`${API_URL}/alter-name/${user.id}`, {
                 method: 'PUT',
                 headers: {
-                    'Authorization': `Bearer ${newAccount ? newUser.token : user.token}`,
+                    'Authorization': `Bearer ${user.token}`,
                     'Content-type': 'application/json'
                 },
                 body: JSON.stringify({name})
             })
             if(json.status === 200){
-                setUser({...user, name})
-                if (newAccount) navigation.navigate('Home')
+                setUser(current => ({...current, name}))
+                if (newAccount) navigation.navigate('Drawer')
                 else navigation.goBack()
             }else createAlert('Error', 'Something went wrong. Try again.')
         }catch(e){

@@ -24,7 +24,7 @@ const Initial = ({navigation}) => {
                     const response = await json.json()
                     response.data['token'] = token
                     setUser(response.data)
-                    navigation.navigate('Home')
+                    navigation.navigate('Drawer')
                     return
                 }
             }catch(e){

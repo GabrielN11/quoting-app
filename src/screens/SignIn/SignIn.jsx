@@ -46,7 +46,7 @@ export default function SignIn({ navigation }) {
                 const response = await json.json()
                 await AsyncStorage.setItem('@user_token', response.data.token)
                 setUser(response.data)
-                navigation.navigate('Home')
+                navigation.navigate('Drawer')
             }
         } catch (e) {
             createAlert('Error', e.message)

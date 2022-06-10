@@ -9,3 +9,10 @@ export const HomeView = styled.View`
     flex-direction: column;
     align-items: center;
 `
+
+export const HomeHeader = styled.View`
+    flex-direction: row-reverse;
+    padding: 0 15px;
+    flex: 1;
+    width: 100%;
+`

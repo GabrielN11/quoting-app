@@ -6,6 +6,7 @@ const colors = {
     BUTTON_BACKGROUND_PRIMARY: '#1A5D94',
     BUTTON_BACKGROUND_DEFAULT: '#F1F9FA',
     INPUT_BACKGROUND_DEFAULT: '#6c757d',
+    BAR_BACKGROUND: '#0f3758'
 }
 
 export default colors

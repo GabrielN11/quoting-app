@@ -47,7 +47,7 @@ export default function SignUp({ navigation }) {
             if(json.status === 201) {
                 await AsyncStorage.setItem('@user_token', response.data.token)
                 setUser(response.data)
-                navigation.navigate('UpdateName', {newAccount: true, newUser: response.data})
+                navigation.navigate('UpdateName', {newAccount: true})
             }else{
                 createAlert('Error', response.error)
             }

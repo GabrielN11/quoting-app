@@ -17,6 +17,13 @@ export const PublicationText = styled.Text`
     font-style: italic;
 `
 
+export const PublicationShowMore = styled.Text`
+    color: ${colors.FONT_DEFAULT_PLACEHOLDER};
+    text-align: left;
+    font-size: 18px;
+    margin-top: 10px;
+`
+
 export const PublicationAuthor = styled.Text`
     color: ${colors.FONT_DEFAULT_PLACEHOLDER};
     font-size: 18px;
@@ -33,7 +40,7 @@ export const PublicationWarning = styled.Text`
 
 export const PublicationActions = styled.View`
     position: absolute;
-    bottom: 20%;
+    bottom: 20px;
     width: 100%;
     flex-direction: row-reverse;
     justify-content: space-between;

@@ -11,7 +11,10 @@ import SignIn from './src/screens/SignIn/SignIn';
 import Home from './src/screens/Home/Home';
 import UpdateName from './src/screens/UpdateName/UpdateName';
 import SignUp from './src/screens/SignUp/SignUp';
+import PublicationForm from './src/screens/PublicationForm/PublicationForm';
+
 import colors from './assets/constants/colors';
+import DrawerRoutes from './src/screens/Drawer/Drawer';
 
 const Stack = createNativeStackNavigator()
 
@@ -35,8 +38,9 @@ export default function App() {
             <Stack.Screen name="Initial" component={Initial} options={{ headerShown: false }} />
             <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }} />
             <Stack.Screen name="SignUp" component={SignUp} options={{headerShown: false}}/>
-            <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+            <Stack.Screen name="Drawer" component={DrawerRoutes} options={{ headerShown: false }} />
             <Stack.Screen name="UpdateName" component={UpdateName} options={{ headerShown: false }} />
+            <Stack.Screen name="PublicationForm" component={PublicationForm} options={{headerShown: false}}/>
           </Stack.Navigator>
         </NavigationContainer>
       </GlobalProvider>

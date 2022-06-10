@@ -3,10 +3,9 @@ import React from 'react'
 import Swiper from 'react-native-swiper'
 import {API_URL} from '../../../env.iroment'
 import { GlobalContext } from '../../GlobalContext'
-import {PublicationView, PublicationText, PublicationAuthor, PublicationWarning} from './styles'
 import FeedPublication from './FeedPublication'
 
-export default function Feed({setLoading}) {
+export default function Feed({setLoading, followMode=false}) {
   const [publications, setPublications] = React.useState([])
   const {user} = React.useContext(GlobalContext)
   const {width} = useWindowDimensions()
@@ -14,15 +13,15 @@ export default function Feed({setLoading}) {
   const fetchData = async () => {
     setLoading(true)
     try{
-      const json = await fetch(API_URL + '/publication', {
+      const json = await fetch(`${API_URL}/${followMode ? 'publication-by-follow' : 'publication'}`, {
         headers:{
           'Authorization': 'Bearer ' + user.token
         }
       })
       const {data} = await json.json()
       if(json.status === 200){
-        if(data.reset_seen) setPublications([...publications, 'reset', data])
-        else setPublications([...publications, data])
+        if(data.reset_seen) setPublications(arr => [...arr, 'reset', data])
+        else setPublications(arr => [...arr, data])
       }else{
         console.log(json.status)
       }
@@ -42,6 +41,10 @@ export default function Feed({setLoading}) {
     if(publications.length <= 1)
     fetchData()
   }, [publications])
+
+  React.useEffect(() => {
+    setPublications([])
+  }, [followMode])
   
 
   return (
