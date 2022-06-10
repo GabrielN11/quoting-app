@@ -1,5 +1,5 @@
 import { View, Text, Alert, Platform } from 'react-native'
-import { AuthBtnText, AuthButton, AuthContainer, AuthInput, AuthText } from '../../components/Auth/styles'
+import { FormBtnText, FormButton, FormContainer, FormInput, FormText } from '../../components/Form/styles'
 import React from 'react'
 import GoBack from '../../components/GoBack/GoBack'
 import colors from '../../../assets/constants/colors'
@@ -59,37 +59,37 @@ export default function SignUp({ navigation }) {
     }
 
     return (
-        <AuthContainer behavior={Platform.OS === "ios" ? "padding" : "height"}>
+        <FormContainer behavior={Platform.OS === "ios" ? "padding" : "height"}>
             <GoBack goBack={navigation.goBack} />
-            <AuthText style={{ fontFamily: 'Montserrat' }}>Create a new account!</AuthText>
+            <FormText style={{ fontFamily: 'Montserrat' }}>Create a new account!</FormText>
             <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, paddingVertical: 5 }}>
-                <AuthText>User name:</AuthText>
-                <AuthInput placeholder='Type your use name here...'
+                <FormText>User name:</FormText>
+                <FormInput placeholder='Type your use name here...'
                     placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}
                     value={username}
                     onChangeText={setUsername} />
             </View>
             <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, paddingVertical: 5 }}>
-                <AuthText>Password:</AuthText>
-                <AuthInput secureTextEntry={true} placeholder='Type your password here...'
+                <FormText>Password:</FormText>
+                <FormInput secureTextEntry={true} placeholder='Type your password here...'
                     placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}
                     value={password}
                     onChangeText={setPassword} />
             </View>
             <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, paddingVertical: 5 }}>
-                <AuthText>Repeat your password:</AuthText>
-                <AuthInput secureTextEntry={true} placeholder='Type your password again..'
+                <FormText>Repeat your password:</FormText>
+                <FormInput secureTextEntry={true} placeholder='Type your password again..'
                     placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}
                     value={repeatPassword}
                     onChangeText={setRepeatPassword} />
             </View>
             <View style={{ alignSelf: 'stretch', marginVertical: 20 }}>
-                <AuthButton backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={handleSubmit}>
-                    <AuthBtnText>Sign up</AuthBtnText>
-                </AuthButton>
+                <FormButton backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={handleSubmit}>
+                    <FormBtnText>Sign up</FormBtnText>
+                </FormButton>
             </View>
             {loading && <Loading />}
             <View style={{ flex : 1 }} />
-        </AuthContainer>
+        </FormContainer>
     )
 }

@@ -1,6 +1,6 @@
 import { View, Text, Alert } from 'react-native'
 import React from 'react'
-import { AuthBtnText, AuthButton, AuthContainer, AuthInput, AuthText, AuthView } from '../../components/Auth/styles'
+import { FormBtnText, FormButton, FormContainer, FormInput, FormText } from '../../components/Form/styles'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import colors from '../../../assets/constants/colors'
@@ -52,21 +52,21 @@ export default function UpdateName({route, navigation}) {
     }
 
   return (
-    <AuthContainer>
+    <FormContainer>
         {!newAccount && <GoBack/>}
         {loading && <Loading/>}
       <View style={{flexDirection: 'row', alignItems: 'center', marginVertical: 40}}>
-        <AuthText style={{fontFamily: 'Montserrat'}}>{newAccount ? 'Set your display name.' : 'Update your display name.'}</AuthText>
+        <FormText style={{fontFamily: 'Montserrat'}}>{newAccount ? 'Set your display name.' : 'Update your display name.'}</FormText>
         <CustomTooltip text='Your display name is the nickname that will be displayed to others in your publications and commentaries.'/>
       </View>
       <View style={{alignSelf: 'stretch', paddingHorizontal: 20, marginBottom: 30}}>
-          <AuthText>Type your new display name: {name}</AuthText>
-          <AuthInput onChangeText={setName} value={name}/>
+          <FormText>Type your new display name: {name}</FormText>
+          <FormInput onChangeText={setName} value={name}/>
       </View>
-      <AuthButton backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={handleSubmit}>
-          <AuthBtnText>{newAccount ? 'Define name' : 'Update name'}</AuthBtnText>
-      </AuthButton>
+      <FormButton backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={handleSubmit}>
+          <FormBtnText>{newAccount ? 'Define name' : 'Update name'}</FormBtnText>
+      </FormButton>
       <View style={{ flex : 1 }} />
-    </AuthContainer>
+    </FormContainer>
   )
 }
