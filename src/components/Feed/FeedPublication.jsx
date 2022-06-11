@@ -10,7 +10,7 @@ import Share from '../Share/Share'
 import { API_URL } from '../../../env.iroment'
 
 
-export default function FeedPublication({ publication }) {
+export default function FeedPublication({ publication, navigation }) {
 
     const [text, setText] = React.useState(publication.text)
     const [fullText, setFullText] = React.useState(false)
@@ -63,8 +63,8 @@ export default function FeedPublication({ publication }) {
                 </TouchableOpacity>}
             </View>
             <PublicationActions>
-                <Share publication={publication}/>
-                <TouchableOpacity>
+                <Share content={publication} type='publication'/>
+                <TouchableOpacity onPress={() => navigation.navigate('Commentaries', {publication: publication})}>
                     <FontAwesomeIcon icon={faMessage} color={colors.FONT_DEFAULT_COLOR} size={40}/>
                     <Text style={{textAlign: 'center', color: colors.FONT_DEFAULT_COLOR, fontSize: 18}}>
                         {publication.commentaries_count}

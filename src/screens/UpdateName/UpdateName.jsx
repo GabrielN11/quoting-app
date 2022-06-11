@@ -1,8 +1,6 @@
 import { View, Text, Alert } from 'react-native'
 import React from 'react'
 import { FormBtnText, FormButton, FormContainer, FormInput, FormText } from '../../components/Form/styles'
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import colors from '../../../assets/constants/colors'
 import CustomTooltip from '../../components/Tooltip/Tooltip'
 import GoBack from '../../components/GoBack/GoBack'

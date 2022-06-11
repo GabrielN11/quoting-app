@@ -21,7 +21,7 @@ export default function Home({navigation}) {
           <FontAwesomeIcon icon={faBars} color={colors.FONT_DEFAULT_COLOR} size={30}/>
         </TouchableOpacity>
       </HomeHeader>
-      <Feed setLoading={setLoading} followMode={followMode}/>
+      <Feed setLoading={setLoading} followMode={followMode} navigation={navigation}/>
       <FeedBar followMode={followMode} setFollowMode={setFollowMode} navigation={navigation}/>
     </HomeView>
   )

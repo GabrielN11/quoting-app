@@ -6,15 +6,15 @@ import colors from '../../../assets/constants/colors'
 import { GlobalContext } from '../../GlobalContext'
 import { API_URL } from '../../../env.iroment'
 
-export default function Share({ publication }) {
+export default function Share({ content, type='publication', size=40 }) {
     const [share, setShare] = React.useState(false)
-    const [count, setCount] = React.useState(publication.share_count)
+    const [count, setCount] = React.useState(content.share_count)
     const { user } = React.useContext(GlobalContext)
 
     React.useEffect(() => {
         const fetchShare = async () => {
             try {
-                const resp = await fetch(API_URL + '/share-by-publication/' + publication.id + '/publication', {
+                const resp = await fetch(API_URL + '/share-by-publication/' + content.id + '/' + type, {
                     headers: {
                         'Authorization': 'Bearer ' + user.token
                     }
@@ -25,7 +25,7 @@ export default function Share({ publication }) {
 
             }
         }
-        if (typeof publication !== 'string') fetchShare()
+        if (typeof content !== 'string') fetchShare()
     }, [])
 
     async function submitShare() {
@@ -38,8 +38,8 @@ export default function Share({ publication }) {
                 },
                 body: JSON.stringify({
                     user_id: user.id,
-                    publication_id: publication.id,
-                    commentary_id: null
+                    publication_id: type === 'publication' ? content.id : null,
+                    commentary_id: type === 'commentary' ? content.id : null
                 })
             })
             const data = await json.json()
@@ -70,10 +70,10 @@ export default function Share({ publication }) {
         }
     }
 
-    if (publication.user_id === user.id) return (
+    if (content.user_id === user.id) return (
         <View>
-            <FontAwesomeIcon icon={faHeart} color={colors.BUTTON_BACKGROUND_PRIMARY} size={40} />
-            <Text style={{ textAlign: 'center', color: colors.FONT_DEFAULT_COLOR, fontSize: 18 }}>
+            <FontAwesomeIcon icon={faHeart} color={colors.BUTTON_BACKGROUND_PRIMARY} size={size} />
+            <Text style={{ textAlign: 'center', color: colors.FONT_DEFAULT_COLOR, fontSize: size/2 }}>
                 {count}
             </Text>
         </View>
@@ -81,8 +81,8 @@ export default function Share({ publication }) {
 
     return (
         <TouchableOpacity onPress={() => share ? deleteShare() : submitShare()}>
-            <FontAwesomeIcon icon={share ? faHeart : faHeartCirclePlus} color={share ? '#ff0000' : colors.FONT_DEFAULT_COLOR} size={40} />
-            <Text style={{ textAlign: 'center', color: colors.FONT_DEFAULT_COLOR, fontSize: 18 }}>
+            <FontAwesomeIcon icon={share ? faHeart : faHeartCirclePlus} color={share ? '#ff0000' : colors.FONT_DEFAULT_COLOR} size={size} />
+            <Text style={{ textAlign: 'center', color: colors.FONT_DEFAULT_COLOR, fontSize: size/2 }}>
                 {count}
             </Text>
         </TouchableOpacity>

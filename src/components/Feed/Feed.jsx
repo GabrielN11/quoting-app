@@ -5,7 +5,7 @@ import {API_URL} from '../../../env.iroment'
 import { GlobalContext } from '../../GlobalContext'
 import FeedPublication from './FeedPublication'
 
-export default function Feed({setLoading, followMode=false}) {
+export default function Feed({setLoading, followMode=false, navigation}) {
   const [publications, setPublications] = React.useState([])
   const {user} = React.useContext(GlobalContext)
   const {width} = useWindowDimensions()
@@ -54,7 +54,8 @@ export default function Feed({setLoading, followMode=false}) {
     }}>
       {publications.length > 1 && <Swiper loop={false} showsPagination={false}
       onIndexChanged={(index) => renderMorePublications(index)}>
-          {publications.map(publication => <FeedPublication key={publication.id || publication} publication={publication}/>)}
+          {publications.map(publication => <FeedPublication key={publication.id || publication} publication={publication}
+          navigation={navigation}/>)}
       </Swiper>}
     </View>
   )
