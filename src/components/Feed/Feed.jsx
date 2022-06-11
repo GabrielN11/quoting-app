@@ -4,6 +4,7 @@ import Swiper from 'react-native-swiper'
 import {API_URL} from '../../../env.iroment'
 import { GlobalContext } from '../../GlobalContext'
 import FeedPublication from './FeedPublication'
+import Empty from '../Empty/Empty'
 
 export default function Feed({setLoading, followMode=false, navigation}) {
   const [publications, setPublications] = React.useState([])
@@ -57,6 +58,7 @@ export default function Feed({setLoading, followMode=false, navigation}) {
           {publications.map(publication => <FeedPublication key={publication.id || publication} publication={publication}
           navigation={navigation}/>)}
       </Swiper>}
+      {publications.length === 0 && <Empty/>}
     </View>
   )
 }

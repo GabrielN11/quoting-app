@@ -6,7 +6,7 @@ import Share from '../Share/Share'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
-export default function Commentary({ commentary }) {
+export default function Commentary({ commentary, navigation, fromUser=false }) {
 
     const [publisher, setPublisher] = React.useState(null)
 
@@ -36,7 +36,9 @@ export default function Commentary({ commentary }) {
 
     return (
         <CommentaryView>
-            <CommentaryInfo>{publisher ? publisher.name : 'Anonymous'}:</CommentaryInfo>
+            <TouchableOpacity onPress={() => navigation.navigate('Profile', {profileUser: publisher})}>
+                <CommentaryInfo>{publisher ? publisher.name : 'Anonymous'}:</CommentaryInfo>
+            </TouchableOpacity>
             <CommentaryText>
                 {commentary.text}
             </CommentaryText>
@@ -44,7 +46,7 @@ export default function Commentary({ commentary }) {
                 <CommentaryInfo style={{ marginTop: 7, fontSize: 16 }}>
                     {returnTime(commentary.date)}
                 </CommentaryInfo>
-                <Share content={commentary} type='commentary' size={25}/>
+                {!fromUser && <Share content={commentary} type='commentary' size={25}/>}
             </View>
         </CommentaryView>
     )

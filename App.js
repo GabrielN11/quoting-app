@@ -12,10 +12,14 @@ import Home from './src/screens/Home/Home';
 import UpdateName from './src/screens/UpdateName/UpdateName';
 import SignUp from './src/screens/SignUp/SignUp';
 import PublicationForm from './src/screens/PublicationForm/PublicationForm';
+import Profile from './src/screens/Profile/Profile';
 
 import colors from './assets/constants/colors';
 import DrawerRoutes from './src/screens/Drawer/Drawer';
 import Commentaries from './src/screens/Commentaries/Commentaries';
+import PublicationList from './src/screens/PublicationList/PublicationList';
+import CommentariesList from './src/screens/CommentariesList/CommentariesList';
+import ShareList from './src/screens/ShareList/ShareList';
 
 const Stack = createNativeStackNavigator()
 
@@ -43,6 +47,10 @@ export default function App() {
             <Stack.Screen name="UpdateName" component={UpdateName} options={{ headerShown: false }} />
             <Stack.Screen name="PublicationForm" component={PublicationForm} options={{headerShown: false}}/>
             <Stack.Screen name="Commentaries" component={Commentaries} options={{headerShown: false}}/>
+            <Stack.Screen name="Profile" component={Profile} options={{headerShown: false}}/>
+            <Stack.Screen name="PublicationList" component={PublicationList} options={{headerShown: false}}/>
+            <Stack.Screen name="CommentariesList" component={CommentariesList} options={{headerShown: false}}/>
+            <Stack.Screen name="ShareList" component={ShareList} options={{headerShown: false}}/>
           </Stack.Navigator>
         </NavigationContainer>
       </GlobalProvider>

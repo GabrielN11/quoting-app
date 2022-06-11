@@ -8,6 +8,7 @@ import CommentaryInput from '../../components/Commentaries/CommentaryInput'
 import Loading from '../../components/Loading/Loading'
 import { FormBtnText, FormButton } from '../../components/Form/styles'
 import colors from '../../../assets/constants/colors'
+import Empty from '../../components/Empty/Empty'
 
 export default function Commentaries({route, navigation}) {
     const {publication} = route.params
@@ -45,11 +46,12 @@ export default function Commentaries({route, navigation}) {
         {loading && <Loading/>}
         <CommentariesView>
             {commentaries.map(commentary => (
-                <Commentary key={commentary.id} commentary={commentary}/>
+                <Commentary key={commentary.id} commentary={commentary} navigation={navigation}/>
             ))}
             {loadMore && <FormButton backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={fetchCommentaries}>
                 <FormBtnText>Load more...</FormBtnText>
             </FormButton>}
+            {commentaries.length === 0 && <Empty/>}
         </CommentariesView>
         <CommentaryInput publication={publication} setLoading={setLoading} setCommentaries={setCommentaries}/>
     </CommentaryContainer>

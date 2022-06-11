@@ -58,7 +58,7 @@ export default function FeedPublication({ publication, navigation }) {
             </ScrollView>
             <View style={{flexDirection: 'row-reverse', justifyContent: 'space-between'}}>
                 <PublicationAuthor>{publication.author ? '- ' + publication.author : ''}</PublicationAuthor>
-                {publisher && <TouchableOpacity>
+                {publisher && <TouchableOpacity onPress={() => navigation.navigate('Profile', {profileUser: publisher})}>
                     <PublicationAuthor>By {publisher.name}</PublicationAuthor>
                 </TouchableOpacity>}
             </View>
