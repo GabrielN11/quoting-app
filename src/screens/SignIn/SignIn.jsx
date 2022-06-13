@@ -1,4 +1,5 @@
 import { View, Text, Alert, Platform } from 'react-native'
+import { StackActions, NavigationActions } from '@react-navigation/native'
 import { FormBtnText, FormButton, FormContainer, FormInput, FormText } from '../../components/Form/styles'
 import React from 'react'
 import GoBack from '../../components/GoBack/GoBack'
@@ -41,17 +42,23 @@ export default function SignIn({ navigation }) {
                     password
                 })
             })
-            if (json.status !== 200) return createAlert('Invalid authentication.', 'Check your user name and password.')
+            if (json.status !== 200){
+                setLoading(false)
+                return createAlert('Invalid authentication.', 'Check your user name and password.')
+            }
             else {
                 const response = await json.json()
                 await AsyncStorage.setItem('@user_token', response.data.token)
                 setUser(response.data)
-                navigation.navigate('Drawer')
+                setLoading(false)
+                navigation.reset({
+                    index: 0,
+                    routes: [{name: 'Drawer'}],
+                  });
             }
         } catch (e) {
-            createAlert('Error', e.message)
-        } finally {
             setLoading(false)
+            createAlert('Error', e.message)
         }
     }
 

@@ -12,7 +12,8 @@ import { API_URL } from '../../../env.iroment'
 
 export default function FeedPublication({ publication, navigation }) {
 
-    const [text, setText] = React.useState(publication.text)
+    const [text] = React.useState(publication.text)
+    const [commentaryCount, setCommentaryCount] = React.useState(publication.commentaries_count)
     const [fullText, setFullText] = React.useState(false)
     const [publisher, setPublisher] = React.useState(null)
     const {user} = React.useContext(GlobalContext)
@@ -64,10 +65,10 @@ export default function FeedPublication({ publication, navigation }) {
             </View>
             <PublicationActions>
                 <Share content={publication} type='publication'/>
-                <TouchableOpacity onPress={() => navigation.navigate('Commentaries', {publication: publication})}>
+                <TouchableOpacity onPress={() => navigation.navigate('Commentaries', {publication: publication, setCommentaryCount: setCommentaryCount})}>
                     <FontAwesomeIcon icon={faMessage} color={colors.FONT_DEFAULT_COLOR} size={40}/>
                     <Text style={{textAlign: 'center', color: colors.FONT_DEFAULT_COLOR, fontSize: 18}}>
-                        {publication.commentaries_count}
+                        {commentaryCount}
                     </Text>
                 </TouchableOpacity>
             </PublicationActions>

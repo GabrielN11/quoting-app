@@ -45,7 +45,7 @@ export default function SignUp({ navigation }) {
            const resp = await json.json()
            if(json.status === 201){
                setLoading(false)
-               navigation.goBack()
+               navigation.replace('Publication', {publicationId: resp.data.id})
            }else{
                createAlert('Error', resp.error)
                setLoading(false)

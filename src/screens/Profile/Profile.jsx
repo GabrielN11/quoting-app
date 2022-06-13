@@ -123,21 +123,21 @@ export default function Profile({ navigation, route }) {
                     <PublicationItem publication={pinnedPublication} />
                 </PinnedView>}
                 <ProfileItemsView>
-                    <ProfileItem backgroundColor='darkorange' style={{justifyContent:'center'}} onPress={() => navigation.navigate('UserList', {profileUser, type: 'followers'})}>
+                    <ProfileItem backgroundColor='darkorange' style={{justifyContent:'center'}} onPress={() => navigation.push('UserList', {profileUser, type: 'followers'})}>
                         <FollowInfo>Followers</FollowInfo>
                     </ProfileItem>
-                    <ProfileItem backgroundColor='#00A3A3' style={{justifyContent:'center'}} onPress={() => navigation.navigate('UserList', {profileUser, type: 'following'})}>
+                    <ProfileItem backgroundColor='#00A3A3' style={{justifyContent:'center'}} onPress={() => navigation.push('UserList', {profileUser, type: 'following'})}>
                         <FollowInfo>Following</FollowInfo>
                     </ProfileItem>
-                    <ProfileItem backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={() => navigation.navigate('PublicationList', {profileUser})}>
+                    <ProfileItem backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={() => navigation.push('PublicationList', {profileUser})}>
                         <ProfileText>Publications</ProfileText>
                         <ProfileCount>{profileUser.publication_count}</ProfileCount>
                     </ProfileItem>
-                    <ProfileItem backgroundColor='darkgreen' onPress={() => navigation.navigate('CommentariesList', {profileUser})}>
+                    <ProfileItem backgroundColor='darkgreen' onPress={() => navigation.push('CommentariesList', {profileUser})}>
                         <ProfileText>Commentaries</ProfileText>
                         <ProfileCount>{profileUser.commentary_count}</ProfileCount>
                     </ProfileItem>
-                    <ProfileItem backgroundColor='brown' onPress={() => navigation.navigate('ShareList', {profileUser})}>
+                    <ProfileItem backgroundColor='brown' onPress={() => navigation.push('ShareList', {profileUser})}>
                         <ProfileText>Favorites</ProfileText>
                         <ProfileCount>{profileUser.share_count}</ProfileCount>
                     </ProfileItem>
