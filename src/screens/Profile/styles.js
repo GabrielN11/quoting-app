@@ -47,3 +47,9 @@ export const ProfileCount = styled.Text`
     font-size: 40px;
     font-family: 'SourceSans';
 `
+
+export const FollowInfo = styled.Text`
+    color: ${colors.FONT_DEFAULT_COLOR};
+    font-size: 25px;
+    font-family: 'SourceSans';
+`

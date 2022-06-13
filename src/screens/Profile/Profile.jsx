@@ -1,7 +1,7 @@
 import { View, ScrollView, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import GoBack from '../../components/GoBack/GoBack'
-import { PinnedView, ProfileCount, ProfileItem, ProfileItemsView, ProfileName, ProfileText, ProfileUsername } from './styles'
+import { FollowInfo, PinnedView, ProfileCount, ProfileItem, ProfileItemsView, ProfileName, ProfileText, ProfileUsername } from './styles'
 import colors from '../../../assets/constants/colors'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faUserXmark, faUserPlus } from '@fortawesome/free-solid-svg-icons'
@@ -15,14 +15,38 @@ export default function Profile({ navigation, route }) {
     const [loading, setLoading] = React.useState(false)
     const [pinnedPublication, setPinnedPublication] = React.useState(null)
     const [follow, setFollow] = React.useState(null)
+    const [profileUser, setProfileUser] = React.useState(null)
 
     const { user } = React.useContext(GlobalContext)
-    const {profileUser} = route.params
+    const {profileId} = route.params
 
     React.useEffect(() => {
-        if (user.pinned_publication) getPinnedPublication()
-        getFollow()
-    }, [])
+        getUser()
+    }, [route])
+
+    React.useEffect(() => {
+        if(profileUser){
+            if (user.pinned_publication) getPinnedPublication()
+            getFollow()
+        }
+    }, [profileUser])
+
+    async function getUser(){
+        setLoading(true)
+        try{
+            const json = await fetch(API_URL + '/profile/' + profileId)
+            const resp = await json.json()
+            if(json.status === 200){
+                setProfileUser(resp.data)
+            }else{
+                console.log(resp.error)
+            }
+        }catch(e){
+            resp.error
+        }finally{
+            setLoading(false)
+        }
+    }
 
     async function getFollow() {
         try {
@@ -86,7 +110,7 @@ export default function Profile({ navigation, route }) {
         <View style={{ height: '100%', alignItems: 'center', backgroundColor: colors.BACKGROUND }}>
             <GoBack goBack={navigation.goBack} />
             {loading && <Loading />}
-            <ScrollView style={{ marginHorizontal: 15 }}>
+            {profileUser && <ScrollView style={{ marginHorizontal: 15 }}>
                 <ProfileName>{profileUser.name}</ProfileName>
                 <ProfileUsername>@{profileUser.username}</ProfileUsername>
                 {user.id !== profileUser.id && <TouchableOpacity style={{ marginTop: 25, alignItems: 'center' }}
@@ -99,7 +123,13 @@ export default function Profile({ navigation, route }) {
                     <PublicationItem publication={pinnedPublication} />
                 </PinnedView>}
                 <ProfileItemsView>
-                    <ProfileItem backgroundColor='brown' onPress={() => navigation.navigate('PublicationList', {profileUser})}>
+                    <ProfileItem backgroundColor='darkorange' style={{justifyContent:'center'}} onPress={() => navigation.navigate('UserList', {profileUser, type: 'followers'})}>
+                        <FollowInfo>Followers</FollowInfo>
+                    </ProfileItem>
+                    <ProfileItem backgroundColor='#00A3A3' style={{justifyContent:'center'}} onPress={() => navigation.navigate('UserList', {profileUser, type: 'following'})}>
+                        <FollowInfo>Following</FollowInfo>
+                    </ProfileItem>
+                    <ProfileItem backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={() => navigation.navigate('PublicationList', {profileUser})}>
                         <ProfileText>Publications</ProfileText>
                         <ProfileCount>{profileUser.publication_count}</ProfileCount>
                     </ProfileItem>
@@ -107,12 +137,12 @@ export default function Profile({ navigation, route }) {
                         <ProfileText>Commentaries</ProfileText>
                         <ProfileCount>{profileUser.commentary_count}</ProfileCount>
                     </ProfileItem>
-                    <ProfileItem backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={() => navigation.navigate('ShareList', {profileUser})}>
+                    <ProfileItem backgroundColor='brown' onPress={() => navigation.navigate('ShareList', {profileUser})}>
                         <ProfileText>Favorites</ProfileText>
                         <ProfileCount>{profileUser.share_count}</ProfileCount>
                     </ProfileItem>
                 </ProfileItemsView>
-            </ScrollView>
+            </ScrollView>}
         </View>
     )
 }

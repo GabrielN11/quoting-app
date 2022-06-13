@@ -40,7 +40,7 @@ export default function PublicationList({navigation, route}) {
         <GoBack goBack={navigation.goBack}/>
         <ProfileText style={{alignSelf: 'center'}}>{profileUser.name}'s Publications</ProfileText>
         {publications.map(publication => (
-            <PublicationItem publication={publication} key={publication.id}/>
+            <PublicationItem publication={publication} key={publication.id} navigation={navigation}/>
         ))}
         {publications.length > 0 && loaded && <FormButton onPress={getPublications} backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY}>
             <FormBtnText>Load More...</FormBtnText>

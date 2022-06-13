@@ -12,7 +12,7 @@ import PublicationItem from '../../components/Publication/PublicationItem'
 export default function ShareList({navigation, route}) {
 
     const [shares, setShares] = React.useState([])
-    const [loaded, setLoaded] = React.useState(true)
+    const [loaded, setLoaded] = React.useState(false)
     const [page, setPage] = React.useState(0)
 
     const {profileUser} = route.params
@@ -29,7 +29,7 @@ export default function ShareList({navigation, route}) {
                 setPage(page+1)
                 setShares(current => [...current, ...resp.data])
             }else if(json.status === 204){
-                setLoaded(false)
+                setLoaded(true)
             }
         }catch(e){
             console.log(e)
@@ -40,14 +40,14 @@ export default function ShareList({navigation, route}) {
     <ScrollView style={{height: '100%', backgroundColor: colors.BACKGROUND}}>
         <GoBack goBack={navigation.goBack}/>
         <ProfileText style={{alignSelf: 'center'}}>{profileUser.name}'s Favorites</ProfileText>
-        {shares.map(share => share.type === 'commentary' ? (
-            <TouchableOpacity key={share.id}>
+        {shares.map((share, index) => share.type === 'commentary' ? (
+            <TouchableOpacity key={index} onPress={() => navigation.navigate('Publication', {publicationId: share.publication_id})}>
                 <Commentary commentary={share} navigation={navigation} fromUser/>
             </TouchableOpacity>
         ) : (
-            <PublicationItem publication={share} key={share.id}/>
+            <PublicationItem publication={share} key={index}/>
         ))}
-        {shares.length > 0 && loaded && <FormButton onPress={getShares} backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY}>
+        {shares.length > 0 && !loaded && <FormButton onPress={getShares} backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY}>
             <FormBtnText>Load More...</FormBtnText>
         </FormButton>}
         {shares.length === 0 && <Empty/>}

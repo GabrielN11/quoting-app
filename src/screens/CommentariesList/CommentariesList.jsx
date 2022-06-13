@@ -40,7 +40,7 @@ export default function CommentariesList({navigation, route}) {
         <GoBack goBack={navigation.goBack}/>
         <ProfileText style={{alignSelf: 'center'}}>{profileUser.name}'s Commentaries</ProfileText>
         {commentaries.map(commentary => (
-            <TouchableOpacity key={commentary.id}>
+            <TouchableOpacity key={commentary.id} onPress={() => navigation.navigate('Publication', {publicationId: commentary.publication_id})}>
                 <Commentary commentary={commentary} navigation={navigation} fromUser/>
             </TouchableOpacity>
         ))}

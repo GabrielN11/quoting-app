@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import colors from '../../../assets/constants/colors';
 
-export const PublicationItemView = styled.TouchableOpacity`
+export const PublicationItemButton = styled.TouchableOpacity`
     align-items: stretch;
     background-color: ${colors.BAR_BACKGROUND};
     padding: 20px;

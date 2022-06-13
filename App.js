@@ -20,6 +20,8 @@ import Commentaries from './src/screens/Commentaries/Commentaries';
 import PublicationList from './src/screens/PublicationList/PublicationList';
 import CommentariesList from './src/screens/CommentariesList/CommentariesList';
 import ShareList from './src/screens/ShareList/ShareList';
+import Publication from './src/screens/Publication/Publication';
+import UserList from './src/screens/UserList/UserList';
 
 const Stack = createNativeStackNavigator()
 
@@ -51,6 +53,8 @@ export default function App() {
             <Stack.Screen name="PublicationList" component={PublicationList} options={{headerShown: false}}/>
             <Stack.Screen name="CommentariesList" component={CommentariesList} options={{headerShown: false}}/>
             <Stack.Screen name="ShareList" component={ShareList} options={{headerShown: false}}/>
+            <Stack.Screen name="Publication" component={Publication} options={{headerShown: false}}/>
+            <Stack.Screen name="UserList" component={UserList} options={{headerShown: false}}/>
           </Stack.Navigator>
         </NavigationContainer>
       </GlobalProvider>

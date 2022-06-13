@@ -1,13 +1,13 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import { PublicationInfoItem, PublicationInfoText, PublicationInfoView, PublicationItemText, PublicationItemView } from './styles'
+import { PublicationInfoItem, PublicationInfoText, PublicationInfoView, PublicationItemText, PublicationItemButton } from './styles'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faHeart, faMessage } from '@fortawesome/free-solid-svg-icons'
 import colors from '../../../assets/constants/colors'
 
-export default function PublicationItem({publication}) {
+export default function PublicationItem({publication, navigation}) {
   return (
-    <PublicationItemView>
+    <PublicationItemButton onPress={() => navigation.navigate('Publication', {publicationId: publication.id})}>
         <PublicationItemText>{publication.text.length > 100 ? publication.text.substring(0, 100) + '...' : publication.text}</PublicationItemText>
         <PublicationInfoView>
             <PublicationInfoItem>
@@ -19,6 +19,6 @@ export default function PublicationItem({publication}) {
                 <PublicationInfoText>{publication.share_count}</PublicationInfoText>
             </PublicationInfoItem>
         </PublicationInfoView>
-    </PublicationItemView>
+    </PublicationItemButton>
   )
 }

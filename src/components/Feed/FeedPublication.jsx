@@ -41,7 +41,7 @@ export default function FeedPublication({ publication, navigation }) {
     if (publication === 'reset') return (
         <PublicationView>
             <PublicationWarning>
-                You have seen all phrases so far. Swipe right to see them again!
+                You have seen all publications so far. Swipe right to see them again!
             </PublicationWarning>
             <View style={{alignItems: 'center'}}>
                 <ResetSvg width={250}/>
@@ -58,7 +58,7 @@ export default function FeedPublication({ publication, navigation }) {
             </ScrollView>
             <View style={{flexDirection: 'row-reverse', justifyContent: 'space-between'}}>
                 <PublicationAuthor>{publication.author ? '- ' + publication.author : ''}</PublicationAuthor>
-                {publisher && <TouchableOpacity onPress={() => navigation.navigate('Profile', {profileUser: publisher})}>
+                {publisher && <TouchableOpacity onPress={() => navigation.navigate('Profile', {profileId: publisher.id})}>
                     <PublicationAuthor>By {publisher.name}</PublicationAuthor>
                 </TouchableOpacity>}
             </View>

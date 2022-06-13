@@ -36,7 +36,7 @@ export default function Commentary({ commentary, navigation, fromUser=false }) {
 
     return (
         <CommentaryView>
-            <TouchableOpacity onPress={() => navigation.navigate('Profile', {profileUser: publisher})}>
+            <TouchableOpacity onPress={() => navigation.navigate('Profile', {profileId: publisher.id})}>
                 <CommentaryInfo>{publisher ? publisher.name : 'Anonymous'}:</CommentaryInfo>
             </TouchableOpacity>
             <CommentaryText>
