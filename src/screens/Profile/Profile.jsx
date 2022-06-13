@@ -26,7 +26,7 @@ export default function Profile({ navigation, route }) {
 
     React.useEffect(() => {
         if(profileUser){
-            if (user.pinned_publication) getPinnedPublication()
+            if (profileUser.pinned_publication) getPinnedPublication()
             getFollow()
         }
     }, [profileUser])
@@ -71,7 +71,7 @@ export default function Profile({ navigation, route }) {
                 setPinnedPublication(resp.data)
             }
         } catch (e) {
-
+            console.log(e.message)
         } finally {
             setLoading(false)
         }
@@ -120,7 +120,7 @@ export default function Profile({ navigation, route }) {
                 </TouchableOpacity>}
                 {pinnedPublication && <PinnedView>
                     <ProfileText>Pinned Publication</ProfileText>
-                    <PublicationItem publication={pinnedPublication} />
+                    <PublicationItem publication={pinnedPublication} navigation={navigation} />
                 </PinnedView>}
                 <ProfileItemsView>
                     <ProfileItem backgroundColor='darkorange' style={{justifyContent:'center'}} onPress={() => navigation.push('UserList', {profileUser, type: 'followers'})}>
