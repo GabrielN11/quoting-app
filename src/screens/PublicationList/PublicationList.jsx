@@ -14,7 +14,7 @@ export default function PublicationList({navigation, route}) {
     const [loaded, setLoaded] = React.useState(true)
     const [page, setPage] = React.useState(0)
 
-    const {profileUser} = route.params
+    const {profileId, profileName} = route.params
 
     React.useEffect(() => {
         getPublications()
@@ -22,7 +22,7 @@ export default function PublicationList({navigation, route}) {
 
     async function getPublications(){
         try{
-            const json = await fetch(API_URL + '/publications-by-user/' + profileUser.id + '?page=' + page)
+            const json = await fetch(API_URL + '/publications-by-user/' + profileId + '?page=' + page)
             if(json.status === 200){
                 const resp = await json.json()
                 setPage(page+1)
@@ -38,7 +38,7 @@ export default function PublicationList({navigation, route}) {
   return (
     <ScrollView style={{height: '100%', backgroundColor: colors.BACKGROUND}}>
         <GoBack goBack={navigation.goBack}/>
-        <ProfileText style={{alignSelf: 'center'}}>{profileUser.name}'s Publications</ProfileText>
+        <ProfileText style={{alignSelf: 'center'}}>{profileName}'s Publications</ProfileText>
         {publications.map(publication => (
             <PublicationItem publication={publication} key={publication.id} navigation={navigation}/>
         ))}

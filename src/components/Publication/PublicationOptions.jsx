@@ -65,7 +65,6 @@ export default function PublicationOptions({ publication, navigation }) {
             if(resp.status === 200){
                 createAlert('Pinned', 'Publication pinned.')
                 publication.pinned = true
-                navigation.navigate('Profile', {profileId: user.id})
             }else{
                 const data = await data.json()
                 createAlert('Error', data.error)
@@ -95,7 +94,7 @@ export default function PublicationOptions({ publication, navigation }) {
         }
     }
 
-    const [options] = React.useState([
+    const options = [
         {
             label: publication.pinned ?  'Unpin' : 'Pin',
             function: () => {
@@ -117,7 +116,7 @@ export default function PublicationOptions({ publication, navigation }) {
             function: confirmDelete,
             adminOnly: false
         }
-    ])
+    ]
 
 
     return (

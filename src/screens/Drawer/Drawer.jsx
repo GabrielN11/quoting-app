@@ -51,7 +51,10 @@ function CustomDrawerContent(props) {
 
   async function logout(){
     await AsyncStorage.removeItem('@user_token')
-    props.navigation.navigate('Initial')
+    props.navigation.reset({
+      index: 0,
+      routes: [{ name: 'Initial' }],
+    });
   }
   return (
     <DrawerContentScrollView {...props}>

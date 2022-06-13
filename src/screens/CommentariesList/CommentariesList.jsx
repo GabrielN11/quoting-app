@@ -14,7 +14,7 @@ export default function CommentariesList({navigation, route}) {
     const [loaded, setLoaded] = React.useState(true)
     const [page, setPage] = React.useState(0)
 
-    const {profileUser} = route.params
+    const {profileId, profileName} = route.params
 
     React.useEffect(() => {
         getCommentaries()
@@ -22,7 +22,7 @@ export default function CommentariesList({navigation, route}) {
 
     async function getCommentaries(){
         try{
-            const json = await fetch(API_URL + '/commentary-by-user/' + profileUser.id + '?page=' + page)
+            const json = await fetch(API_URL + '/commentary-by-user/' + profileId + '?page=' + page)
             if(json.status === 200){
                 const resp = await json.json()
                 setPage(page+1)
@@ -38,7 +38,7 @@ export default function CommentariesList({navigation, route}) {
   return (
     <ScrollView style={{height: '100%', backgroundColor: colors.BACKGROUND}}>
         <GoBack goBack={navigation.goBack}/>
-        <ProfileText style={{alignSelf: 'center'}}>{profileUser.name}'s Commentaries</ProfileText>
+        <ProfileText style={{alignSelf: 'center'}}>{profileName}'s Commentaries</ProfileText>
         {commentaries.map(commentary => (
             <TouchableOpacity key={commentary.id} onPress={() => navigation.navigate('Publication', {publicationId: commentary.publication_id})}>
                 <Commentary commentary={commentary} navigation={navigation} fromUser/>

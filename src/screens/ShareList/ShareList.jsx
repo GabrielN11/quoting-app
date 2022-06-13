@@ -15,7 +15,7 @@ export default function ShareList({navigation, route}) {
     const [loaded, setLoaded] = React.useState(false)
     const [page, setPage] = React.useState(0)
 
-    const {profileUser} = route.params
+    const {profileId, profileName} = route.params
 
     React.useEffect(() => {
         getShares()
@@ -23,7 +23,7 @@ export default function ShareList({navigation, route}) {
 
     async function getShares(){
         try{
-            const json = await fetch(API_URL + '/share/' + profileUser.id + '?page=' + page)
+            const json = await fetch(API_URL + '/share/' + profileId + '?page=' + page)
             if(json.status === 200){
                 const resp = await json.json()
                 setPage(page+1)
@@ -39,7 +39,7 @@ export default function ShareList({navigation, route}) {
   return (
     <ScrollView style={{height: '100%', backgroundColor: colors.BACKGROUND}}>
         <GoBack goBack={navigation.goBack}/>
-        <ProfileText style={{alignSelf: 'center'}}>{profileUser.name}'s Favorites</ProfileText>
+        <ProfileText style={{alignSelf: 'center'}}>{profileName}'s Favorites</ProfileText>
         {shares.map((share, index) => share.type === 'commentary' ? (
             <TouchableOpacity key={index} onPress={() => navigation.navigate('Publication', {publicationId: share.publication_id})}>
                 <Commentary commentary={share} navigation={navigation} fromUser/>

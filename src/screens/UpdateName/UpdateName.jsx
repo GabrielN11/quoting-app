@@ -46,11 +46,16 @@ export default function UpdateName({ route, navigation }) {
             routes: [{ name: 'Drawer' }],
           });
         }
-        else navigation.goBack()
-      } else createAlert('Error', 'Something went wrong. Try again.')
+        else {
+          navigation.goBack()
+          setLoading(false)
+        }
+      }else{
+        setLoading(false)
+        createAlert('Error', 'Something went wrong. Try again.')
+      }
     } catch (e) {
       createAlert('Error', e.message)
-    } finally {
       setLoading(false)
     }
   }

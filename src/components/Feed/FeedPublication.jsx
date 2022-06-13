@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ScrollView} from 'react-native'
+import { View, Text, TouchableOpacity, ScrollView, RefreshControl } from 'react-native'
 import React from 'react'
 import { PublicationView, PublicationWarning, PublicationText, PublicationAuthor, PublicationActions, PublicationShowMore } from './styles'
 import ResetSvg from '../../../assets/reset.svg'
@@ -13,27 +13,49 @@ import PublicationOptions from '../Publication/PublicationOptions'
 
 export default function FeedPublication({ publication, navigation }) {
 
-    const [text] = React.useState(publication.text)
+    const [statePublication, setStatePublication] = React.useState(publication)
+    const [text, setText] = React.useState(publication.text)
     const [fullText, setFullText] = React.useState(false)
     const [publisher, setPublisher] = React.useState(null)
-    const {user} = React.useContext(GlobalContext)
+    const [refreshing, setRefreshing] = React.useState(false);
+    const { user } = React.useContext(GlobalContext)
+
+    const onRefresh = React.useCallback(async () => {
+        setRefreshing(true);
+        refreshPublication().then(() => setRefreshing(false))
+    }, []);
+
+    async function refreshPublication() {
+        try {
+            const json = await fetch(API_URL + '/publication-by-id/' + statePublication.id)
+            const resp = await json.json()
+            if (json.status === 200) {
+                setStatePublication(resp.data)
+                setText(resp.data.text)
+            }
+        } catch (e) {
+            console.log(e.message)
+        } finally {
+            return
+        }
+    }
 
     React.useEffect(() => {
         const fetchUser = async () => {
-            try{
-              const json = await fetch(API_URL + '/profile/' + publication.user_id)
-              const resp =  await json.json()
-              if(json.status === 200){
-                  setPublisher(resp.data)
-              }  
-            }catch(e){
+            try {
+                const json = await fetch(API_URL + '/profile/' + statePublication.user_id)
+                const resp = await json.json()
+                if (json.status === 200) {
+                    setPublisher(resp.data)
+                }
+            } catch (e) {
 
             }
         }
-        if(typeof publication !== 'string'){
-            if(publication.userId !== user.id){
+        if (typeof statePublication !== 'string') {
+            if (statePublication.userId !== user.id) {
                 fetchUser()
-            }else{
+            } else {
                 setPublisher(user)
             }
         }
@@ -44,32 +66,37 @@ export default function FeedPublication({ publication, navigation }) {
             <PublicationWarning>
                 You have seen all publications so far. Swipe right to see them again!
             </PublicationWarning>
-            <View style={{alignItems: 'center'}}>
-                <ResetSvg width={250}/>
+            <View style={{ alignItems: 'center' }}>
+                <ResetSvg width={250} />
             </View>
         </PublicationView>
     )
     return (
         <PublicationView>
-            <ScrollView style={{maxHeight: '70%', marginVertical: 5}}>
-                <PublicationText>"{fullText ? text : text.substring(0, 250) + '...'}"</PublicationText>
+            <ScrollView style={{ maxHeight: '70%', marginVertical: 5 }} refreshControl={
+                <RefreshControl
+                    refreshing={refreshing}
+                    onRefresh={onRefresh}
+                />
+            }>
+                <PublicationText>"{fullText ? text : (text.substring(0, 250) + (text.length > 250 ? '...' : ''))}"</PublicationText>
                 {text.length > 250 && <TouchableOpacity onPress={() => setFullText(!fullText)}>
                     <PublicationShowMore>{fullText ? 'Hide' : 'Show more'}</PublicationShowMore>
-                    </TouchableOpacity>}
+                </TouchableOpacity>}
             </ScrollView>
-            <View style={{flexDirection: 'row-reverse', justifyContent: 'space-between'}}>
-                <PublicationAuthor>{publication.author ? '- ' + publication.author : ''}</PublicationAuthor>
-                {publisher && <TouchableOpacity onPress={() => navigation.navigate('Profile', {profileId: publisher.id})}>
+            <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between' }}>
+                <PublicationAuthor>{statePublication.author ? '- ' + statePublication.author : ''}</PublicationAuthor>
+                {publisher && <TouchableOpacity onPress={() => navigation.navigate('Profile', { profileId: publisher.id })}>
                     <PublicationAuthor>By {publisher.name}</PublicationAuthor>
                 </TouchableOpacity>}
             </View>
             <PublicationActions>
-                <Share content={publication} type='publication'/>
-                {(user.id === publication.user_id || user.is_admin) && <PublicationOptions navigation={navigation} publication={publication}/>}
-                <TouchableOpacity onPress={() => navigation.navigate('Commentaries', {publication: publication})}>
-                    <FontAwesomeIcon icon={faMessage} color={colors.FONT_DEFAULT_COLOR} size={40}/>
-                    <Text style={{textAlign: 'center', color: colors.FONT_DEFAULT_COLOR, fontSize: 18}}>
-                        {publication.commentaries_count}
+                <Share content={statePublication} type='publication' />
+                {(user.id === statePublication.user_id || user.is_admin) && <PublicationOptions navigation={navigation} publication={statePublication} />}
+                <TouchableOpacity onPress={() => navigation.navigate('Commentaries', { publication: statePublication })}>
+                    <FontAwesomeIcon icon={faMessage} color={colors.FONT_DEFAULT_COLOR} size={40} />
+                    <Text style={{ textAlign: 'center', color: colors.FONT_DEFAULT_COLOR, fontSize: 18 }}>
+                        {statePublication.commentaries_count}
                     </Text>
                 </TouchableOpacity>
             </PublicationActions>

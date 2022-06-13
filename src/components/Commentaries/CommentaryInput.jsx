@@ -44,7 +44,7 @@ export default function CommentaryInput({publication, setCommentaries, setLoadin
                 setText('')
                 setCommentaries(current => [resp.data, ...current])
             }else{
-                createAlert('Error', e.error)
+                createAlert('Error', resp.error)
             }
         }catch(e){
             createAlert('Error', e.message)

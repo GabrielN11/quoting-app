@@ -1,4 +1,4 @@
-import { View, ScrollView, Text, TouchableOpacity } from 'react-native'
+import { View, ScrollView, Text, TouchableOpacity, RefreshControl } from 'react-native'
 import React from 'react'
 import GoBack from '../../components/GoBack/GoBack'
 import { FollowInfo, PinnedView, ProfileCount, ProfileItem, ProfileItemsView, ProfileName, ProfileText, ProfileUsername } from './styles'
@@ -16,9 +16,15 @@ export default function Profile({ navigation, route }) {
     const [pinnedPublication, setPinnedPublication] = React.useState(null)
     const [follow, setFollow] = React.useState(null)
     const [profileUser, setProfileUser] = React.useState(null)
+    const [refreshing, setRefreshing] = React.useState(false);
 
     const { user } = React.useContext(GlobalContext)
     const {profileId} = route.params
+
+    const onRefresh = React.useCallback(async () => {
+        setRefreshing(true);
+        getUser().then(() => setRefreshing(false))
+    }, []);
 
     React.useEffect(() => {
         getUser()
@@ -27,6 +33,7 @@ export default function Profile({ navigation, route }) {
     React.useEffect(() => {
         if(profileUser){
             if (profileUser.pinned_publication) getPinnedPublication()
+            else setPinnedPublication(null)
             getFollow()
         }
     }, [profileUser])
@@ -45,6 +52,7 @@ export default function Profile({ navigation, route }) {
             resp.error
         }finally{
             setLoading(false)
+            return
         }
     }
 
@@ -110,7 +118,12 @@ export default function Profile({ navigation, route }) {
         <View style={{ height: '100%', alignItems: 'center', backgroundColor: colors.BACKGROUND }}>
             <GoBack goBack={navigation.goBack} />
             {loading && <Loading />}
-            {profileUser && <ScrollView style={{ marginHorizontal: 15 }}>
+            {profileUser && <ScrollView style={{ marginHorizontal: 15 }} refreshControl={
+                <RefreshControl
+                    refreshing={refreshing}
+                    onRefresh={onRefresh}
+                />
+            }>
                 <ProfileName>{profileUser.name}</ProfileName>
                 <ProfileUsername>@{profileUser.username}</ProfileUsername>
                 {user.id !== profileUser.id && <TouchableOpacity style={{ marginTop: 25, alignItems: 'center' }}
@@ -129,15 +142,15 @@ export default function Profile({ navigation, route }) {
                     <ProfileItem backgroundColor='#00A3A3' style={{justifyContent:'center'}} onPress={() => navigation.push('UserList', {profileUser, type: 'following'})}>
                         <FollowInfo>Following</FollowInfo>
                     </ProfileItem>
-                    <ProfileItem backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={() => navigation.push('PublicationList', {profileUser})}>
+                    <ProfileItem backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={() => navigation.push('PublicationList', {profileId: profileUser.id, profileName: profileUser.name})}>
                         <ProfileText>Publications</ProfileText>
                         <ProfileCount>{profileUser.publication_count}</ProfileCount>
                     </ProfileItem>
-                    <ProfileItem backgroundColor='darkgreen' onPress={() => navigation.push('CommentariesList', {profileUser})}>
+                    <ProfileItem backgroundColor='darkgreen' onPress={() => navigation.push('CommentariesList', {profileId: profileUser.id, profileName: profileUser.name})}>
                         <ProfileText>Commentaries</ProfileText>
                         <ProfileCount>{profileUser.commentary_count}</ProfileCount>
                     </ProfileItem>
-                    <ProfileItem backgroundColor='brown' onPress={() => navigation.push('ShareList', {profileUser})}>
+                    <ProfileItem backgroundColor='brown' onPress={() => navigation.push('ShareList', {profileId: profileUser.id, profileName: profileUser.name})}>
                         <ProfileText>Favorites</ProfileText>
                         <ProfileCount>{profileUser.share_count}</ProfileCount>
                     </ProfileItem>

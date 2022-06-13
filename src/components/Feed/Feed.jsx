@@ -30,6 +30,7 @@ export default function Feed({setLoading, followMode=false, navigation}) {
       console.log(e)
     }finally{
       setLoading(false)
+      return
     }
   }
 
