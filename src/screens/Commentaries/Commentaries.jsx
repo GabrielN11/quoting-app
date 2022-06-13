@@ -11,7 +11,7 @@ import colors from '../../../assets/constants/colors'
 import Empty from '../../components/Empty/Empty'
 
 export default function Commentaries({route, navigation}) {
-    const {publication, setCommentaryCount} = route.params
+    const {publication} = route.params
     const [loading, setLoading] = React.useState(false)
     const [page, setPage] = React.useState(0)
     const [loadMore, setLoadMore] = React.useState(true)
@@ -53,7 +53,7 @@ export default function Commentaries({route, navigation}) {
             </FormButton>}
             {commentaries.length === 0 && <Empty/>}
         </CommentariesView>
-        <CommentaryInput publication={publication} setLoading={setLoading} setCommentaries={setCommentaries} setCommentaryCount={setCommentaryCount}/>
+        <CommentaryInput publication={publication} setLoading={setLoading} setCommentaries={setCommentaries}/>
     </CommentaryContainer>
   )
 }

@@ -9,7 +9,7 @@ import { API_URL } from '../../../env.iroment'
 
 
 
-export default function CommentaryInput({publication, setCommentaries, setCommentaryCount, setLoading}) {
+export default function CommentaryInput({publication, setCommentaries, setLoading}) {
     const [text, setText] = React.useState('')
     const {user} = React.useContext(GlobalContext)
 
@@ -43,7 +43,6 @@ export default function CommentaryInput({publication, setCommentaries, setCommen
             if(json.status === 201){
                 setText('')
                 setCommentaries(current => [resp.data, ...current])
-                setCommentaryCount(current => current+1)
             }else{
                 createAlert('Error', e.error)
             }

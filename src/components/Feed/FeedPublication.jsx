@@ -8,12 +8,12 @@ import { faMessage } from '@fortawesome/free-solid-svg-icons'
 import colors from '../../../assets/constants/colors'
 import Share from '../Share/Share'
 import { API_URL } from '../../../env.iroment'
+import PublicationOptions from '../Publication/PublicationOptions'
 
 
 export default function FeedPublication({ publication, navigation }) {
 
     const [text] = React.useState(publication.text)
-    const [commentaryCount, setCommentaryCount] = React.useState(publication.commentaries_count)
     const [fullText, setFullText] = React.useState(false)
     const [publisher, setPublisher] = React.useState(null)
     const {user} = React.useContext(GlobalContext)
@@ -65,10 +65,11 @@ export default function FeedPublication({ publication, navigation }) {
             </View>
             <PublicationActions>
                 <Share content={publication} type='publication'/>
-                <TouchableOpacity onPress={() => navigation.navigate('Commentaries', {publication: publication, setCommentaryCount: setCommentaryCount})}>
+                {(user.id === publication.user_id || user.is_admin) && <PublicationOptions navigation={navigation} publication={publication}/>}
+                <TouchableOpacity onPress={() => navigation.navigate('Commentaries', {publication: publication})}>
                     <FontAwesomeIcon icon={faMessage} color={colors.FONT_DEFAULT_COLOR} size={40}/>
                     <Text style={{textAlign: 'center', color: colors.FONT_DEFAULT_COLOR, fontSize: 18}}>
-                        {commentaryCount}
+                        {publication.commentaries_count}
                     </Text>
                 </TouchableOpacity>
             </PublicationActions>

@@ -9,11 +9,20 @@ import { GlobalContext } from '../../GlobalContext'
 import { API_URL } from '../../../env.iroment'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-export default function SignUp({ navigation }) {
+export default function SignUp({ navigation, route }) {
     const [loading, setLoading] = React.useState(false);
     const [text, setText] = React.useState('');
     const [author, setAuthor] = React.useState('');
-    const { user} = React.useContext(GlobalContext);
+
+    const { user, editingPublication} = React.useContext(GlobalContext);
+    const {editMode} = route.params
+
+    React.useEffect(() => {
+        if(editMode){
+            setText(editingPublication.text)
+            setAuthor(editingPublication.author ? editingPublication.author : null)
+        }
+    }, [editMode])
 
     const createAlert = (title = 'Alert Title', message = 'Alert Message') =>
         Alert.alert(
@@ -29,8 +38,8 @@ export default function SignUp({ navigation }) {
        if(text.length < 10) return createAlert('Short text', 'Your text is too short.')
        setLoading(true)
        try{
-           json = await fetch(API_URL + '/publication', {
-               method: 'POST',
+           const json = await fetch(`${API_URL}/publication${editMode ? `/${editingPublication.id}` : ''}`, {
+               method: editMode ? 'PUT' : 'POST',
                headers: {
                    'Authorization': 'Bearer ' + user.token,
                    'Content-type': 'application/json'
@@ -43,7 +52,7 @@ export default function SignUp({ navigation }) {
            })
 
            const resp = await json.json()
-           if(json.status === 201){
+           if(json.status === 201 || json.status === 200){
                setLoading(false)
                navigation.replace('Publication', {publicationId: resp.data.id})
            }else{
@@ -59,7 +68,9 @@ export default function SignUp({ navigation }) {
     return (
         <FormContainer behavior={Platform.OS === "ios" ? "padding" : "height"}>
             <GoBack goBack={navigation.goBack} />
-            <FormText style={{ fontFamily: 'Montserrat' }}>Tell us what you are thinking!</FormText>
+            <FormText style={{ fontFamily: 'Montserrat' }}>
+                {editMode ? 'Changed your mind? Change your publication too!' : 'Tell us what you are thinking!'}
+            </FormText>
             <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, paddingVertical: 5 }}>
                 <FormText>Text:</FormText>
                 <FormInput multiline={true} numberOfLines={4} placeholder='Type the text here...'
@@ -76,7 +87,7 @@ export default function SignUp({ navigation }) {
             </View>
             <View style={{ alignSelf: 'stretch', marginVertical: 20 }}>
                 <FormButton backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={handleSubmit}>
-                    <FormBtnText>Publish</FormBtnText>
+                    <FormBtnText>{editMode ? 'Edit' : 'Publish'}</FormBtnText>
                 </FormButton>
             </View>
             {loading && <Loading />}

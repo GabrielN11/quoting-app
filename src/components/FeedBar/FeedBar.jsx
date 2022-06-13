@@ -10,7 +10,7 @@ export default function FeedBar({followMode, setFollowMode, navigation}) {
     <BarContainer>
         <FeedBarItem active={!followMode} setFollowMode={setFollowMode} text='All' icon={faGlobe}/>
         <BarAdd>
-            <BarButton onPress={() => navigation.navigate('PublicationForm')}>
+            <BarButton onPress={() => navigation.navigate('PublicationForm', {editMode: false})}>
                 <FontAwesomeIcon icon={faPlus} size={40} color={colors.FONT_DEFAULT_COLOR}/>
             </BarButton>
         </BarAdd>

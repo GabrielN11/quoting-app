@@ -45,7 +45,7 @@ export default function ShareList({navigation, route}) {
                 <Commentary commentary={share} navigation={navigation} fromUser/>
             </TouchableOpacity>
         ) : (
-            <PublicationItem publication={share} key={index}/>
+            <PublicationItem publication={share} key={index} navigation={navigation}/>
         ))}
         {shares.length > 0 && !loaded && <FormButton onPress={getShares} backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY}>
             <FormBtnText>Load More...</FormBtnText>

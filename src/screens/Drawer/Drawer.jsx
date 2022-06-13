@@ -3,7 +3,6 @@ import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerI
 import React from 'react'
 import Home from '../Home/Home';
 import colors from '../../../assets/constants/colors';
-import Logout from '../Logout/Logout';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faHome, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
