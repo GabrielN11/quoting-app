@@ -47,8 +47,9 @@ export default function UpdateName({ route, navigation }) {
           });
         }
         else {
-          navigation.goBack()
           setLoading(false)
+          createAlert('Success.', 'Name successfully updated.')
+          navigation.goBack()
         }
       }else{
         setLoading(false)
@@ -62,14 +63,14 @@ export default function UpdateName({ route, navigation }) {
 
   return (
     <FormContainer>
-      {!newAccount && <GoBack />}
+      {!newAccount && <GoBack goBack={navigation.goBack}/>}
       {loading && <Loading />}
       <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 40 }}>
         <FormText style={{ fontFamily: 'Montserrat' }}>{newAccount ? 'Set your display name.' : 'Update your display name.'}</FormText>
         <CustomTooltip text='Your display name is the nickname that will be displayed to others in your publications and commentaries.' />
       </View>
       <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, marginBottom: 30 }}>
-        <FormText>Type your new display name: {name}</FormText>
+        <FormText>Type your new display name</FormText>
         <FormInput onChangeText={setName} value={name} />
       </View>
       <FormButton backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={handleSubmit}>

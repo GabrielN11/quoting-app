@@ -8,8 +8,8 @@ import { useFonts } from 'expo-font';
 import { GlobalProvider } from './src/GlobalContext';
 import Initial from './src/screens/Initial/Initial'
 import SignIn from './src/screens/SignIn/SignIn';
-import Home from './src/screens/Home/Home';
 import UpdateName from './src/screens/UpdateName/UpdateName';
+import UpdatePassword from './src/screens/UpdatePassword/UpdatePassword'
 import SignUp from './src/screens/SignUp/SignUp';
 import PublicationForm from './src/screens/PublicationForm/PublicationForm';
 import Profile from './src/screens/Profile/Profile';
@@ -47,6 +47,7 @@ export default function App() {
             <Stack.Screen name="SignUp" component={SignUp} options={{headerShown: false}}/>
             <Stack.Screen name="Drawer" component={DrawerRoutes} options={{ headerShown: false }} />
             <Stack.Screen name="UpdateName" component={UpdateName} options={{ headerShown: false }} />
+            <Stack.Screen name="UpdatePassword" component={UpdatePassword} options={{ headerShown: false }} />
             <Stack.Screen name="PublicationForm" component={PublicationForm} options={{headerShown: false}}/>
             <Stack.Screen name="Commentaries" component={Commentaries} options={{headerShown: false}}/>
             <Stack.Screen name="Profile" component={Profile} options={{headerShown: false}}/>

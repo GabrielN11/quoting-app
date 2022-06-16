@@ -1,13 +1,10 @@
-import { TouchableOpacity } from 'react-native'
 import React from 'react'
 import { GlobalContext } from '../../GlobalContext'
-import { HomeHeader, HomeView } from './styles'
+import { HomeView } from './styles'
 import Feed from '../../components/Feed/Feed'
 import Loading from '../../components/Loading/Loading'
 import FeedBar from '../../components/FeedBar/FeedBar'
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
-import colors from '../../../assets/constants/colors'
+import DrawerHeader from '../../components/DrawerHeader/DrawerHeader'
 
 export default function Home({navigation}) {
     const [loading, setLoading] = React.useState(false)
@@ -16,11 +13,7 @@ export default function Home({navigation}) {
   return (
     <HomeView>
       {loading && <Loading/>}
-      <HomeHeader>
-        <TouchableOpacity onPress={() => navigation.openDrawer()}>
-          <FontAwesomeIcon icon={faBars} color={colors.FONT_DEFAULT_COLOR} size={30}/>
-        </TouchableOpacity>
-      </HomeHeader>
+      <DrawerHeader navigation={navigation}/>
       <Feed setLoading={setLoading} followMode={followMode} navigation={navigation}/>
       <FeedBar followMode={followMode} setFollowMode={setFollowMode} navigation={navigation}/>
     </HomeView>

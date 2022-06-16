@@ -4,9 +4,10 @@ import React from 'react'
 import Home from '../Home/Home';
 import colors from '../../../assets/constants/colors';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faHome, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faHome, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { GlobalContext } from '../../GlobalContext';
+import Settings from '../Settings/Settings';
 
 const Drawer = createDrawerNavigator();
 
@@ -24,6 +25,9 @@ export default function DrawerRoutes() {
       }}>
         <Drawer.Screen name="Home" component={Home} options={{headerShown: false, drawerIcon: (focused, size) => (
           <FontAwesomeIcon icon={faHome} size={size} color={colors.FONT_DEFAULT_COLOR}/>
+        )}} />
+        <Drawer.Screen name="Settings" component={Settings} options={{headerShown: false, drawerIcon: (focused, size) => (
+          <FontAwesomeIcon icon={faGear} size={size} color={colors.FONT_DEFAULT_COLOR}/>
         )}} />
       </Drawer.Navigator>
   );

@@ -5,6 +5,7 @@ import {API_URL} from '../../../env.iroment'
 import { GlobalContext } from '../../GlobalContext'
 import FeedPublication from './FeedPublication'
 import Empty from '../Empty/Empty'
+import {PublicationView} from './styles'
 
 export default function Feed({setLoading, followMode=false, navigation}) {
   const [publications, setPublications] = React.useState([])
@@ -39,14 +40,15 @@ export default function Feed({setLoading, followMode=false, navigation}) {
     fetchData()
   }
 
-  React.useEffect(() => {
-    if(publications.length <= 1)
-    fetchData()
-  }, [publications])
+  function initialFetch(){
+    setPublications([])
+    fetchData().then(() => fetchData())
+  }
 
   React.useEffect(() => {
-    setPublications([])
+    initialFetch()
   }, [followMode])
+
   
 
   return (
@@ -56,7 +58,7 @@ export default function Feed({setLoading, followMode=false, navigation}) {
     }}>
       {publications.length > 1 && <Swiper loop={false} showsPagination={false}
       onIndexChanged={(index) => renderMorePublications(index)}>
-          {publications.map(publication => <FeedPublication key={publication.id || publication} publication={publication}
+          {publications.map((publication, index) => <FeedPublication key={publication.id || publication + index} publication={publication}
           navigation={navigation}/>)}
       </Swiper>}
       {publications.length === 0 && <Empty/>}
