@@ -136,10 +136,10 @@ export default function Profile({ navigation, route }) {
                     <PublicationItem publication={pinnedPublication} navigation={navigation} />
                 </PinnedView>}
                 <ProfileItemsView>
-                    <ProfileItem backgroundColor='darkorange' style={{justifyContent:'center'}} onPress={() => navigation.push('UserList', {profileUser, type: 'followers'})}>
+                    <ProfileItem backgroundColor='darkorange' style={{justifyContent:'center'}} onPress={() => navigation.push('UserList', {profileId: profileUser.id, profileName: profileUser.name, type: 'followers'})}>
                         <FollowInfo>Followers</FollowInfo>
                     </ProfileItem>
-                    <ProfileItem backgroundColor='#00A3A3' style={{justifyContent:'center'}} onPress={() => navigation.push('UserList', {profileUser, type: 'following'})}>
+                    <ProfileItem backgroundColor='#00A3A3' style={{justifyContent:'center'}} onPress={() => navigation.push('UserList', {profileId: profileUser.id, profileName: profileUser.name, type: 'following'})}>
                         <FollowInfo>Following</FollowInfo>
                     </ProfileItem>
                     <ProfileItem backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={() => navigation.push('PublicationList', {profileId: profileUser.id, profileName: profileUser.name})}>

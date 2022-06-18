@@ -13,7 +13,7 @@ export default function UserList({navigation, route}) {
     const [page, setPage] = React.useState(0)
     const [loaded, setLoaded] = React.useState(false)
 
-    const {profileUser, type} = route.params
+    const {profileId, profileName, type} = route.params
 
     React.useEffect(() => {
         getUsers()
@@ -21,7 +21,7 @@ export default function UserList({navigation, route}) {
 
     async function getUsers(){
         try{
-            const json = await fetch(`${API_URL}/${type}/${profileUser.id}?page=${page}`)
+            const json = await fetch(`${API_URL}/${type}/${profileId}?page=${page}`)
             if(json.status === 200){
                 const resp = await json.json()
                 setUsers(current => [...current, ...resp.data])
@@ -36,7 +36,7 @@ export default function UserList({navigation, route}) {
   return (
     <ScrollView style={{backgroundColor: colors.BACKGROUND, height: '100%'}}>
       <GoBack goBack={navigation.goBack}/>
-      <ProfileText style={{alignSelf: 'center'}}>User's followers</ProfileText>
+      <ProfileText style={{alignSelf: 'center'}}>{profileName}'s followers</ProfileText>
       {users.map(user => (
           <UserItem user={user} navigation={navigation} key={user.id}/>
       ))}

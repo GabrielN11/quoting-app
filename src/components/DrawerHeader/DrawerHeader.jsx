@@ -1,6 +1,6 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { DrawerHeaderView } from './styles'
+import { DrawerHeaderTitle, DrawerHeaderView } from './styles'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import colors from '../../../assets/constants/colors'
