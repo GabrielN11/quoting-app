@@ -9,6 +9,7 @@ import PublicationItem from '../../components/Publication/PublicationItem'
 import Loading from '../../components/Loading/Loading'
 import { API_URL } from '../../../env.iroment'
 import { GlobalContext } from '../../GlobalContext'
+import UserOptions from '../../components/User/UserOptions'
 
 export default function Profile({ navigation, route }) {
 
@@ -126,36 +127,47 @@ export default function Profile({ navigation, route }) {
             }>
                 <ProfileName>{profileUser.name}</ProfileName>
                 <ProfileUsername>@{profileUser.username}</ProfileUsername>
+
                 {user.id !== profileUser.id && <TouchableOpacity style={{ marginTop: 25, alignItems: 'center' }}
                 onPress={() => follow ? fetchUnfflow() : fetchFollow()}>
                     <FontAwesomeIcon icon={follow ? faUserXmark : faUserPlus} size={40} color={follow ? 'lightgreen' : colors.FONT_DEFAULT_COLOR} />
                     <ProfileText color={follow && 'lightgreen'} style={{ alignSelf: 'center' }}>{follow ? 'Unfollow' : 'Follow'}</ProfileText>
                 </TouchableOpacity>}
+
+                {(user.is_admin && user.id !== profileUser.id) && <View style={{alignSelf: 'center', marginTop: 20}}>
+                    <UserOptions profileUser={profileUser}/>    
+                </View>}
+
                 {pinnedPublication && <PinnedView>
                     <ProfileText>Pinned Publication</ProfileText>
                     <PublicationItem publication={pinnedPublication} navigation={navigation} />
                 </PinnedView>}
+
                 <ProfileItemsView>
-                    <ProfileItem backgroundColor='darkorange' style={{justifyContent:'center'}} onPress={() => navigation.push('UserList', {profileId: profileUser.id, profileName: profileUser.name, type: 'followers'})}>
-                        <FollowInfo>Followers</FollowInfo>
-                    </ProfileItem>
-                    <ProfileItem backgroundColor='#00A3A3' style={{justifyContent:'center'}} onPress={() => navigation.push('UserList', {profileId: profileUser.id, profileName: profileUser.name, type: 'following'})}>
-                        <FollowInfo>Following</FollowInfo>
-                    </ProfileItem>
-                    <ProfileItem backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={() => navigation.push('PublicationList', {profileId: profileUser.id, profileName: profileUser.name})}>
-                        <ProfileText>Publications</ProfileText>
-                        <ProfileCount>{profileUser.publication_count}</ProfileCount>
-                    </ProfileItem>
-                    <ProfileItem backgroundColor='darkgreen' onPress={() => navigation.push('CommentariesList', {profileId: profileUser.id, profileName: profileUser.name})}>
-                        <ProfileText>Commentaries</ProfileText>
-                        <ProfileCount>{profileUser.commentary_count}</ProfileCount>
-                    </ProfileItem>
-                    <ProfileItem backgroundColor='brown' onPress={() => navigation.push('ShareList', {profileId: profileUser.id, profileName: profileUser.name})}>
-                        <ProfileText>Favorites</ProfileText>
-                        <ProfileCount>{profileUser.share_count}</ProfileCount>
-                    </ProfileItem>
+                    <Item background='darkorange' center screen='UserList' profileUser={profileUser} props={{type: 'followers'}} text='Followers'
+                    navigation={navigation}/>
+
+                    <Item background='#00A3A3' center screen='UserList' profileUser={profileUser} props={{type: 'following'}} text='Following'
+                    navigation={navigation}/>
+
+                    <Item background={colors.BUTTON_BACKGROUND_PRIMARY} screen='PublicationList' profileUser={profileUser} text='Publications'
+                    navigation={navigation} count={profileUser.publication_count}/>
+
+                    <Item background='darkgreen' screen='CommentariesList' profileUser={profileUser} text='Commentaries'
+                    navigation={navigation} count={profileUser.commentary_count}/>
+
+                    <Item background='brown' screen='ShareList' profileUser={profileUser} text='Favorites'
+                    navigation={navigation} count={profileUser.share_count}/>
                 </ProfileItemsView>
             </ScrollView>}
         </View>
     )
+}
+
+const Item = ({navigation, screen, background, text, count = false, center = false, profileUser, props = {}}) => {
+    return <ProfileItem backgroundColor={background} 
+    onPress={() => navigation.push(screen, {profileId: profileUser.id, profileName: profileUser.name, ...props})} center={center}>
+        <ProfileText>{text}</ProfileText>
+        {count !== false && <ProfileCount>{count}</ProfileCount>}
+    </ProfileItem>
 }

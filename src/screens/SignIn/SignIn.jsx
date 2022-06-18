@@ -42,12 +42,12 @@ export default function SignIn({ navigation }) {
                     password
                 })
             })
+            const response = await json.json()
             if (json.status !== 200){
                 setLoading(false)
-                return createAlert('Invalid authentication.', 'Check your user name and password.')
+                return createAlert('Error.', response.error)
             }
             else {
-                const response = await json.json()
                 await AsyncStorage.setItem('@user_token', response.data.token)
                 setUser(response.data)
                 setLoading(false)

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import colors from '../../../assets/constants/colors';
 
-export default function Option({options}) {
+export default function Option({options, size=40}) {
     const [modalVisible, setModalVisible] = React.useState(false);
   return (
     <View>
@@ -37,7 +37,7 @@ export default function Option({options}) {
       <TouchableOpacity
         onPress={() => setModalVisible(true)}
       >
-        <FontAwesomeIcon icon={faGear} size={40} color={colors.FONT_DEFAULT_COLOR}/>
+        <FontAwesomeIcon icon={faGear} size={size} color={colors.FONT_DEFAULT_COLOR}/>
       </TouchableOpacity>
     </View>
   )

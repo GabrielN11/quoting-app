@@ -22,6 +22,8 @@ export default function Publication({navigation, route}) {
             const resp = await json.json()
             if(json.status === 200){
                 setPublication(resp.data)
+            }else{
+                navigation.goBack()
             }
         }catch(e){
             navigation.goBack()

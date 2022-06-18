@@ -40,6 +40,7 @@ export const ProfileItem = styled.TouchableOpacity`
     border-radius: 10px;
     align-items: center;
     max-width: 50%;
+    justify-content: ${({center}) => center ? 'center' : 'flex-start'}
 `
 
 export const ProfileCount = styled.Text`
