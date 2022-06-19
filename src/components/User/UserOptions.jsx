@@ -4,7 +4,7 @@ import Option from '../Options/Option'
 import { API_URL } from '../../../env.iroment'
 import { GlobalContext } from '../../GlobalContext'
 
-export default function UserOptions({profileUser}) {
+export default function UserOptions({profileUser, navigation}) {
 
     const {user} = React.useContext(GlobalContext)
 
@@ -80,16 +80,30 @@ export default function UserOptions({profileUser}) {
             },
         },
         {
-            label: 'Change password',
-            function: () => null,
-        },
-        {
             label: profileUser.active ? 'Ban' : 'Unban',
             function: () => {
                 const action = profileUser.active ? 'Ban' : 'Unban'
                 confirmAction('Are you sure?', `Are you sure you want to ${action} ${profileUser.username} ?`,
                 action, toggleBan)
             },
+        },
+        {
+            label: 'Change password',
+            function: () => {
+                navigation.navigate('AdminChangePassword', {userId: profileUser.id, username: profileUser.username})
+            }
+        },
+        {
+            label: 'Change display name',
+            function: () => {
+                navigation.navigate('AdminChangeName', {userId: profileUser.id, username: profileUser.username})
+            }
+        },
+        {
+            label: 'Change username',
+            function: () => {
+                navigation.navigate('AdminChangeUsername', {userId: profileUser.id, currentUsername: profileUser.username})
+            }
         }
     ]
 

@@ -135,7 +135,7 @@ export default function Profile({ navigation, route }) {
                 </TouchableOpacity>}
 
                 {(user.is_admin && user.id !== profileUser.id) && <View style={{alignSelf: 'center', marginTop: 20}}>
-                    <UserOptions profileUser={profileUser}/>    
+                    <UserOptions profileUser={profileUser} navigation={navigation}/>    
                 </View>}
 
                 {pinnedPublication && <PinnedView>

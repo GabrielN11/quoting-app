@@ -26,6 +26,7 @@ export default function UpdateName({ route, navigation }) {
   async function handleSubmit() {
     if (name === '') return createAlert('Missing name', 'Type a display name.')
     if (name.length < 3) return createAlert('Invalid name length', 'Your display name is too short.')
+    if (name.length > 25) return createAlert('Invalid name length', 'Your display name is too long.')
     if (!user) return
     setLoading(true)
     try {

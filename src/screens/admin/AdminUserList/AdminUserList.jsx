@@ -12,13 +12,14 @@ import { CommentaryTextInput } from '../../Commentaries/styles'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
-export default function AdminUserList({navigation}) {
+export default function AdminUserList({navigation, route}) {
     const [users, setUsers] = React.useState([])
     const [page, setPage] = React.useState(0)
     const [loaded, setLoaded] = React.useState(false)
     const [search, setSearch] = React.useState('')
 
     const {user} = React.useContext(GlobalContext)
+    const {type} = route.params
 
 
     React.useEffect(() => {
@@ -27,7 +28,7 @@ export default function AdminUserList({navigation}) {
 
     async function getAllUsers(){
         try{
-            const json = await fetch(`${API_URL}/admin-user-list?page=${page}${search.length > 0 ? `&search=${search}`:''}`, {
+            const json = await fetch(`${API_URL}/admin-${type}-list?page=${page}${search.length > 0 ? `&search=${search}`:''}`, {
                 headers: {
                     'Authorization': 'Bearer ' + user.token
                 }
