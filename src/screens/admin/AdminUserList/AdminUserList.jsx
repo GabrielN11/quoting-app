@@ -44,6 +44,13 @@ export default function AdminUserList({navigation, route}) {
             console.log(e.message)
         }
     }
+
+    function search(){
+        setUsers([])
+        setLoaded(false)
+        getAllUsers()
+    }
+
   return (
     <ScrollView style={{backgroundColor: colors.BACKGROUND, height: '100%'}}>
       <GoBack goBack={navigation.goBack}/>
@@ -51,12 +58,9 @@ export default function AdminUserList({navigation, route}) {
         <CommentaryTextInput onChangeText={newSearch => {
             setPage(0)
             setSearch(newSearch)
-        }} placeholder='Search users...'  placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}/>
-        <TouchableOpacity onPress={() => {
-            setUsers([])
-            setLoaded(false)
-            getAllUsers()
-        }} style={{marginLeft: 7}}>
+        }} placeholder='Search users...'  placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}
+        returnKeyType="send" onSubmitEditing={search}/>
+        <TouchableOpacity onPress={search} style={{marginLeft: 7}}>
             <FontAwesomeIcon icon={faSearch} size={25} color={colors.FONT_DEFAULT_COLOR}/>
         </TouchableOpacity>
       </View>

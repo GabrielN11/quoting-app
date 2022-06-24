@@ -70,7 +70,7 @@ export default function UserOptions({profileUser, navigation}) {
         }
     }
 
-    const options = [
+    const options = React.useMemo(() => [
         {
             label: profileUser.is_admin ? 'Remove admin rights' : 'Give admin rights',
             function: () => {
@@ -105,7 +105,7 @@ export default function UserOptions({profileUser, navigation}) {
                 navigation.navigate('AdminChangeUsername', {userId: profileUser.id, currentUsername: profileUser.username})
             }
         }
-    ]
+    ], [profileUser])
 
     if(!user.is_admin) return null
 

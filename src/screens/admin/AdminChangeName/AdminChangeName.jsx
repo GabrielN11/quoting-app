@@ -63,7 +63,7 @@ export default function AdminChangeName({ navigation, route }) {
             </View>
             <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, marginBottom: 15 }}>
                 <FormText>Type the new display name</FormText>
-                <FormInput onChangeText={setName} value={name} />
+                <FormInput onChangeText={setName} value={name} autoFocus returnKeyType="send" onSubmitEditing={() => handleSubmit()} />
             </View>
             <FormButton backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={handleSubmit}>
                 <FormBtnText>Alter name</FormBtnText>

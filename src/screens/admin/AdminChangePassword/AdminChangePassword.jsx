@@ -62,7 +62,7 @@ export default function AdminChangePassword({ navigation, route }) {
             </View>
             <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, marginBottom: 15 }}>
                 <FormText>Type the new password</FormText>
-                <FormInput secureTextEntry onChangeText={setPassword} value={password} />
+                <FormInput secureTextEntry onChangeText={setPassword} value={password} autoFocus returnKeyType="send" onSubmitEditing={() => handleSubmit()} />
             </View>
             <FormButton backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={handleSubmit}>
                 <FormBtnText>Alter password</FormBtnText>

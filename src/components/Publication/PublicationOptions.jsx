@@ -94,7 +94,7 @@ export default function PublicationOptions({ publication, navigation }) {
         }
     }
 
-    const options = [
+    const options = React.useMemo(() => [
         {
             label: publication.pinned ?  'Unpin' : 'Pin',
             function: () => {
@@ -116,7 +116,7 @@ export default function PublicationOptions({ publication, navigation }) {
             function: confirmDelete,
             adminOnly: false
         }
-    ]
+    ], [publication])
 
 
     return (

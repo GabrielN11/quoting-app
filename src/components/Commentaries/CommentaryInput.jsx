@@ -56,7 +56,8 @@ export default function CommentaryInput({publication, setCommentaries, setLoadin
   return (
     <View style={{flexDirection:'row', padding: 20, alignItems: 'center'}}>
       <CommentaryTextInput placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER} placeholder='Type a comment here...'
-      value={text} onChangeText={newText => newText.length > 500 ? null : setText(newText)} multiline/>
+      value={text} onChangeText={newText => newText.length > 500 ? null : setText(newText)} multiline
+      returnKeyType="send" onSubmitEditing={() => sendCommentary()}/>
       <TouchableOpacity onPress={sendCommentary}>
           <FontAwesomeIcon icon={faPaperPlane} color={colors.FONT_DEFAULT_COLOR} size={25}/>
       </TouchableOpacity>

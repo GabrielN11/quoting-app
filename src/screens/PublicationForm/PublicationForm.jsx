@@ -14,11 +14,12 @@ export default function SignUp({ navigation, route }) {
     const [text, setText] = React.useState('');
     const [author, setAuthor] = React.useState('');
 
-    const { user, editingPublication} = React.useContext(GlobalContext);
-    const {editMode} = route.params
+    const { user, editingPublication } = React.useContext(GlobalContext);
+    const { editMode } = route.params
+    const textfieldRef = React.useRef()
 
     React.useEffect(() => {
-        if(editMode){
+        if (editMode) {
             setText(editingPublication.text)
             setAuthor(editingPublication.author ? editingPublication.author : null)
         }
@@ -34,35 +35,35 @@ export default function SignUp({ navigation, route }) {
         );
 
     async function handleSubmit() {
-       if(text === '') return createAlert('Missing text', 'Write something to publish!')
-       if(text.length < 10) return createAlert('Short text', 'Your text is too short.')
-       setLoading(true)
-       try{
-           const json = await fetch(`${API_URL}/publication${editMode ? `/${editingPublication.id}` : ''}`, {
-               method: editMode ? 'PUT' : 'POST',
-               headers: {
-                   'Authorization': 'Bearer ' + user.token,
-                   'Content-type': 'application/json'
-               },
-               body: JSON.stringify({
-                   text,
-                   author: author === '' ? null : author,
-                   user_id: user.id
-               })
-           })
+        if (text === '') return createAlert('Missing text', 'Write something to publish!')
+        if (text.length < 10) return createAlert('Short text', 'Your text is too short.')
+        setLoading(true)
+        try {
+            const json = await fetch(`${API_URL}/publication${editMode ? `/${editingPublication.id}` : ''}`, {
+                method: editMode ? 'PUT' : 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + user.token,
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    text,
+                    author: author === '' ? null : author,
+                    user_id: user.id
+                })
+            })
 
-           const resp = await json.json()
-           if(json.status === 201 || json.status === 200){
-               setLoading(false)
-               navigation.replace('Publication', {publicationId: resp.data.id})
-           }else{
-               createAlert('Error', resp.error)
-               setLoading(false)
-           }
-       }catch(e){
-           createAlert('Error', resp.error)
-           setLoading(false)
-       }
+            const resp = await json.json()
+            if (json.status === 201 || json.status === 200) {
+                setLoading(false)
+                navigation.replace('Publication', { publicationId: resp.data.id })
+            } else {
+                createAlert('Error', resp.error)
+                setLoading(false)
+            }
+        } catch (e) {
+            createAlert('Error', resp.error)
+            setLoading(false)
+        }
     }
 
     return (
@@ -76,14 +77,20 @@ export default function SignUp({ navigation, route }) {
                 <FormInput multiline={true} numberOfLines={4} placeholder='Type the text here...'
                     placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}
                     value={text}
-                    onChangeText={newText => newText.length < 1000 ? setText(newText) : null} />
+                    onChangeText={newText => newText.length < 1000 ? setText(newText) : null}
+                    autoFocus
+                    returnKeyType="next"
+                    onSubmitEditing={() => textfieldRef.current.focus()}/>
             </View>
             <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, paddingVertical: 5 }}>
                 <FormText>Author (optional):</FormText>
                 <FormInput placeholder='Author of the text...'
                     placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}
                     value={author}
-                    onChangeText={setAuthor} />
+                    onChangeText={setAuthor}
+                    ref={textfieldRef}
+                    returnKeyType="send"
+                    onSubmitEditing={() => handleSubmit()}/>
             </View>
             <View style={{ alignSelf: 'stretch', marginVertical: 20 }}>
                 <FormButton backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={handleSubmit}>
@@ -91,7 +98,7 @@ export default function SignUp({ navigation, route }) {
                 </FormButton>
             </View>
             {loading && <Loading />}
-            <View style={{ flex : 1 }} />
+            <View style={{ flex: 1 }} />
         </FormContainer>
     )
 }

@@ -16,6 +16,9 @@ export default function SignUp({ navigation }) {
     const [repeatPassword, setRepeatPassword] = React.useState('');
     const { user, setUser } = React.useContext(GlobalContext);
 
+    const passwordRef = React.useRef()
+    const repeatPasswordRef = React.useRef()
+
     const createAlert = (title = 'Alert Title', message = 'Alert Message') =>
         Alert.alert(
             title,
@@ -67,21 +70,29 @@ export default function SignUp({ navigation }) {
                 <FormInput placeholder='Type your use name here...'
                     placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}
                     value={username}
-                    onChangeText={setUsername} />
+                    onChangeText={setUsername}
+                    returnKeyType="next"
+                    onSubmitEditing={() => passwordRef.current.focus()}/>
             </View>
             <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, paddingVertical: 5 }}>
                 <FormText>Password:</FormText>
                 <FormInput secureTextEntry={true} placeholder='Type your password here...'
                     placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}
                     value={password}
-                    onChangeText={setPassword} />
+                    onChangeText={setPassword} 
+                    ref={passwordRef}
+                    returnKeyType="next"
+                    onSubmitEditing={() => repeatPasswordRef.current.focus()}/>
             </View>
             <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, paddingVertical: 5 }}>
                 <FormText>Repeat your password:</FormText>
                 <FormInput secureTextEntry={true} placeholder='Type your password again..'
                     placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}
                     value={repeatPassword}
-                    onChangeText={setRepeatPassword} />
+                    onChangeText={setRepeatPassword}
+                    ref={repeatPasswordRef}
+                    returnKeyType="send"
+                    onSubmitEditing={() => handleSubmit()} />
             </View>
             <View style={{ alignSelf: 'stretch', marginVertical: 20 }}>
                 <FormButton backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={handleSubmit}>

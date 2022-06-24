@@ -14,6 +14,9 @@ export default function UpdatePassword({ navigation }) {
   const [loading, setLoading] = React.useState(false)
   const { user } = React.useContext(GlobalContext)
 
+  const passwordRef = React.useRef()
+  const repeatPasswordRef = React.useRef()
+
   const createAlert = (title = 'Alert Title', message = 'Alert Message') =>
     Alert.alert(
       title,
@@ -67,15 +70,18 @@ export default function UpdatePassword({ navigation }) {
       </View>
       <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, marginBottom: 15 }}>
         <FormText>Type your current password</FormText>
-        <FormInput secureTextEntry onChangeText={setPassword} value={password} />
+        <FormInput secureTextEntry onChangeText={setPassword} value={password}
+        returnKeyType="next" autoFocus onSubmitEditing={() => passwordRef.current.focus()} />
       </View>
       <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, marginBottom: 15 }}>
         <FormText>Type your new password</FormText>
-        <FormInput secureTextEntry onChangeText={setNewPassword} value={newPassword} />
+        <FormInput secureTextEntry onChangeText={setNewPassword} value={newPassword}
+        ref={passwordRef} returnKeyType="next" onSubmitEditing={() => repeatPasswordRef.current.focus()} />
       </View>
       <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, marginBottom: 30 }}>
         <FormText>Confirm your new password</FormText>
-        <FormInput secureTextEntry onChangeText={setConfirmNewPassword} value={confirmNewPassword} />
+        <FormInput secureTextEntry onChangeText={setConfirmNewPassword} value={confirmNewPassword}
+        ref={repeatPasswordRef} returnKeyType='send' onSubmitEditing={() => handleSubmit()}/>
       </View>
       <FormButton backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={handleSubmit}>
         <FormBtnText>Alter password</FormBtnText>

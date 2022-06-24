@@ -15,6 +15,7 @@ export default function SignIn({ navigation }) {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const { user, setUser } = React.useContext(GlobalContext)
+    const passwordFieldRef = React.useRef()
 
     const createAlert = (title = 'Alert Title', message = 'Alert Message') =>
         Alert.alert(
@@ -71,14 +72,20 @@ export default function SignIn({ navigation }) {
                 <FormInput placeholder='Type your use name here...'
                     placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}
                     value={username}
-                    onChangeText={setUsername} />
+                    onChangeText={setUsername} 
+                    autoFocus
+                    returnKeyType="next"
+                    onSubmitEditing={() => passwordFieldRef.current.focus()}/>
             </View>
             <View style={{ alignSelf: 'stretch', padding: 20 }}>
                 <FormText>Password:</FormText>
                 <FormInput secureTextEntry={true} placeholder='Type your password here...'
                     placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}
                     value={password}
-                    onChangeText={setPassword} />
+                    onChangeText={setPassword} 
+                    returnKeyType="send"
+                    ref={passwordFieldRef}
+                    onSubmitEditing={() => handleSubmit()}/>
             </View>
             <View style={{ alignSelf: 'stretch', marginVertical: 20 }}>
                 <FormButton backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={handleSubmit}>
