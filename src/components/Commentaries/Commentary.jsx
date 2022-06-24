@@ -5,10 +5,13 @@ import { API_URL } from '../../../env.iroment'
 import Share from '../Share/Share'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import CommentaryOptions from './CommentaryOptions'
+import { GlobalContext } from '../../GlobalContext'
 
-export default function Commentary({ commentary, navigation, fromUser=false }) {
+export default function Commentary({ commentary, navigation }) {
 
     const [publisher, setPublisher] = React.useState(null)
+    const { user } = React.useContext(GlobalContext)
 
     React.useEffect(() => {
         const fetchUser = async () => {
@@ -36,17 +39,20 @@ export default function Commentary({ commentary, navigation, fromUser=false }) {
 
     return (
         <CommentaryView>
-            <TouchableOpacity onPress={() => navigation.navigate('Profile', {profileId: publisher.id})}>
+            <TouchableOpacity onPress={() => navigation.navigate('Profile', { profileId: publisher.id })}>
                 <CommentaryInfo>{publisher ? publisher.name : 'Anonymous'}:</CommentaryInfo>
             </TouchableOpacity>
             <CommentaryText>
                 {commentary.text}
             </CommentaryText>
-            <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end'}}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <CommentaryInfo style={{ marginTop: 7, fontSize: 16 }}>
                     {returnTime(commentary.date)}
                 </CommentaryInfo>
-                {!fromUser && <Share content={commentary} type='commentary' size={25}/>}
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    {(user.is_admin || user.id === commentary.user_id) && <CommentaryOptions commentary={commentary} navigation={navigation} />}
+                    <Share content={commentary} type='commentary' size={25} style={{marginLeft: 20}}/>
+                </View>
             </View>
         </CommentaryView>
     )

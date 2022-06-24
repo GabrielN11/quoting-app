@@ -11,7 +11,7 @@ import colors from '../../../assets/constants/colors'
 import Empty from '../../components/Empty/Empty'
 
 export default function Commentaries({ route, navigation }) {
-    const { publication } = route.params
+    const { publicationId } = route.params
     const [loading, setLoading] = React.useState(false)
     const [page, setPage] = React.useState(0)
     const [loadMore, setLoadMore] = React.useState(true)
@@ -28,7 +28,7 @@ export default function Commentaries({ route, navigation }) {
     async function fetchCommentaries() {
         setLoading(true)
         try {
-            const json = await fetch(`${API_URL}/commentary-by-publication/${publication.id}?page=${page}`)
+            const json = await fetch(`${API_URL}/commentary-by-publication/${publicationId}?page=${page}`)
             const resp = await json.json()
             if (json.status === 200 && resp.data && resp.data.length > 0) {
                 setCommentaries(current => [...current, ...resp.data])
@@ -67,7 +67,7 @@ export default function Commentaries({ route, navigation }) {
                 </FormButton>}
                 {commentaries.length === 0 && <Empty />}
             </CommentariesView>
-            <CommentaryInput publication={publication} setLoading={setLoading} setCommentaries={setCommentaries} />
+            <CommentaryInput publicationId={publicationId} setLoading={setLoading} setCommentaries={setCommentaries} />
         </CommentaryContainer>
     )
 }

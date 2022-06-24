@@ -71,7 +71,7 @@ export default function UpdatePassword({ navigation }) {
       <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, marginBottom: 15 }}>
         <FormText>Type your current password</FormText>
         <FormInput secureTextEntry onChangeText={setPassword} value={password}
-        returnKeyType="next" autoFocus onSubmitEditing={() => passwordRef.current.focus()} />
+        returnKeyType="next" onSubmitEditing={() => passwordRef.current.focus()} />
       </View>
       <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, marginBottom: 15 }}>
         <FormText>Type your new password</FormText>

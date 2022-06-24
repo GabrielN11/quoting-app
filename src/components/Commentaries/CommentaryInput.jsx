@@ -9,7 +9,7 @@ import { API_URL } from '../../../env.iroment'
 
 
 
-export default function CommentaryInput({publication, setCommentaries, setLoading}) {
+export default function CommentaryInput({publicationId, setCommentaries, setLoading}) {
     const [text, setText] = React.useState('')
     const {user} = React.useContext(GlobalContext)
 
@@ -35,7 +35,7 @@ export default function CommentaryInput({publication, setCommentaries, setLoadin
                 body: JSON.stringify({
                     text,
                     user_id: user.id,
-                    publication_id: publication.id
+                    publication_id: publicationId
                 })
             })
             const resp = await json.json()

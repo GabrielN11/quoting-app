@@ -45,7 +45,7 @@ export default function AdminUserList({navigation, route}) {
         }
     }
 
-    function search(){
+    function startSearch(){
         setUsers([])
         setLoaded(false)
         getAllUsers()
@@ -59,8 +59,8 @@ export default function AdminUserList({navigation, route}) {
             setPage(0)
             setSearch(newSearch)
         }} placeholder='Search users...'  placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}
-        returnKeyType="send" onSubmitEditing={search}/>
-        <TouchableOpacity onPress={search} style={{marginLeft: 7}}>
+        returnKeyType="send" onSubmitEditing={startSearch}/>
+        <TouchableOpacity onPress={startSearch} style={{marginLeft: 7}}>
             <FontAwesomeIcon icon={faSearch} size={25} color={colors.FONT_DEFAULT_COLOR}/>
         </TouchableOpacity>
       </View>

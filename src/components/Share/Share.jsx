@@ -6,7 +6,7 @@ import colors from '../../../assets/constants/colors'
 import { GlobalContext } from '../../GlobalContext'
 import { API_URL } from '../../../env.iroment'
 
-export default function Share({ content, type='publication', size=40 }) {
+export default function Share({ content, type='publication', size=40, ...props }) {
     const [share, setShare] = React.useState(false)
     const [count, setCount] = React.useState(content.share_count)
     const { user } = React.useContext(GlobalContext)
@@ -71,7 +71,7 @@ export default function Share({ content, type='publication', size=40 }) {
     }
 
     if (content.user_id === user.id) return (
-        <View>
+        <View {...props}>
             <FontAwesomeIcon icon={faHeart} color={colors.BUTTON_BACKGROUND_PRIMARY} size={size} />
             <Text style={{ textAlign: 'center', color: colors.FONT_DEFAULT_COLOR, fontSize: size/2 }}>
                 {count}
@@ -80,7 +80,7 @@ export default function Share({ content, type='publication', size=40 }) {
     )
 
     return (
-        <TouchableOpacity onPress={() => share ? deleteShare() : submitShare()}>
+        <TouchableOpacity onPress={() => share ? deleteShare() : submitShare()} {...props}>
             <FontAwesomeIcon icon={share ? faHeart : faHeartCirclePlus} color={share ? '#ff0000' : colors.FONT_DEFAULT_COLOR} size={size} />
             <Text style={{ textAlign: 'center', color: colors.FONT_DEFAULT_COLOR, fontSize: size/2 }}>
                 {count}
