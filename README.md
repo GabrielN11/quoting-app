@@ -12,7 +12,7 @@ Quoting is a social media application made with the aim of users sharing quotes 
 - Font Awesome
 - unDraw svg images
 
-Check the API repository and README [clicking here](http://https://github.com/GabrielN11/quoting-api "clicking here").
+Check the API repository and README [clicking here](https://github.com/GabrielN11/quoting-api "clicking here").
 
 ## Showcase
 
