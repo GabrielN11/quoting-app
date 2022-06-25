@@ -17,7 +17,7 @@ export default class SwiperComponent extends Component {
         <CarouselItems>
           <View>
             <CarouselText style={{ textAlign: 'center', fontFamily: 'Montserrat' }}>
-              Welcome to [appname]!
+              Welcome to Quoting!
             </CarouselText>
             <CarouselText>
               Here you can express your ideas and thoughts in a simple and easy way.
