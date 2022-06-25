@@ -36,7 +36,7 @@ export default function UserList({navigation, route}) {
   return (
     <ScrollView style={{backgroundColor: colors.BACKGROUND, height: '100%'}}>
       <GoBack goBack={navigation.goBack}/>
-      <ProfileText style={{alignSelf: 'center'}}>{profileName}'s followers</ProfileText>
+      <ProfileText style={{alignSelf: 'center'}}>{profileName}'s {type}</ProfileText>
       {users.map(user => (
           <UserItem user={user} navigation={navigation} key={user.id}/>
       ))}
