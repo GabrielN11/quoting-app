@@ -1,3 +1,6 @@
+
+<img src="https://user-images.githubusercontent.com/42102027/176065035-d90efd28-06d2-45d6-be01-a9b08e214f9f.png" alt="drawing" width="200"/>
+
 # Quoting
 
 Quoting is a social media application made with the aim of users sharing quotes and thoughts. The users can see other people quotes through a feed that dynamically shows random posts from other users. It is possible to comment on publications, favorite them and follow other users.
