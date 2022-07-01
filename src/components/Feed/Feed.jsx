@@ -5,7 +5,6 @@ import {API_URL} from '../../../env.iroment'
 import { GlobalContext } from '../../GlobalContext'
 import FeedPublication from './FeedPublication'
 import Empty from '../Empty/Empty'
-import {PublicationView} from './styles'
 
 export default function Feed({setLoading, followMode=false, navigation}) {
   const [publications, setPublications] = React.useState([])
@@ -14,6 +13,10 @@ export default function Feed({setLoading, followMode=false, navigation}) {
 
   const fetchData = async () => {
     setLoading(true)
+    if(publications.length > 20){
+      //resets the array to save memory
+      setPublications(current => [current.pop()])
+    }
     try{
       const json = await fetch(`${API_URL}/${followMode ? 'publication-by-follow' : 'publication'}`, {
         headers:{
@@ -22,7 +25,7 @@ export default function Feed({setLoading, followMode=false, navigation}) {
       })
       const {data} = await json.json()
       if(json.status === 200){
-        if(data.reset_seen) setPublications(arr => [...arr, 'reset', data])
+        if(!data) setPublications(arr => [...arr, 'reset'])
         else setPublications(arr => [...arr, data])
       }else{
         console.log(json.status)
