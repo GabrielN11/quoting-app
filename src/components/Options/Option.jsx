@@ -1,4 +1,4 @@
-import { View, Text, Modal, Alert, TouchableOpacity } from 'react-native'
+import { View, Text, Modal, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { ModalContainer, ModalText, ModalTouchable, ModalView } from './styles';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
@@ -14,7 +14,6 @@ export default function Option({options, size=30}) {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
         }}
       >

@@ -44,7 +44,7 @@ export default function UpdateName({ route, navigation }) {
           setLoading(false)
           navigation.reset({
             index: 0,
-            routes: [{ name: 'Drawer' }],
+            routes: [{ name: 'Drawer', params: {newAccount: true} }],
           });
         }
         else {

@@ -54,7 +54,7 @@ export default function SignIn({ navigation }) {
                 setLoading(false)
                 navigation.reset({
                     index: 0,
-                    routes: [{name: 'Drawer'}],
+                    routes: [{ name: 'Drawer', params: {newAccount: false} }],
                   });
             }
         } catch (e) {

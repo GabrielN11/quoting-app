@@ -27,7 +27,7 @@ const Initial = ({ navigation }) => {
                     setLoading(false)
                     return navigation.reset({
                         index: 0,
-                        routes: [{ name: 'Drawer' }],
+                        routes: [{ name: 'Drawer', params: {newAccount: false} }],
                     });
                 }else{
                     setLoading(false)

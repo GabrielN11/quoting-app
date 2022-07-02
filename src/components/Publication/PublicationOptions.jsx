@@ -41,7 +41,7 @@ export default function PublicationOptions({ publication, navigation }) {
                 createAlert('Success', 'Publication deleted')
                 navigation.reset({
                     index: 0,
-                    routes: [{ name: 'Drawer' }],
+                    routes: [{ name: 'Drawer', params: {newAccount: false} }],
                 });
             } else {
                 const data = await resp.json()
