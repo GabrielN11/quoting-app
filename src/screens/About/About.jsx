@@ -13,7 +13,7 @@ export default function About({ navigation }) {
   return (
     <View style={{ backgroundColor: colors.BACKGROUND, flex: 1 }}>
       <DrawerHeader navigation={navigation} />
-      <View style={{alignItems: 'center', flex: 1}}>
+      <View style={{alignItems: 'center', flex: 6}}>
         <LogoImage source={Logo} />
         <AboutTitle>Quoting</AboutTitle>
         <AboutText>
