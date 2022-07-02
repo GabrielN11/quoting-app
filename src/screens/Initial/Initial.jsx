@@ -29,6 +29,8 @@ const Initial = ({ navigation }) => {
                         index: 0,
                         routes: [{ name: 'Drawer' }],
                     });
+                }else{
+                    setLoading(false)
                 }
             } catch (e) {
                 console.log(e)
