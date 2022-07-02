@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faUserXmark, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import PublicationItem from '../../components/Publication/PublicationItem'
 import Loading from '../../components/Loading/Loading'
-import { API_URL } from '../../../env.iroment'
+import { API_URL } from '../../../enviroment'
 import { GlobalContext } from '../../GlobalContext'
 import UserOptions from '../../components/User/UserOptions'
 

@@ -6,7 +6,7 @@ import { InitialView } from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-import { API_URL } from '../../../env.iroment';
+import { API_URL } from '../../../enviroment';
 
 const Initial = ({navigation}) => {
     const {user, setUser} = React.useContext(GlobalContext)

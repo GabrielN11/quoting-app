@@ -1,7 +1,7 @@
 import { View, Text, Alert } from 'react-native'
 import React from 'react'
 import Option from '../Options/Option'
-import { API_URL } from '../../../env.iroment'
+import { API_URL } from '../../../enviroment'
 import { GlobalContext } from '../../GlobalContext'
 
 export default function UserOptions({ profileUser, navigation }) {

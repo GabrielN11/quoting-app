@@ -7,11 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faMessage } from '@fortawesome/free-solid-svg-icons'
 import colors from '../../../assets/constants/colors'
 import Share from '../Share/Share'
-import { API_URL } from '../../../env.iroment'
+import { API_URL } from '../../../enviroment'
 import PublicationOptions from '../Publication/PublicationOptions'
 
 
-export default function FeedPublication({ publication, navigation }) {
+export default function FeedPublication({ publication, navigation, setLoading }) {
 
     const [statePublication, setStatePublication] = React.useState(publication)
     const [text, setText] = React.useState(publication.text)
@@ -42,6 +42,7 @@ export default function FeedPublication({ publication, navigation }) {
 
     React.useEffect(() => {
         const fetchUser = async () => {
+            if(setLoading) setLoading(true)
             try {
                 const json = await fetch(API_URL + '/profile/' + statePublication.user_id)
                 const resp = await json.json()
@@ -50,6 +51,8 @@ export default function FeedPublication({ publication, navigation }) {
                 }
             } catch (e) {
 
+            }finally{
+                if(setLoading) setLoading(false)
             }
         }
         if (typeof statePublication !== 'string') {

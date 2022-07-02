@@ -5,13 +5,15 @@ import GoBack from '../../components/GoBack/GoBack'
 import { ProfileText } from '../Profile/styles'
 import Empty from '../../components/Empty/Empty'
 import UserItem from '../../components/User/UserItem'
-import { API_URL } from '../../../env.iroment'
+import { API_URL } from '../../../enviroment'
 import { FormButton, FormBtnText } from '../../components/Form/styles'
+import Loading from '../../components/Loading/Loading'
 
 export default function UserList({navigation, route}) {
     const [users, setUsers] = React.useState([])
     const [page, setPage] = React.useState(0)
     const [loaded, setLoaded] = React.useState(false)
+    const [loading, setLoading] = React.useState(false)
 
     const {profileId, profileName, type} = route.params
 
@@ -20,6 +22,7 @@ export default function UserList({navigation, route}) {
     }, [])
 
     async function getUsers(){
+        setLoading(true)
         try{
             const json = await fetch(`${API_URL}/${type}/${profileId}?page=${page}`)
             if(json.status === 200){
@@ -31,6 +34,8 @@ export default function UserList({navigation, route}) {
             }
         }catch(e){
             console.log(e)
+        }finally{
+            setLoading(false)
         }
     }
   return (
@@ -43,7 +48,8 @@ export default function UserList({navigation, route}) {
       {users.length > 0 && !loaded && <FormButton onPress={getUsers} backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY}>
             <FormBtnText>Load More...</FormBtnText>
         </FormButton>}
-      {users.length === 0 && <Empty/>}
+      {!loading && users.length === 0 && <Empty/>}
+      {loading && <Loading transparent/>}
     </ScrollView>
   )
 }

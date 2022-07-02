@@ -1,7 +1,7 @@
 import { View, Text, useWindowDimensions } from 'react-native'
 import React from 'react'
 import Swiper from 'react-native-swiper'
-import {API_URL} from '../../../env.iroment'
+import {API_URL} from '../../../enviroment'
 import { GlobalContext } from '../../GlobalContext'
 import FeedPublication from './FeedPublication'
 import Empty from '../Empty/Empty'
@@ -39,8 +39,7 @@ export default function Feed({setLoading, followMode=false, navigation}) {
   }
 
   function renderMorePublications(index){
-    if(index < publications.length - 2) return
-    fetchData()
+    if(index > publications.length - 2) fetchData()
   }
 
   function initialFetch(){
@@ -62,7 +61,7 @@ export default function Feed({setLoading, followMode=false, navigation}) {
       {publications.length > 1 && <Swiper loop={false} showsPagination={false}
       onIndexChanged={(index) => renderMorePublications(index)}>
           {publications.map((publication, index) => <FeedPublication key={publication.id || publication + index} publication={publication}
-          navigation={navigation}/>)}
+          navigation={navigation} setLoading={setLoading}/>)}
       </Swiper>}
       {publications.length === 0 && <Empty/>}
     </View>

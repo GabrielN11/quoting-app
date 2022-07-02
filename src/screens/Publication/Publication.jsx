@@ -3,7 +3,7 @@ import React from 'react'
 
 import FeedPublication from '../../components/Feed/FeedPublication'
 import Loading from '../../components/Loading/Loading'
-import { API_URL } from '../../../env.iroment'
+import { API_URL } from '../../../enviroment'
 import colors from '../../../assets/constants/colors'
 import GoBack from '../../components/GoBack/GoBack'
 

@@ -2,17 +2,19 @@ import { TouchableOpacity, ScrollView } from 'react-native'
 import React from 'react'
 import GoBack from '../../components/GoBack/GoBack'
 import {FormButton, FormBtnText} from '../../components/Form/styles'
-import { API_URL } from '../../../env.iroment'
+import { API_URL } from '../../../enviroment'
 import colors from '../../../assets/constants/colors'
 import { ProfileText } from '../Profile/styles'
 import Empty from '../../components/Empty/Empty'
 import Commentary from '../../components/Commentaries/Commentary'
+import Loading from '../../components/Loading/Loading'
 
 export default function CommentariesList({navigation, route}) {
 
     const [commentaries, setCommentaries] = React.useState([])
     const [loaded, setLoaded] = React.useState(true)
     const [page, setPage] = React.useState(0)
+    const [loading, setLoading] = React.useState(false)
 
     const {profileId, profileName} = route.params
 
@@ -21,6 +23,7 @@ export default function CommentariesList({navigation, route}) {
     }, [])
 
     async function getCommentaries(){
+        setLoading(true)
         try{
             const json = await fetch(API_URL + '/commentary-by-user/' + profileId + '?page=' + page)
             if(json.status === 200){
@@ -32,6 +35,8 @@ export default function CommentariesList({navigation, route}) {
             }
         }catch(e){
             console.log(e)
+        }finally{
+            setLoading(false)
         }
     }
 
@@ -47,7 +52,8 @@ export default function CommentariesList({navigation, route}) {
         {commentaries.length > 0 && loaded && <FormButton onPress={getCommentaries} backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY}>
             <FormBtnText>Load More...</FormBtnText>
         </FormButton>}
-        {commentaries.length === 0 && <Empty/>}
+        {!loading && commentaries.length === 0 && <Empty/>}
+        {loading && <Loading transparent/>}
     </ScrollView>
   )
 }

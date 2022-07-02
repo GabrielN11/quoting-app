@@ -3,16 +3,18 @@ import React from 'react'
 import GoBack from '../../components/GoBack/GoBack'
 import PublicationItem from '../../components/Publication/PublicationItem'
 import {FormButton, FormBtnText} from '../../components/Form/styles'
-import { API_URL } from '../../../env.iroment'
+import { API_URL } from '../../../enviroment'
 import colors from '../../../assets/constants/colors'
 import { ProfileText } from '../Profile/styles'
 import Empty from '../../components/Empty/Empty'
+import Loading from '../../components/Loading/Loading'
 
 export default function PublicationList({navigation, route}) {
 
     const [publications, setPublications] = React.useState([])
     const [loaded, setLoaded] = React.useState(true)
     const [page, setPage] = React.useState(0)
+    const [loading, setLoading] = React.useState(false)
 
     const {profileId, profileName} = route.params
 
@@ -21,6 +23,7 @@ export default function PublicationList({navigation, route}) {
     }, [])
 
     async function getPublications(){
+        setLoading(true)
         try{
             const json = await fetch(API_URL + '/publications-by-user/' + profileId + '?page=' + page)
             if(json.status === 200){
@@ -32,6 +35,8 @@ export default function PublicationList({navigation, route}) {
             }
         }catch(e){
             console.log(e)
+        }finally{
+            setLoading(false)
         }
     }
 
@@ -45,7 +50,8 @@ export default function PublicationList({navigation, route}) {
         {publications.length > 0 && loaded && <FormButton onPress={getPublications} backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY}>
             <FormBtnText>Load More...</FormBtnText>
         </FormButton>}
-        {publications.length === 0 && <Empty/>}
+        {loading && <Loading transparent/>}
+        {!loading && publications.length === 0 && <Empty/>}
     </ScrollView>
   )
 }

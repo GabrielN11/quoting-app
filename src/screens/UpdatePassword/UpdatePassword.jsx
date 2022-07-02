@@ -4,7 +4,7 @@ import { FormBtnText, FormButton, FormContainer, FormInput, FormText } from '../
 import colors from '../../../assets/constants/colors'
 import GoBack from '../../components/GoBack/GoBack'
 import { GlobalContext } from '../../GlobalContext'
-import { API_URL } from '../../../env.iroment'
+import { API_URL } from '../../../enviroment'
 import Loading from '../../components/Loading/Loading'
 
 export default function UpdatePassword({ navigation }) {

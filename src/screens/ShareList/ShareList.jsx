@@ -2,17 +2,19 @@ import { TouchableOpacity, ScrollView } from 'react-native'
 import React from 'react'
 import GoBack from '../../components/GoBack/GoBack'
 import {FormButton, FormBtnText} from '../../components/Form/styles'
-import { API_URL } from '../../../env.iroment'
+import { API_URL } from '../../../enviroment'
 import colors from '../../../assets/constants/colors'
 import { ProfileText } from '../Profile/styles'
 import Empty from '../../components/Empty/Empty'
 import Commentary from '../../components/Commentaries/Commentary'
 import PublicationItem from '../../components/Publication/PublicationItem'
+import Loading from '../../components/Loading/Loading'
 
 export default function ShareList({navigation, route}) {
 
     const [shares, setShares] = React.useState([])
     const [loaded, setLoaded] = React.useState(false)
+    const [loading, setLoading] = React.useState(false)
     const [page, setPage] = React.useState(0)
 
     const {profileId, profileName} = route.params
@@ -22,6 +24,7 @@ export default function ShareList({navigation, route}) {
     }, [])
 
     async function getShares(){
+        setLoading(true)
         try{
             const json = await fetch(API_URL + '/share/' + profileId + '?page=' + page)
             if(json.status === 200){
@@ -33,11 +36,13 @@ export default function ShareList({navigation, route}) {
             }
         }catch(e){
             console.log(e)
+        }finally{
+            setLoading(false)
         }
     }
 
   return (
-    <ScrollView style={{height: '100%', backgroundColor: colors.BACKGROUND}}>
+    <ScrollView style={{backgroundColor: colors.BACKGROUND}}>
         <GoBack goBack={navigation.goBack}/>
         <ProfileText style={{alignSelf: 'center'}}>{profileName}'s Favorites</ProfileText>
         {shares.map((share, index) => share.type === 'commentary' ? (
@@ -50,7 +55,8 @@ export default function ShareList({navigation, route}) {
         {shares.length > 0 && !loaded && <FormButton onPress={getShares} backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY}>
             <FormBtnText>Load More...</FormBtnText>
         </FormButton>}
-        {shares.length === 0 && <Empty/>}
+        {loading && <Loading transparent/>}
+        {!loading && shares.length === 0 && <Empty/>}
     </ScrollView>
   )
 }

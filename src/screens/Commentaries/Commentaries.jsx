@@ -2,7 +2,7 @@ import { RefreshControl } from 'react-native'
 import React from 'react'
 import { CommentariesView, CommentaryContainer } from './styles'
 import GoBack from '../../components/GoBack/GoBack'
-import { API_URL } from '../../../env.iroment'
+import { API_URL } from '../../../enviroment'
 import Commentary from '../../components/Commentaries/Commentary'
 import CommentaryInput from '../../components/Commentaries/CommentaryInput'
 import Loading from '../../components/Loading/Loading'
@@ -60,7 +60,7 @@ export default function Commentaries({ route, navigation }) {
                 />
             }>
                 {commentaries.map(commentary => (
-                    <Commentary key={commentary.id} commentary={commentary} navigation={navigation} />
+                    <Commentary key={commentary.id} commentary={commentary} navigation={navigation}/>
                 ))}
                 {loadMore && commentaries.length > 0 && <FormButton backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={fetchCommentaries}>
                     <FormBtnText>Load more...</FormBtnText>

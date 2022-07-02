@@ -5,7 +5,7 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import colors from '../../../assets/constants/colors'
 import { CommentaryTextInput } from '../../screens/Commentaries/styles'
 import { GlobalContext } from '../../GlobalContext'
-import { API_URL } from '../../../env.iroment'
+import { API_URL } from '../../../enviroment'
 
 
 

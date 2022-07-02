@@ -2,7 +2,7 @@ import { View, Text, Alert } from 'react-native'
 import React from 'react'
 import Option from '../Options/Option'
 import { GlobalContext } from '../../GlobalContext'
-import { API_URL } from '../../../env.iroment'
+import { API_URL } from '../../../enviroment'
 
 export default function CommentaryOptions({ commentary, navigation }) {
 

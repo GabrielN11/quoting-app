@@ -19,6 +19,7 @@ export default function DrawerRoutes() {
         drawerStyle: {
           backgroundColor: colors.BACKGROUND,
         },
+        swipeEnabled: false,
         drawerActiveBackgroundColor: colors.BAR_BACKGROUND,
         drawerActiveTintColor: colors.FONT_DEFAULT_COLOR,
         drawerInactiveTintColor: colors.FONT_DEFAULT_COLOR
