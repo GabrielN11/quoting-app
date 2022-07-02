@@ -1,14 +1,14 @@
-import { View, Text } from 'react-native'
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import React from 'react'
 import Home from '../Home/Home';
 import colors from '../../../assets/constants/colors';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faGear, faHome, faQuestion, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo, faCircleQuestion, faGear, faHome, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { GlobalContext } from '../../GlobalContext';
 import Settings from '../Settings/Settings';
 import Tutorial from '../../components/Tutorial/Tutorial';
+import About from '../About/About';
 
 const Drawer = createDrawerNavigator();
 
@@ -43,6 +43,11 @@ export default function DrawerRoutes({route}) {
             <FontAwesomeIcon icon={faGear} size={size} color={colors.FONT_DEFAULT_COLOR} />
           )
         }} />
+        <Drawer.Screen name="About" component={About} options={{
+          headerShown: false, drawerIcon: (focused, size) => (
+            <FontAwesomeIcon icon={faCircleInfo} size={size} color={colors.FONT_DEFAULT_COLOR} />
+          )
+        }} />
       </Drawer.Navigator>
     </>
   );
@@ -62,7 +67,7 @@ function CustomDrawerContent(props) {
     {
       label: 'Tutorial',
       icon: (focused, size) => (
-        <FontAwesomeIcon icon={faQuestion} size={size} color={colors.FONT_DEFAULT_COLOR}/>
+        <FontAwesomeIcon icon={faCircleQuestion} size={size} color={colors.FONT_DEFAULT_COLOR}/>
       ),
       onPress: () => props.setShowTutorial(true)
     },
