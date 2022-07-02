@@ -80,7 +80,7 @@ The application works on Android, it was not yet tested on iOS.
 
 ## Download
 
-The application was not published in an app store, but you can try it by download an .apk for Android and installing it.
+The application was not published in an app store, but you can try it by download an .apk for Android and installing it. This version is for demo only, but all features work normally.
 
 To download it, visit [my portfolio](https://gabrielnunes.vercel.app/ "my portfolio") and look for Quoting in the "Projects" section, there you can find the download.
 
