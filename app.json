@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "project",
-    "slug": "project",
+    "name": "Quoting",
+    "slug": "quoting",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -19,7 +19,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.gabrieln11.project"
+      "bundleIdentifier": "com.gabrieln11.quoting"
     },
     "android": {
       "adaptiveIcon": {

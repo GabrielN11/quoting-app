@@ -1662,7 +1662,7 @@
     node-fetch "^2.6.0"
     open "^6.2.0"
     semver "^6.3.0"
-    shell-quote "1.6.1"
+    shell-quote "^1.7.3"
 
 "@react-native-community/cli-tools@^7.0.1":
   version "7.0.1"
