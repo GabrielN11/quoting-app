@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
 import colors from '../../../assets/constants/colors';
 
-export default function Option({options, size=40}) {
+export default function Option({options, size=30}) {
     const [modalVisible, setModalVisible] = React.useState(false);
   return (
     <View>

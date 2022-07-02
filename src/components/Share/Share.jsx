@@ -6,7 +6,7 @@ import colors from '../../../assets/constants/colors'
 import { GlobalContext } from '../../GlobalContext'
 import { API_URL } from '../../../enviroment'
 
-export default function Share({ content, type='publication', size=40, ...props }) {
+export default function Share({ content, type='publication', size=30, ...props }) {
     const [share, setShare] = React.useState(false)
     const [count, setCount] = React.useState(content.share_count)
     const { user } = React.useContext(GlobalContext)
