@@ -72,7 +72,16 @@ https://user-images.githubusercontent.com/42102027/175791908-453cd42b-ef39-43ac-
 
 - E-mail verification;
 - Notifications;
-- Initial tutorial when creating account;
 - ...
+
+## Compatibility
+
+The application works on Android, it was not yet tested on iOS.
+
+## Download
+
+The application was not published in an app store, but you can try it by download an .apk for Android and installing it.
+
+To download it, visit [my portfolio](https://gabrielnunes.vercel.app/ "my portfolio") and look for Quoting in the "Projects" section, there you can find the download.
 
 
