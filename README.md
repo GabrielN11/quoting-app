@@ -82,6 +82,6 @@ The application works on Android, it was not yet tested on iOS.
 
 The application was not published in an app store, but you can try it by downloading an .apk for Android and installing it. This version is for demo only, but all features work normally.
 
-To download it, visit [my portfolio](https://gabrielnunes.vercel.app/ "my portfolio") and look for Quoting in the "Projects" section, there you can find the download.
+[Click here](http://https://github.com/GabrielN11/quoting-app/releases/tag/quotingv0.9-beta.1 "Click here") to download the latest release.
 
 
