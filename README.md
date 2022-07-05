@@ -82,6 +82,6 @@ The application works on Android, it was not yet tested on iOS.
 
 The application was not published in an app store, but you can try it by downloading an .apk for Android and installing it. This version is for demo only, but all features work normally.
 
-[Click here](https://github.com/GabrielN11/quoting-app/releases/tag/quotingv0.9-beta.1 "Click here") to download the latest release.
+[Click here](https://github.com/GabrielN11/quoting-app/releases/tag/quotingv0.9-beta.2 "Click here") to download the latest release.
 
 
