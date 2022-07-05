@@ -1,5 +1,5 @@
 
-<img src="https://user-images.githubusercontent.com/42102027/176065035-d90efd28-06d2-45d6-be01-a9b08e214f9f.png" alt="drawing" width="200"/>
+<img src="https://user-images.githubusercontent.com/42102027/177230396-91ded39b-e5fd-4018-bfd0-daae89793655.png" alt="drawing" width="200"/>
 
 # Quoting
 
