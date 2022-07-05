@@ -31,6 +31,7 @@ export default function ShareList({navigation, route}) {
                 const resp = await json.json()
                 setPage(page+1)
                 setShares(current => [...current, ...resp.data])
+                if(resp.data.length < 10) setLoaded(true)
             }else if(json.status === 204){
                 setLoaded(true)
             }

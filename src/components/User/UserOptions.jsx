@@ -134,5 +134,5 @@ export default function UserOptions({ profileUser, navigation }) {
 
     if (!user.is_admin) return null
 
-    return <Option options={options} size={35} />
+    return <Option options={options} size={30} />
 }

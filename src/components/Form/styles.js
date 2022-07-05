@@ -29,7 +29,7 @@ export const FormButton = styled.TouchableOpacity`
 export const FormBtnText = styled.Text`
     text-align: center;
     font-family: 'SourceSans';
-    font-size: 22px;
+    font-size: 20px;
     color: ${({color}) => color ? color : colors.FONT_DEFAULT_COLOR}
 `
 

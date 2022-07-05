@@ -8,7 +8,7 @@ import colors from '../../../assets/constants/colors'
 export default function UserItem({navigation, user}) {
   return (
     <UserItemButton onPress={() => navigation.push('Profile', {profileId: user.id})}>
-        <FontAwesomeIcon icon={faUser} size={35} color={colors.FONT_DEFAULT_COLOR}/>
+        <FontAwesomeIcon icon={faUser} size={25} color={colors.FONT_DEFAULT_COLOR}/>
         <View style={{marginLeft: 15}}>
             <NameText>{user.name}</NameText>
             <UsernameText>@{user.username}</UsernameText>

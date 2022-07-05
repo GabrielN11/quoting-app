@@ -11,11 +11,11 @@ export default function PublicationItem({publication, navigation}) {
         <PublicationItemText>{publication.text.length > 100 ? publication.text.substring(0, 100) + '...' : publication.text}</PublicationItemText>
         <PublicationInfoView>
             <PublicationInfoItem>
-                <FontAwesomeIcon icon={faMessage} color={colors.FONT_DEFAULT_COLOR} size={22}/>
+                <FontAwesomeIcon icon={faMessage} color={colors.FONT_DEFAULT_COLOR} size={18}/>
                 <PublicationInfoText>{publication.commentaries_count}</PublicationInfoText>
             </PublicationInfoItem>
             <PublicationInfoItem>
-                <FontAwesomeIcon icon={faHeart} color={colors.FONT_DEFAULT_COLOR} size={22}/>
+                <FontAwesomeIcon icon={faHeart} color={colors.FONT_DEFAULT_COLOR} size={18}/>
                 <PublicationInfoText>{publication.share_count}</PublicationInfoText>
             </PublicationInfoItem>
         </PublicationInfoView>

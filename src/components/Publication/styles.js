@@ -11,7 +11,7 @@ export const PublicationItemButton = styled.TouchableOpacity`
 
 export const PublicationItemText = styled.Text`
     font-family: 'SourceSans';
-    font-size: 20px;
+    font-size: 18px;
     color: ${colors.FONT_DEFAULT_COLOR}
 `
 

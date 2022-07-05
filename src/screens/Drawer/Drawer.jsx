@@ -22,7 +22,7 @@ export default function DrawerRoutes({route}) {
   return (
     <>
       {showTutorial && <Tutorial setShowTutorial={setShowTutorial}/>}
-      <Drawer.Navigator initialRouteName="Home"
+      <Drawer.Navigator initialRouteName="Home" useLegacyImplementation
         drawerContent={(props) => <CustomDrawerContent {...props} setShowTutorial={setShowTutorial}/>}
         screenOptions={{
           drawerStyle: {

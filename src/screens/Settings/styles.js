@@ -14,7 +14,7 @@ export const TouchableItem = styled.TouchableOpacity`
 
 export const TextItem = styled.Text`
     font-family: 'SourceSans';
-    font-size: 20px;
+    font-size: 16px;
     color: ${colors.FONT_DEFAULT_COLOR};
 `
 

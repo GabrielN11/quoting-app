@@ -11,11 +11,13 @@ import { GlobalContext } from '../../../GlobalContext'
 import { CommentaryTextInput } from '../../Commentaries/styles'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import Loading from '../../../components/Loading/Loading'
 
 export default function AdminUserList({navigation, route}) {
     const [users, setUsers] = React.useState([])
     const [page, setPage] = React.useState(0)
     const [loaded, setLoaded] = React.useState(false)
+    const [loading, setLoading] = React.useState(false)
     const [search, setSearch] = React.useState('')
 
     const {user} = React.useContext(GlobalContext)
@@ -27,6 +29,7 @@ export default function AdminUserList({navigation, route}) {
     }, [])
 
     async function getAllUsers(){
+        setLoading(true);
         try{
             const json = await fetch(`${API_URL}/admin-${type}-list?page=${page}${search.length > 0 ? `&search=${search}`:''}`, {
                 headers: {
@@ -37,11 +40,14 @@ export default function AdminUserList({navigation, route}) {
                 const resp = await json.json()
                 setUsers(current => [...current, ...resp.data])
                 setPage(page+1)
+                if(resp.data.length < 10) setLoaded(true)
             }else if(json.status === 204){
                 setLoaded(true)
             }
         }catch(e){
             console.log(e.message)
+        }finally{
+            setLoading(false)
         }
     }
 
@@ -54,6 +60,7 @@ export default function AdminUserList({navigation, route}) {
   return (
     <ScrollView style={{backgroundColor: colors.BACKGROUND, height: '100%'}}>
       <GoBack goBack={navigation.goBack}/>
+      {loading && <Loading transparent/>}
       <View style={{flexDirection: 'row', padding: 15, alignItems: 'center'}}>
         <CommentaryTextInput onChangeText={newSearch => {
             setPage(0)
@@ -70,7 +77,7 @@ export default function AdminUserList({navigation, route}) {
       {users.length > 0 && !loaded && <FormButton onPress={getAllUsers} backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY}>
             <FormBtnText>Load More...</FormBtnText>
         </FormButton>}
-      {users.length === 0 && <Empty/>}
+      {(!loading && users.length === 0) && <Empty/>}
     </ScrollView>
   )
 }

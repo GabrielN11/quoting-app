@@ -35,7 +35,7 @@ export default function SignUp({ navigation, route }) {
         );
 
     async function handleSubmit() {
-        if (text === '') return createAlert('Missing text', 'Write something to publish!')
+        if (text.match(/^[\s]*$/)) return createAlert('Missing text', 'Write something to publish!')
         if (text.length < 10) return createAlert('Short text', 'Your text is too short.')
         setLoading(true)
         try {

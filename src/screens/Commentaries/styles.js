@@ -32,7 +32,7 @@ export const CommentaryInfo = styled.Text`
 
 export const CommentaryText = styled.Text`
     font-family: 'SourceSans';
-    font-size: 20px;
+    font-size: 18px;
     color: ${colors.FONT_DEFAULT_COLOR};
 `
 

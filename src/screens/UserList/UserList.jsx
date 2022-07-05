@@ -29,6 +29,7 @@ export default function UserList({navigation, route}) {
                 const resp = await json.json()
                 setUsers(current => [...current, ...resp.data])
                 setPage(page+1)
+                if(resp.data.length < 10) setLoaded(true)
             }else if(json.status === 204){
                 setLoaded(true)
             }

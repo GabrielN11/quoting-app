@@ -23,7 +23,8 @@ export default function CommentaryInput({publicationId, setCommentaries, setLoad
         );
 
     async function sendCommentary(){
-        if(text === '') return createAlert('Missing commentary.', 'Type a commentary to send it!')
+        if(text.match(/^[\s]*$/)) return createAlert('Missing commentary.', 'Type a commentary to send it!')
+        if(text.length < 3) return createAlert('Short Commentary', 'Your commentary is too short.')
         setLoading(true)
         try{
             const json = await fetch(`${API_URL}/commentary`, {
@@ -56,8 +57,7 @@ export default function CommentaryInput({publicationId, setCommentaries, setLoad
   return (
     <View style={{flexDirection:'row', padding: 20, alignItems: 'center'}}>
       <CommentaryTextInput placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER} placeholder='Type a comment here...'
-      value={text} onChangeText={newText => newText.length > 500 ? null : setText(newText)} multiline
-      returnKeyType="send" onSubmitEditing={sendCommentary}/>
+      value={text} onChangeText={newText => newText.length > 500 ? null : setText(newText)} multiline/>
       <TouchableOpacity onPress={sendCommentary}>
           <FontAwesomeIcon icon={faPaperPlane} color={colors.FONT_DEFAULT_COLOR} size={25}/>
       </TouchableOpacity>

@@ -40,13 +40,13 @@ export default function Commentary({ commentary, navigation }) {
     return (
         <CommentaryView>
             <TouchableOpacity onPress={() => navigation.navigate('Profile', { profileId: publisher.id })}>
-                <CommentaryInfo>{publisher ? publisher.name : 'Anonymous'}:</CommentaryInfo>
+                <CommentaryInfo>{publisher ? publisher.name : 'Loading...'}:</CommentaryInfo>
             </TouchableOpacity>
             <CommentaryText>
                 {commentary.text}
             </CommentaryText>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                <CommentaryInfo style={{ marginTop: 7, fontSize: 16 }}>
+                <CommentaryInfo style={{ marginTop: 7, fontSize: 15 }}>
                     {returnTime(commentary.date)}
                 </CommentaryInfo>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>

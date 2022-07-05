@@ -12,7 +12,7 @@ export const UserItemButton = styled.TouchableOpacity`
 
 export const UsernameText = styled.Text`
     font-family: 'SourceSans';
-    font-size: 20px;
+    font-size: 16px;
     color: ${colors.FONT_DEFAULT_COLOR};
 `
 

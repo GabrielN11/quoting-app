@@ -70,7 +70,7 @@ export default function FeedPublication({ publication, navigation, setLoading, i
                 You have seen all quotes so far. Click in the button below to see them again!
             </PublicationWarning>
             <TouchableOpacity style={{alignSelf: 'center', marginTop: 25}} onPress={initialFetch}>
-                <FontAwesomeIcon icon={faRotate} color={colors.FONT_DEFAULT_COLOR} size={40}/>
+                <FontAwesomeIcon icon={faRotate} color={colors.FONT_DEFAULT_COLOR} size={35}/>
             </TouchableOpacity>
             <View style={{ alignItems: 'center' }}>
                 <ResetSvg width={250} />

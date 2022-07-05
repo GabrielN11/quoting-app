@@ -19,7 +19,8 @@ export default function Commentaries({ route, navigation }) {
     const [refreshing, setRefreshing] = React.useState(false);
 
     const onRefresh = React.useCallback(async () => {
-        setRefreshing(true);
+        setRefreshing(true)
+        setLoadMore(true)
         setPage(0)
         setCommentaries([])
         fetchCommentaries().then(() => setRefreshing(false))
@@ -33,6 +34,7 @@ export default function Commentaries({ route, navigation }) {
             if (json.status === 200 && resp.data && resp.data.length > 0) {
                 setCommentaries(current => [...current, ...resp.data])
                 setPage(page + 1)
+                if(resp.data.length < 10) setLoadMore(false)
             } else if (resp === 204) {
                 setLoadMore(false)
             } else {

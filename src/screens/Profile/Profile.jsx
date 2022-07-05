@@ -130,8 +130,8 @@ export default function Profile({ navigation, route }) {
 
                 {user.id !== profileUser.id && <TouchableOpacity style={{ marginTop: 25, alignItems: 'center' }}
                 onPress={() => follow ? fetchUnfflow() : fetchFollow()}>
-                    <FontAwesomeIcon icon={follow ? faUserXmark : faUserPlus} size={40} color={follow ? 'lightgreen' : colors.FONT_DEFAULT_COLOR} />
-                    <ProfileText color={follow && 'lightgreen'} style={{ alignSelf: 'center' }}>{follow ? 'Unfollow' : 'Follow'}</ProfileText>
+                    <FontAwesomeIcon icon={follow ? faUserXmark : faUserPlus} size={30} color={follow ? 'lightgreen' : colors.FONT_DEFAULT_COLOR} />
+                    <ProfileText color={follow && 'lightgreen'} style={{ alignSelf: 'center', fontSize: 16 }}>{follow ? 'Unfollow' : 'Follow'}</ProfileText>
                 </TouchableOpacity>}
 
                 {(user.is_admin && user.id !== profileUser.id) && <View style={{alignSelf: 'center', marginTop: 20}}>
@@ -139,7 +139,7 @@ export default function Profile({ navigation, route }) {
                 </View>}
 
                 {pinnedPublication && <PinnedView>
-                    <ProfileText>Pinned Publication</ProfileText>
+                    <ProfileText style={{marginHorizontal: 25, fontSize: 16}}>Pinned Publication</ProfileText>
                     <PublicationItem publication={pinnedPublication} navigation={navigation} />
                 </PinnedView>}
 

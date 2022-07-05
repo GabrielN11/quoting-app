@@ -34,7 +34,7 @@ export const PublicationWarning = styled.Text`
     color: ${colors.FONT_DEFAULT_COLOR}
     text-align: center
     font-family: 'SourceSans';
-    font-size: 22px;
+    font-size: 20px;
 `
 
 export const PublicationActions = styled.View`

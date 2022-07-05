@@ -12,7 +12,7 @@ import Loading from '../../components/Loading/Loading'
 export default function PublicationList({navigation, route}) {
 
     const [publications, setPublications] = React.useState([])
-    const [loaded, setLoaded] = React.useState(true)
+    const [loaded, setLoaded] = React.useState(false)
     const [page, setPage] = React.useState(0)
     const [loading, setLoading] = React.useState(false)
 
@@ -30,8 +30,9 @@ export default function PublicationList({navigation, route}) {
                 const resp = await json.json()
                 setPage(page+1)
                 setPublications(current => [...current, ...resp.data])
+                if(resp.data.length < 10) setLoaded(true)
             }else if(json.status === 204){
-                setLoaded(false)
+                setLoaded(true)
             }
         }catch(e){
             console.log(e)
@@ -47,7 +48,7 @@ export default function PublicationList({navigation, route}) {
         {publications.map(publication => (
             <PublicationItem publication={publication} key={publication.id} navigation={navigation}/>
         ))}
-        {publications.length > 0 && loaded && <FormButton onPress={getPublications} backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY}>
+        {publications.length > 0 && !loaded && <FormButton onPress={getPublications} backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY}>
             <FormBtnText>Load More...</FormBtnText>
         </FormButton>}
         {loading && <Loading transparent/>}
