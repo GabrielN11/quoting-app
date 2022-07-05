@@ -1,5 +1,5 @@
 
-<img src="https://user-images.githubusercontent.com/42102027/176065035-d90efd28-06d2-45d6-be01-a9b08e214f9f.png" alt="drawing" width="200"/>
+<img src="https://user-images.githubusercontent.com/42102027/177230396-91ded39b-e5fd-4018-bfd0-daae89793655.png" alt="drawing" width="200"/>
 
 # Quoting
 
@@ -72,7 +72,16 @@ https://user-images.githubusercontent.com/42102027/175791908-453cd42b-ef39-43ac-
 
 - E-mail verification;
 - Notifications;
-- Initial tutorial when creating account;
 - ...
+
+## Compatibility
+
+The application works on Android, it was not yet tested on iOS.
+
+## Download
+
+The application was not published in an app store, but you can try it by downloading an .apk for Android and installing it. This version is for demo only, but all features work normally.
+
+[Click here](https://github.com/GabrielN11/quoting-app/releases/tag/quotingv0.9-beta.1 "Click here") to download the latest release.
 
 
