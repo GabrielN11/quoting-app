@@ -1,21 +1,24 @@
 import React, { Component } from 'react'
-import { AppRegistry, StyleSheet, Text, View } from 'react-native'
+import {Image, View } from 'react-native'
 import CarouselItems from './CarouselItems'
-import { CarouselImage, CarouselText, IntroView } from './styles'
+import { CarouselText} from './styles'
 import Swiper from 'react-native-swiper'
 
 import MobileSvg from '../../../assets/mobile-writing.svg'
 import CommentariesSvg from '../../../assets/commentaries.svg'
 import Auth from '../Auth/Auth'
 
+import Logo from '../../../assets/icon.png'
+
 
 
 export default class SwiperComponent extends Component {
   render() {
     return (
-      <Swiper loop={false}>
+      <Swiper loop={false} showsButtons>
         <CarouselItems>
           <View>
+            <Image source={Logo} style={{width: 65, height: 65, alignSelf: 'center'}}/>
             <CarouselText style={{ textAlign: 'center', fontFamily: 'Montserrat' }}>
               Welcome to Quoting!
             </CarouselText>

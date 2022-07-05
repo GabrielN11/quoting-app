@@ -3,7 +3,6 @@ import colors from '../../../assets/constants/colors'
 
 export const PublicationView = styled.View`
     flex-direction: column;
-    margin-top: 30px;
     position: relative;
     height: 100%;
     margin: 0 30px;

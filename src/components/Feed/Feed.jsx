@@ -39,12 +39,16 @@ export default function Feed({setLoading, followMode=false, navigation}) {
   }
 
   function renderMorePublications(index){
+    if(publications[publications.length-1] === 'reset') return
     if(index > publications.length - 2) fetchData()
   }
 
   function initialFetch(){
     setPublications([])
-    fetchData().then(() => fetchData())
+    fetchData().then(() => {
+      if(publications[0] === 'reset') setPublications([])
+      fetchData()
+    })
   }
 
   React.useEffect(() => {
@@ -61,7 +65,7 @@ export default function Feed({setLoading, followMode=false, navigation}) {
       {publications.length > 1 && <Swiper loop={false} showsPagination={false}
       onIndexChanged={(index) => renderMorePublications(index)}>
           {publications.map((publication, index) => <FeedPublication key={publication.id || publication + index} publication={publication}
-          navigation={navigation} setLoading={setLoading}/>)}
+          navigation={navigation} setLoading={setLoading} initialFetch={initialFetch}/>)}
       </Swiper>}
       {publications.length === 0 && <Empty/>}
     </View>

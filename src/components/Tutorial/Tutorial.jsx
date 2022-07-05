@@ -28,7 +28,7 @@ export default function Tutorial({setShowTutorial}) {
                     <TutorialTitle>Tutorial</TutorialTitle>
                     <Swiper loop={false} showsButtons showsPagination={false}>
                         <TutorialItem text='Welcome to Quoting! Now that you have an account, you can see others publications by swiping right in the feed. 
-                        A new random quote will be loaded everytime will swipe right.' image={Tutorial1}/>
+                        A new random quote will be loaded every time you swipe right.' image={Tutorial1}/>
                         <TutorialItem text='You can favorite others publications and commentaries by clicking in the heart icon. 
                         Your favorites will be saved in your profile.' image={Tutorial2}/>
                         <TutorialItem text="You can leave commentaries in any publication you want to. 

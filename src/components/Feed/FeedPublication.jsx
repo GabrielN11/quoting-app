@@ -4,14 +4,14 @@ import { PublicationView, PublicationWarning, PublicationText, PublicationAuthor
 import ResetSvg from '../../../assets/reset.svg'
 import { GlobalContext } from '../../GlobalContext'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faMessage } from '@fortawesome/free-solid-svg-icons'
+import { faMessage, faRotate } from '@fortawesome/free-solid-svg-icons'
 import colors from '../../../assets/constants/colors'
 import Share from '../Share/Share'
 import { API_URL } from '../../../enviroment'
 import PublicationOptions from '../Publication/PublicationOptions'
 
 
-export default function FeedPublication({ publication, navigation, setLoading }) {
+export default function FeedPublication({ publication, navigation, setLoading, initialFetch }) {
 
     const [statePublication, setStatePublication] = React.useState(publication)
     const [text, setText] = React.useState(publication.text)
@@ -67,8 +67,11 @@ export default function FeedPublication({ publication, navigation, setLoading })
     if (publication === 'reset') return (
         <PublicationView>
             <PublicationWarning>
-                You have seen all publications so far. Swipe right to see them again!
+                You have seen all quotes so far. Click in the button below to see them again!
             </PublicationWarning>
+            <TouchableOpacity style={{alignSelf: 'center', marginTop: 25}} onPress={initialFetch}>
+                <FontAwesomeIcon icon={faRotate} color={colors.FONT_DEFAULT_COLOR} size={40}/>
+            </TouchableOpacity>
             <View style={{ alignItems: 'center' }}>
                 <ResetSvg width={250} />
             </View>

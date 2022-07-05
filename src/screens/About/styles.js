@@ -20,6 +20,13 @@ export const AboutText = styled.Text`
     font-family: 'SourceSans';
     font-size: 16px;
 `
+
+export const VersionText = styled.Text`
+    font-family: 'SourceSans';
+    color: #aaa;
+    margin: 7px 0;
+    font-size: 14px;
+`
 export const IconLabel = styled.Text`
     color: ${colors.FONT_DEFAULT_COLOR};
 `
