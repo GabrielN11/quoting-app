@@ -40,3 +40,16 @@ export const FormInput = styled.TextInput`
     color: ${colors.FONT_DEFAULT_COLOR};
     font-size: 18px;
 `
+
+export const FormSelect = styled.TouchableOpacity`
+    border-radius: 15px;
+    padding: 7px;
+    background-color: ${colors.INPUT_BACKGROUND_DEFAULT};
+    flex-direction: row;
+    justify-content: center;  
+`
+
+export const FormSelectText = styled.Text`
+    color: ${colors.FONT_DEFAULT_COLOR};
+    font-size: 18px;
+`

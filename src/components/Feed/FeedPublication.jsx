@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity, ScrollView, RefreshControl } from 'react-
 import React from 'react'
 import { PublicationView, PublicationWarning, PublicationText, PublicationAuthor, PublicationActions, PublicationShowMore } from './styles'
 import ResetSvg from '../../../assets/reset.svg'
+import UnloadedSvg from '../../../assets/unloaded.svg'
 import { GlobalContext } from '../../GlobalContext'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faMessage, faRotate } from '@fortawesome/free-solid-svg-icons'
@@ -42,7 +43,7 @@ export default function FeedPublication({ publication, navigation, setLoading, i
 
     React.useEffect(() => {
         const fetchUser = async () => {
-            if(setLoading) setLoading(true)
+            if (setLoading) setLoading(true)
             try {
                 const json = await fetch(API_URL + '/profile/' + statePublication.user_id)
                 const resp = await json.json()
@@ -51,8 +52,8 @@ export default function FeedPublication({ publication, navigation, setLoading, i
                 }
             } catch (e) {
 
-            }finally{
-                if(setLoading) setLoading(false)
+            } finally {
+                if (setLoading) setLoading(false)
             }
         }
         if (typeof statePublication !== 'string') {
@@ -69,11 +70,19 @@ export default function FeedPublication({ publication, navigation, setLoading, i
             <PublicationWarning>
                 You have seen all quotes so far. Click in the button below to see them again!
             </PublicationWarning>
-            <TouchableOpacity style={{alignSelf: 'center', marginTop: 25}} onPress={initialFetch}>
-                <FontAwesomeIcon icon={faRotate} color={colors.FONT_DEFAULT_COLOR} size={35}/>
+            <TouchableOpacity style={{ alignSelf: 'center', marginTop: 25 }} onPress={initialFetch}>
+                <FontAwesomeIcon icon={faRotate} color={colors.FONT_DEFAULT_COLOR} size={35} />
             </TouchableOpacity>
             <View style={{ alignItems: 'center' }}>
                 <ResetSvg width={250} />
+            </View>
+        </PublicationView>
+    )
+
+    if (publication === 'unloaded') return (
+        <PublicationView>
+            <View style={{ alignItems: 'center' }}>
+                <UnloadedSvg width={250} />
             </View>
         </PublicationView>
     )

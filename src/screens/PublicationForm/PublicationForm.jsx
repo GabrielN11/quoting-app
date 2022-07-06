@@ -7,16 +7,15 @@ import Loading from '../../components/Loading/Loading'
 import { GlobalContext } from '../../GlobalContext'
 
 import { API_URL } from '../../../enviroment'
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import CategoryInput from '../../components/Publication/CategoryInput'
 
 export default function SignUp({ navigation, route }) {
     const [loading, setLoading] = React.useState(false);
     const [text, setText] = React.useState('');
     const [author, setAuthor] = React.useState('');
-
+    const [category, setCategory] = React.useState(-1)
     const { user, editingPublication } = React.useContext(GlobalContext);
     const { editMode } = route.params
-    const textfieldRef = React.useRef()
 
     React.useEffect(() => {
         if (editMode) {
@@ -35,6 +34,7 @@ export default function SignUp({ navigation, route }) {
         );
 
     async function handleSubmit() {
+        if(category < 0) return createAlert('Missing category', 'Please select a category.')
         if (text.match(/^[\s]*$/)) return createAlert('Missing text', 'Write something to publish!')
         if (text.length < 10) return createAlert('Short text', 'Your text is too short.')
         setLoading(true)
@@ -48,6 +48,7 @@ export default function SignUp({ navigation, route }) {
                 body: JSON.stringify({
                     text,
                     author: author === '' ? null : author,
+                    category_id: category,
                     user_id: user.id
                 })
             })
@@ -77,10 +78,11 @@ export default function SignUp({ navigation, route }) {
                 <FormInput multiline={true} numberOfLines={4} placeholder='Type the text here...'
                     placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}
                     value={text}
-                    onChangeText={newText => newText.length < 1000 ? setText(newText) : null}
-                    autoFocus
-                    returnKeyType="next"
-                    onSubmitEditing={() => textfieldRef.current.focus()}/>
+                    onChangeText={newText => newText.length < 1000 ? setText(newText) : null}/>
+            </View>
+            <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, paddingVertical: 5 }}>
+                <FormText>Quote Category:</FormText>
+                <CategoryInput setCategory={setCategory}/>
             </View>
             <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, paddingVertical: 5 }}>
                 <FormText>Author (optional):</FormText>
@@ -88,7 +90,6 @@ export default function SignUp({ navigation, route }) {
                     placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}
                     value={author}
                     onChangeText={setAuthor}
-                    ref={textfieldRef}
                     returnKeyType="send"
                     onSubmitEditing={() => handleSubmit()}/>
             </View>

@@ -4,11 +4,13 @@ import { BarAdd, BarButton, BarContainer, BarItem } from './styles'
 import colors from '../../../assets/constants/colors'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faGlobe, faPlus, faUserGroup } from '@fortawesome/free-solid-svg-icons'
+import CategoriesOptions from './CategoriesOptions'
 
-export default function FeedBar({followMode, setFollowMode, navigation}) {
+export default function FeedBar({followMode, setFollowMode, navigation, setCategory}) {
   return (
     <BarContainer>
-        <FeedBarItem active={!followMode} setFollowMode={setFollowMode} text='All' icon={faGlobe}/>
+        <CategoriesOptions icon={faGlobe} setCategory={setCategory} active={followMode} 
+        setFollowMode={setFollowMode}/>
         <BarAdd>
             <BarButton onPress={() => navigation.navigate('PublicationForm', {editMode: false})}>
                 <FontAwesomeIcon icon={faPlus} size={40} color={colors.FONT_DEFAULT_COLOR}/>
