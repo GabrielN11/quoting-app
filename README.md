@@ -72,7 +72,7 @@ https://user-images.githubusercontent.com/42102027/175791908-453cd42b-ef39-43ac-
 
 - E-mail verification;
 - Notifications;
-- Categories;
+- Bad words filter;
 - ...
 
 ## Compatibility
