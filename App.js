@@ -27,6 +27,8 @@ import AdminUserList from './src/screens/admin/AdminUserList/AdminUserList';
 import AdminChangePassword from './src/screens/admin/AdminChangePassword/AdminChangePassword';
 import AdminChangeName from './src/screens/admin/AdminChangeName/AdminChangeName';
 import AdminChangeUsername from './src/screens/admin/AdminChangeUsername/AdminChangeUsername';
+import AdminCategoryList from './src/screens/admin/AdminCategoryList/AdminCategoryList';
+import AdminCategoryForm from './src/screens/admin/AdminCategoryForm/AdminCategoryForm';
 
 const Stack = createNativeStackNavigator()
 
@@ -66,6 +68,8 @@ export default function App() {
             <Stack.Screen name="AdminChangePassword" component={AdminChangePassword} options={{headerShown: false}}/>
             <Stack.Screen name="AdminChangeName" component={AdminChangeName} options={{headerShown: false}}/>
             <Stack.Screen name="AdminChangeUsername" component={AdminChangeUsername} options={{headerShown: false}}/>
+            <Stack.Screen name="AdminCategoryList" component={AdminCategoryList} options={{headerShown: false}}/>
+            <Stack.Screen name="AdminCategoryForm" component={AdminCategoryForm} options={{headerShown: false}}/>
           </Stack.Navigator>
         </NavigationContainer>
       </GlobalProvider>

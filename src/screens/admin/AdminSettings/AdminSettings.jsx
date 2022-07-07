@@ -3,7 +3,7 @@ import React from 'react'
 import colors from '../../../../assets/constants/colors'
 import { TouchableItem, TextItem } from '../../Settings/styles'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faPen, faUser, faUserSlash } from '@fortawesome/free-solid-svg-icons'
+import { faListUl, faPen, faUser, faUserSlash } from '@fortawesome/free-solid-svg-icons'
 import GoBack from '../../../components/GoBack/GoBack'
 
 export default function AdminSettings({ navigation }) {
@@ -21,6 +21,11 @@ export default function AdminSettings({ navigation }) {
                         label: 'Banned List',
                         icon: faUserSlash,
                         action: () => navigation.navigate('AdminUserList', {type: 'banned'})
+                    },
+                    {
+                        label: 'Categories',
+                        icon: faListUl,
+                        action: () => navigation.navigate('AdminCategoryList')
                     }
                 ]
                 }

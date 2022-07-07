@@ -29,7 +29,7 @@ export const GlobalProvider = ({ children }) => {
 
 
     return (
-        <GlobalContext.Provider value={{user, setUser, editingPublication, setEditingPublication, categories}}>
+        <GlobalContext.Provider value={{user, setUser, editingPublication, setEditingPublication, categories, loadCategories, setCategories}}>
             {children}
         </GlobalContext.Provider>
     )

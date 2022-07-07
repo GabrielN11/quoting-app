@@ -15,7 +15,7 @@ export const FormText = styled.Text`
     color: ${colors.FONT_DEFAULT_COLOR};
     font-family: 'SourceSans';
     font-size: 18px;
-    margin: 15px 0;
+    margin-bottom: 5px;
 `
 
 export const FormButton = styled.TouchableOpacity`

@@ -27,7 +27,6 @@ export default function Feed({setLoading, followMode=false, navigation, category
 
       const {data} = await json.json()
       if(json.status === 200){
-        if(!data && publications.length === 0) return
         if(!data) {
           setPublications(arr => {
             arr.pop()
@@ -60,9 +59,7 @@ export default function Feed({setLoading, followMode=false, navigation, category
 
   function initialFetch(){
     setPublications([])
-    fetchData().then(() => {
-      if(publications.length < 1) fetchData()
-    })
+    fetchData()
   }
 
   React.useEffect(() => {
