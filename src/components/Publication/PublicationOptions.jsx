@@ -1,8 +1,11 @@
-import { View, Text, Alert } from 'react-native'
+import { TouchableOpacity, Alert } from 'react-native'
 import React from 'react'
-import Option from '../Options/Option'
+import CustomOption from '../Options/CustomOption'
 import { GlobalContext } from '../../GlobalContext'
 import { API_URL } from '../../../enviroment'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faGear } from '@fortawesome/free-solid-svg-icons'
+import colors from '../../../assets/constants/colors'
 
 export default function PublicationOptions({ publication, navigation }) {
 
@@ -120,6 +123,8 @@ export default function PublicationOptions({ publication, navigation }) {
 
 
     return (
-        <Option options={options} />
+        <CustomOption ButtonComponent={TouchableOpacity} options={options}>
+            <FontAwesomeIcon icon={faGear} size={30} color={colors.FONT_DEFAULT_COLOR}/>
+        </CustomOption>
     )
 }

@@ -1,8 +1,11 @@
-import { View, Text, Alert } from 'react-native'
+import { TouchableOpacity, Alert } from 'react-native'
 import React from 'react'
-import Option from '../Options/Option'
 import { API_URL } from '../../../enviroment'
 import { GlobalContext } from '../../GlobalContext'
+import CustomOption from '../Options/CustomOption'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faGear } from '@fortawesome/free-solid-svg-icons'
+import colors from '../../../assets/constants/colors'
 
 export default function UserOptions({ profileUser, navigation }) {
 
@@ -128,11 +131,15 @@ export default function UserOptions({ profileUser, navigation }) {
         {
             label: 'Delete account',
             function: () => confirmAction('Delete account', `Are you you want to delete ${profileUser.username}'s account?`,
-            'Delete', deleteAccount)
+                'Delete', deleteAccount)
         }
     ], [profileUser])
 
     if (!user.is_admin) return null
 
-    return <Option options={options} size={30} />
+    return (
+        <CustomOption options={options} ButtonComponent={TouchableOpacity}>
+            <FontAwesomeIcon icon={faGear} size={30} color={colors.FONT_DEFAULT_COLOR} />
+        </CustomOption>
+    )
 }

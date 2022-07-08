@@ -1,8 +1,11 @@
-import { View, Text, Alert } from 'react-native'
+import { TouchableOpacity, Alert } from 'react-native'
 import React from 'react'
-import Option from '../Options/Option'
 import { GlobalContext } from '../../GlobalContext'
 import { API_URL } from '../../../enviroment'
+import CustomOption from '../Options/CustomOption'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faGear } from '@fortawesome/free-solid-svg-icons'
+import colors from '../../../assets/constants/colors'
 
 export default function CommentaryOptions({ commentary, navigation }) {
 
@@ -58,6 +61,8 @@ export default function CommentaryOptions({ commentary, navigation }) {
 
 
     return (
-        <Option options={options} size={25} />
+        <CustomOption ButtonComponent={TouchableOpacity} options={options}>
+            <FontAwesomeIcon icon={faGear} size={25} color={colors.FONT_DEFAULT_COLOR}/>
+        </CustomOption>
     )
 }
