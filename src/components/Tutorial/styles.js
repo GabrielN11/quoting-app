@@ -11,7 +11,6 @@ export const TutorialContainer = styled.View`
 
 export const TutorialView = styled.View`
     background-color: ${colors.BACKGROUND};
-    border: 1px solid ${colors.BAR_BACKGROUND};
     align-items: center;
     padding: 25px;
     width: 95%;

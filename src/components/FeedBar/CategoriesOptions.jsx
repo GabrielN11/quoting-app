@@ -1,7 +1,6 @@
-import { Modal, Text } from 'react-native'
+import { Text } from 'react-native'
 import React from 'react'
 import { BarItem, BarButton } from './styles'
-import { ModalContainer, ModalView, ModalTouchable, ModalText } from '../Options/styles'
 import colors from '../../../assets/constants/colors'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { GlobalContext } from '../../GlobalContext'
@@ -9,7 +8,6 @@ import CustomOption from '../Options/CustomOption'
 
 export default function CategoriesOptions({ icon, setCategory, active, setFollowMode }) {
 
-    const [modalVisible, setModalVisible] = React.useState(false)
     const [categoryName, setCategoryName] = React.useState('All')
     const [options, setOptions] = React.useState([])
     const { categories } = React.useContext(GlobalContext)

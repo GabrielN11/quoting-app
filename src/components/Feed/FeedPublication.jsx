@@ -10,6 +10,7 @@ import colors from '../../../assets/constants/colors'
 import Share from '../Share/Share'
 import { API_URL } from '../../../enviroment'
 import PublicationOptions from '../Publication/PublicationOptions'
+import PublicationDetails from '../Publication/PublicationDetails'
 
 
 export default function FeedPublication({ publication, navigation, setLoading, initialFetch }) {
@@ -88,6 +89,9 @@ export default function FeedPublication({ publication, navigation, setLoading, i
     )
     return (
         <PublicationView>
+            {publisher && <PublicationDetails date={statePublication.date} publisher={publisher.name}
+            commentaryCount={statePublication.commentaries_count} shareCount={statePublication.share_count}
+            author={statePublication.author}/>}
             <ScrollView style={{ maxHeight: '70%', marginVertical: 5 }} refreshControl={
                 <RefreshControl
                     refreshing={refreshing}

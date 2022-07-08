@@ -33,3 +33,58 @@ export const PublicationInfoText = styled.Text`
     margin: 0 7px;
     color: ${colors.FONT_DEFAULT_COLOR};
 `
+
+export const PublicationDetailsView = styled.View`
+    margin-bottom: 5px;
+    right: -5px;
+    align-self: flex-end;
+`
+
+export const DetailsView = styled.View`
+    min-width: 60%;
+    background-color: ${colors.BACKGROUND};
+    padding: 10px;
+    position: relative;
+    border-radius: 15px;
+`
+
+export const DetailsClose = styled.View`
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    background-color: ${colors.BACKGROUND};
+`
+
+export const DetailsLabel = styled.Text`
+    color: ${colors.FONT_DEFAULT_COLOR};
+    font-family: 'SourceSans';
+    font-weight: 800;
+    font-size: 16px;
+`
+
+export const DetailsText = styled.Text`
+    color: ${colors.FONT_DEFAULT_COLOR};
+    font-family: 'SourceSans';
+    font-size: 16px;
+`
+
+export const DetailsOptionsView = styled.View`
+    margin-top: 20px;
+    flex-direction: row;
+    justify-content: space-around;
+`
+
+export const DetailBtn = styled.TouchableOpacity`
+    align-items: center;
+`
+
+export const DetailBtnLabel = styled.Text`
+    font-size: 16px;
+    color: brown;
+    text-align: center;
+`

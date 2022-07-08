@@ -16,7 +16,7 @@ export default function About({ navigation }) {
       <View style={{alignItems: 'center', flex: 6}}>
         <LogoImage source={Logo} />
         <AboutTitle>Quoting</AboutTitle>
-        <VersionText>Beta 0.9.1</VersionText>
+        <VersionText>Beta 0.9.2</VersionText>
         <AboutText>
           Quoting is an open source social media app developed by Gabriel Nunes. The application was developed to practice my skills
           in mobile developement. The goal of the application is to provide a way for people to share their thoughts in
