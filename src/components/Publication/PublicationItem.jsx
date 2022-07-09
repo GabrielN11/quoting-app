@@ -6,6 +6,7 @@ import { faHeart, faMessage } from '@fortawesome/free-solid-svg-icons'
 import colors from '../../../assets/constants/colors'
 
 export default function PublicationItem({publication, navigation}) {
+  if(!publication) return null
   return (
     <PublicationItemButton onPress={() => navigation.navigate('Publication', {publicationId: publication.id})}>
         <PublicationItemText>{publication.text.length > 100 ? publication.text.substring(0, 100) + '...' : publication.text}</PublicationItemText>

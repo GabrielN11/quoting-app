@@ -3,7 +3,7 @@ import React from 'react'
 import colors from '../../../../assets/constants/colors'
 import { TouchableItem, TextItem } from '../../Settings/styles'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faListUl, faPen, faUser, faUserSlash } from '@fortawesome/free-solid-svg-icons'
+import { faFlag, faListUl, faUser, faUserSlash } from '@fortawesome/free-solid-svg-icons'
 import GoBack from '../../../components/GoBack/GoBack'
 
 export default function AdminSettings({ navigation }) {
@@ -26,6 +26,16 @@ export default function AdminSettings({ navigation }) {
                         label: 'Categories',
                         icon: faListUl,
                         action: () => navigation.navigate('AdminCategoryList')
+                    },
+                    {
+                        label: 'Reports',
+                        icon: faFlag,
+                        action: () => navigation.navigate('AdminReportList', {type: 'opened'})
+                    },
+                    {
+                        label: 'Closed Reports',
+                        icon: faFlag,
+                        action: () => navigation.navigate('AdminReportList', {type: 'closed'})
                     }
                 ]
                 }

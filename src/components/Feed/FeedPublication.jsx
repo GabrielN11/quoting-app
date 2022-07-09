@@ -91,7 +91,7 @@ export default function FeedPublication({ publication, navigation, setLoading, i
         <PublicationView>
             {publisher && <PublicationDetails date={statePublication.date} publisher={publisher.name}
             commentaryCount={statePublication.commentaries_count} shareCount={statePublication.share_count}
-            author={statePublication.author}/>}
+            author={statePublication.author} navigation={navigation} id={statePublication.id}/>}
             <ScrollView style={{ maxHeight: '70%', marginVertical: 5 }} refreshControl={
                 <RefreshControl
                     refreshing={refreshing}

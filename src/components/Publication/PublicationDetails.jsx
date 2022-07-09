@@ -6,7 +6,7 @@ import { faFlag, faInfoCircle, faXmark } from '@fortawesome/free-solid-svg-icons
 import colors from '../../../assets/constants/colors'
 import { TutorialContainer } from '../Tutorial/styles'
 
-export default function PublicationDetails({ date, publisher, author, commentaryCount, shareCount }) {
+export default function PublicationDetails({id, date, publisher, author, commentaryCount, shareCount, navigation }) {
   const [modalVisible, setModalVisible] = React.useState(false);
   return (
     <>
@@ -16,12 +16,13 @@ export default function PublicationDetails({ date, publisher, author, commentary
         </TouchableOpacity>
       </PublicationDetailsView>
       <PublicationDetailsModal setModalVisible={setModalVisible} modalVisible={modalVisible}
-        date={date} publisher={publisher} commentaryCount={commentaryCount} shareCount={shareCount} author={author} />
+        date={date} publisher={publisher} commentaryCount={commentaryCount} shareCount={shareCount} author={author}
+        navigation={navigation} id={id}/>
     </>
   )
 }
 
-const PublicationDetailsModal = ({ date, publisher, commentaryCount, shareCount, author, setModalVisible, modalVisible }) => {
+const PublicationDetailsModal = ({id, date, publisher, commentaryCount, shareCount, author, setModalVisible, modalVisible, navigation }) => {
   return (
     <Modal
       animationType="fade"
@@ -44,7 +45,10 @@ const PublicationDetailsModal = ({ date, publisher, commentaryCount, shareCount,
           <DetailsField label='Favorites' text={shareCount}/>
           <DetailsField label='Commentaries' text={commentaryCount}/>
           <DetailsOptionsView>
-              <DetailBtn>
+              <DetailBtn onPress={() => {
+                setModalVisible(false)
+                navigation.navigate('ReportForm', {publicationId: id, commentaryId: null})
+              }}>
                 <FontAwesomeIcon icon={faFlag} color='brown' size={20}/>
                 <DetailBtnLabel>Report</DetailBtnLabel>
               </DetailBtn>

@@ -29,6 +29,9 @@ import AdminChangeName from './src/screens/admin/AdminChangeName/AdminChangeName
 import AdminChangeUsername from './src/screens/admin/AdminChangeUsername/AdminChangeUsername';
 import AdminCategoryList from './src/screens/admin/AdminCategoryList/AdminCategoryList';
 import AdminCategoryForm from './src/screens/admin/AdminCategoryForm/AdminCategoryForm';
+import AdminReportList from './src/screens/admin/AdminReportList/AdminReportList';
+import ReportForm from './src/screens/ReportForm/ReportForm';
+import AdminReport from './src/screens/admin/AdminReport/AdminReport';
 
 const Stack = createNativeStackNavigator()
 
@@ -70,6 +73,9 @@ export default function App() {
             <Stack.Screen name="AdminChangeUsername" component={AdminChangeUsername} options={{headerShown: false}}/>
             <Stack.Screen name="AdminCategoryList" component={AdminCategoryList} options={{headerShown: false}}/>
             <Stack.Screen name="AdminCategoryForm" component={AdminCategoryForm} options={{headerShown: false}}/>
+            <Stack.Screen name="ReportForm" component={ReportForm} options={{headerShown: false}}/>
+            <Stack.Screen name="AdminReportList" component={AdminReportList} options={{headerShown: false}}/>
+            <Stack.Screen name="AdminReport" component={AdminReport} options={{headerShown: false}}/>
           </Stack.Navigator>
         </NavigationContainer>
       </GlobalProvider>

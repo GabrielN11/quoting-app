@@ -37,6 +37,8 @@ export default function Commentary({ commentary, navigation }) {
         return `${utcDate.toLocaleDateString()} ${utcDate.toLocaleTimeString().substring(0, 5)}`
     }
 
+    if(!commentary) return null
+
     return (
         <CommentaryView>
             <TouchableOpacity onPress={() => navigation.navigate('Profile', { profileId: publisher.id })}>

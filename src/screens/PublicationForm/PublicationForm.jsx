@@ -9,7 +9,7 @@ import { GlobalContext } from '../../GlobalContext'
 import { API_URL } from '../../../enviroment'
 import CategoryInput from '../../components/Publication/CategoryInput'
 
-export default function SignUp({ navigation, route }) {
+export default function PublicationForm({ navigation, route }) {
     const [loading, setLoading] = React.useState(false);
     const [text, setText] = React.useState('');
     const [author, setAuthor] = React.useState('');
