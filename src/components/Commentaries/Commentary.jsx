@@ -52,7 +52,7 @@ export default function Commentary({ commentary, navigation }) {
                     {returnTime(commentary.date)}
                 </CommentaryInfo>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                    {(user.is_admin || user.id === commentary.user_id) && <CommentaryOptions commentary={commentary} navigation={navigation} />}
+                    <CommentaryOptions commentary={commentary} navigation={navigation} />
                     <Share content={commentary} type='commentary' size={25} style={{marginLeft: 20}}/>
                 </View>
             </View>

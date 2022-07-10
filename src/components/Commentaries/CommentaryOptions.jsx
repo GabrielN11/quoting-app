@@ -42,7 +42,7 @@ export default function CommentaryOptions({ commentary, navigation }) {
 
             if (resp.status === 200) {
                 createAlert('Success', 'Commentary deleted')
-                navigation.replace('Commentaries', {publicationId: commentary.publication_id})
+                navigation.replace('Commentaries', { publicationId: commentary.publication_id })
             } else {
                 const data = await resp.json()
                 createAlert('Error', data.error)
@@ -52,17 +52,25 @@ export default function CommentaryOptions({ commentary, navigation }) {
         }
     }
 
-    const options = React.useMemo(() => [
-        {
-            label: 'Delete',
-            function: confirmDelete,
-        }
-    ], [commentary])
+    const options = React.useMemo(() => {
+        const array = []
+        if ((user.id === commentary.user_id) || user.is_admin) array.push(
+            {
+                label: 'Delete',
+                function: confirmDelete,
+            }
+        )
+        if (user.id !== commentary.user_id) array.push({
+            label: 'Report',
+            function: () => navigation.navigate('ReportForm', { publicationId: null, commentaryId: commentary.id })
+        })
+        return array
+    }, [commentary])
 
 
     return (
         <CustomOption ButtonComponent={TouchableOpacity} options={options}>
-            <FontAwesomeIcon icon={faGear} size={25} color={colors.FONT_DEFAULT_COLOR}/>
+            <FontAwesomeIcon icon={faGear} size={25} color={colors.FONT_DEFAULT_COLOR} />
         </CustomOption>
     )
 }

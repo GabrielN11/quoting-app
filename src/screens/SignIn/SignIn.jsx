@@ -44,6 +44,11 @@ export default function SignIn({ navigation }) {
                 })
             })
             const response = await json.json()
+            if(json.status === 403 && response.data){
+                await AsyncStorage.setItem('@validation_token', response.data.validation_token)
+                setLoading(false)
+                return navigation.navigate('Validation')
+            }
             if (json.status !== 200){
                 setLoading(false)
                 return createAlert('Error.', response.error)

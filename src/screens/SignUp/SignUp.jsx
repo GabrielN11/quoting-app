@@ -12,10 +12,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 export default function SignUp({ navigation }) {
     const [loading, setLoading] = React.useState(false);
     const [username, setUsername] = React.useState('');
+    const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('');
     const [repeatPassword, setRepeatPassword] = React.useState('');
     const { user, setUser } = React.useContext(GlobalContext);
 
+    const emailRef = React.useRef()
     const passwordRef = React.useRef()
     const repeatPasswordRef = React.useRef()
 
@@ -43,14 +45,14 @@ export default function SignUp({ navigation }) {
                 },
                 body: JSON.stringify({
                     username,
-                    password
+                    password,
+                    email
                 })
             })
             const response = await json.json()
             if(json.status === 201) {
-                await AsyncStorage.setItem('@user_token', response.data.token)
-                setUser(response.data)
-                navigation.navigate('UpdateName', {newAccount: true})
+                await AsyncStorage.setItem('@validation_token', response.data.validation_token)
+                navigation.navigate('Validation', {newAccount: true})
             }else{
                 createAlert('Error', response.error)
             }
@@ -71,6 +73,16 @@ export default function SignUp({ navigation }) {
                     placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}
                     value={username}
                     onChangeText={setUsername}
+                    returnKeyType="next"
+                    onSubmitEditing={() => emailRef.current.focus()}/>
+            </View>
+            <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, paddingVertical: 5 }}>
+                <FormText>Email:</FormText>
+                <FormInput placeholder='Type your email here...'
+                    placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}
+                    value={email}
+                    ref={emailRef}
+                    onChangeText={setEmail}
                     returnKeyType="next"
                     onSubmitEditing={() => passwordRef.current.focus()}/>
             </View>

@@ -89,7 +89,10 @@ export default function AdminReport({ navigation, route }) {
                    {(report.publication || report.commentary)&&<ReportText style={{ marginTop: 25, marginBottom: 0 }}>Reported {report.publication ? 'Publication' : 'Commentary'}:</ReportText>}
                     {report.publication ?
                         <PublicationItem publication={report.publication} navigation={navigation} /> :
-                        <Commentary commentary={report.commentary} />}
+                        <TouchableOpacity onPress={() => navigation.navigate('Publication', {publicationId: report.commentary.publication_id})}>
+                            <Commentary commentary={report.commentary} />
+                        </TouchableOpacity>
+                    }
                     <FormButton backgroundColor={closed ? 'brown' : 'darkgreen'}
                         onPress={alterReportState}>
                         <FormBtnText>

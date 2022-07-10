@@ -32,6 +32,7 @@ import AdminCategoryForm from './src/screens/admin/AdminCategoryForm/AdminCatego
 import AdminReportList from './src/screens/admin/AdminReportList/AdminReportList';
 import ReportForm from './src/screens/ReportForm/ReportForm';
 import AdminReport from './src/screens/admin/AdminReport/AdminReport';
+import Validation from './src/screens/Validation/Validation';
 
 const Stack = createNativeStackNavigator()
 
@@ -76,6 +77,7 @@ export default function App() {
             <Stack.Screen name="ReportForm" component={ReportForm} options={{headerShown: false}}/>
             <Stack.Screen name="AdminReportList" component={AdminReportList} options={{headerShown: false}}/>
             <Stack.Screen name="AdminReport" component={AdminReport} options={{headerShown: false}}/>
+            <Stack.Screen name="Validation" component={Validation} options={{headerShown: false}}/>
           </Stack.Navigator>
         </NavigationContainer>
       </GlobalProvider>
