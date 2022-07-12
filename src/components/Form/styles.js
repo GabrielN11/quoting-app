@@ -16,6 +16,7 @@ export const FormText = styled.Text`
     font-family: 'SourceSans';
     font-size: 18px;
     margin-bottom: 5px;
+    margin-horizontal: 10px;
 `
 
 export const FormButton = styled.TouchableOpacity`

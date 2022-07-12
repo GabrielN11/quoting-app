@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
+import * as Linking from 'expo-linking';
 
 import { GlobalProvider } from './src/GlobalContext';
 import Initial from './src/screens/Initial/Initial'
@@ -33,8 +34,12 @@ import AdminReportList from './src/screens/admin/AdminReportList/AdminReportList
 import ReportForm from './src/screens/ReportForm/ReportForm';
 import AdminReport from './src/screens/admin/AdminReport/AdminReport';
 import Validation from './src/screens/Validation/Validation';
+import Recovery from './src/screens/Recovery/Recovery';
+import Reset from './src/screens/Reset/Reset';
 
 const Stack = createNativeStackNavigator()
+const prefix = Linking.createURL('/');
+
 
 export default function App() {
   const [loaded] = useFonts({
@@ -42,6 +47,14 @@ export default function App() {
     MontserratThin: require('./assets/fonts/Montserrat-VariableFont_wght.ttf'),
     SourceSans: require('./assets/fonts/SourceSansPro-Regular.ttf')
   });
+  const linking = {
+    prefixes: [prefix],
+    config: {
+      screens: {
+        Reset: 'recovery'
+      }
+    }
+  };
 
   if (!loaded) {
     return null;
@@ -51,7 +64,7 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar style='light' backgroundColor={colors.BACKGROUND} />
       <GlobalProvider>
-        <NavigationContainer>
+        <NavigationContainer linking={linking}>
           <Stack.Navigator>
             <Stack.Screen name="Initial" component={Initial} options={{ headerShown: false }} />
             <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }} />
@@ -78,6 +91,8 @@ export default function App() {
             <Stack.Screen name="AdminReportList" component={AdminReportList} options={{headerShown: false}}/>
             <Stack.Screen name="AdminReport" component={AdminReport} options={{headerShown: false}}/>
             <Stack.Screen name="Validation" component={Validation} options={{headerShown: false}}/>
+            <Stack.Screen name="Recovery" component={Recovery} options={{headerShown: false}}/>
+            <Stack.Screen name="Reset" component={Reset} options={{headerShown: false}}/>
           </Stack.Navigator>
         </NavigationContainer>
       </GlobalProvider>

@@ -52,7 +52,7 @@ export default function SignUp({ navigation }) {
             const response = await json.json()
             if(json.status === 201) {
                 await AsyncStorage.setItem('@validation_token', response.data.validation_token)
-                navigation.navigate('Validation', {newAccount: true})
+                navigation.navigate('Validation', {recovery: false})
             }else{
                 createAlert('Error', response.error)
             }

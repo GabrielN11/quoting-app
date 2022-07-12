@@ -1,4 +1,4 @@
-import { View, Text, Alert, Platform } from 'react-native'
+import { View, TouchableOpacity, Alert, Platform } from 'react-native'
 import { StackActions, NavigationActions } from '@react-navigation/native'
 import { FormBtnText, FormButton, FormContainer, FormInput, FormText } from '../../components/Form/styles'
 import React from 'react'
@@ -96,6 +96,11 @@ export default function SignIn({ navigation }) {
                 <FormButton backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={handleSubmit}>
                     <FormBtnText>Sign in</FormBtnText>
                 </FormButton>
+            </View>
+            <View>
+                <TouchableOpacity onPress={() => navigation.navigate('Recovery')}>
+                    <FormText style={{fontSize: 18}}>Forgot my password</FormText>
+                </TouchableOpacity>
             </View>
             {loading && <Loading />}
             <View style={{ flex : 1 }} />
