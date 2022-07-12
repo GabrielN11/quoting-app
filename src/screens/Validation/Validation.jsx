@@ -57,6 +57,11 @@ export default function Validation({ route, navigation }) {
     }
   }
 
+  function handleChange(string){
+    if(string > 5 ) return
+    setCode(string.toUpperCase())
+  }
+
   return (
     <FormContainer>
       {loading && <Loading />}
@@ -65,7 +70,7 @@ export default function Validation({ route, navigation }) {
       </View>
       <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, marginBottom: 30 }}>
         <FormText>Inform your confirmation code:</FormText>
-        <FormInput onChangeText={string => string.length < 6 && setCode(string)} value={code} autoFocus returnKeyType="send" onSubmitEditing={() => handleSubmit()}/>
+        <FormInput onChangeText={handleChange} value={code} autoFocus returnKeyType="send" onSubmitEditing={() => handleSubmit()}/>
       </View>
       <FormButton backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={handleSubmit}>
         <FormBtnText>Validate</FormBtnText>
