@@ -62,7 +62,7 @@ export default function PublicationForm({ navigation, route }) {
                 setLoading(false)
             }
         } catch (e) {
-            createAlert('Error', resp.error)
+            createAlert('Error', e.message)
             setLoading(false)
         }
     }
