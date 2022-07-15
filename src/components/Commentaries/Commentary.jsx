@@ -1,32 +1,10 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { CommentaryInfo, CommentaryText, CommentaryView } from '../../screens/Commentaries/styles'
-import { API_URL } from '../../../environment'
 import Share from '../Share/Share'
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import CommentaryOptions from './CommentaryOptions'
-import { GlobalContext } from '../../GlobalContext'
 
 export default function Commentary({ commentary, navigation }) {
-
-    const [publisher, setPublisher] = React.useState(null)
-    const { user } = React.useContext(GlobalContext)
-
-    React.useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const json = await fetch(API_URL + '/profile/' + commentary.user_id)
-                const resp = await json.json()
-                if (json.status === 200) {
-                    setPublisher(resp.data)
-                }
-            } catch (e) {
-                console.log(e)
-            }
-        }
-        fetchUser()
-    }, [])
 
     function returnTime(stringDate) {
         let dateTimeParts = stringDate.split(/[- :]/)
@@ -41,8 +19,8 @@ export default function Commentary({ commentary, navigation }) {
 
     return (
         <CommentaryView>
-            <TouchableOpacity onPress={() => navigation.navigate('Profile', { profileId: publisher.id })}>
-                <CommentaryInfo>{publisher ? publisher.name : 'Loading...'}:</CommentaryInfo>
+            <TouchableOpacity onPress={() => navigation.navigate('Profile', { profileId: commentary.user.id })}>
+                <CommentaryInfo>{commentary.user.name}:</CommentaryInfo>
             </TouchableOpacity>
             <CommentaryText>
                 {commentary.text}

@@ -6,7 +6,7 @@ import { faFlag, faInfoCircle, faXmark } from '@fortawesome/free-solid-svg-icons
 import colors from '../../../assets/constants/colors'
 import { TutorialContainer } from '../Tutorial/styles'
 
-export default function PublicationDetails({id, date, publisher, author, commentaryCount, shareCount, navigation }) {
+export default function PublicationDetails({ publication, navigation }) {
   const [modalVisible, setModalVisible] = React.useState(false);
   return (
     <>
@@ -16,13 +16,22 @@ export default function PublicationDetails({id, date, publisher, author, comment
         </TouchableOpacity>
       </PublicationDetailsView>
       <PublicationDetailsModal setModalVisible={setModalVisible} modalVisible={modalVisible}
-        date={date} publisher={publisher} commentaryCount={commentaryCount} shareCount={shareCount} author={author}
-        navigation={navigation} id={id}/>
+        publication={publication} navigation={navigation} />
     </>
   )
 }
 
-const PublicationDetailsModal = ({id, date, publisher, commentaryCount, shareCount, author, setModalVisible, modalVisible, navigation }) => {
+const PublicationDetailsModal = ({ publication, setModalVisible, modalVisible, navigation }) => {
+
+  function returnTime(stringDate) {
+    let dateTimeParts = stringDate.split(/[- :]/)
+    dateTimeParts[1]--
+    const utc = Date.UTC(...dateTimeParts)
+    const utcDate = new Date(utc)
+
+    return `${utcDate.toLocaleDateString()} ${utcDate.toLocaleTimeString().substring(0, 5)}`
+  }
+
   return (
     <Modal
       animationType="fade"
@@ -39,19 +48,19 @@ const PublicationDetailsModal = ({id, date, publisher, commentaryCount, shareCou
               <FontAwesomeIcon icon={faXmark} size={20} color={colors.FONT_DEFAULT_COLOR} />
             </TouchableOpacity>
           </DetailsClose>
-          <DetailsField label='Publisher' text={publisher}/>
-          <DetailsField label='Author' text={author ? author : publisher}/>
-          <DetailsField label='Publication Date' text={date}/>
-          <DetailsField label='Favorites' text={shareCount}/>
-          <DetailsField label='Commentaries' text={commentaryCount}/>
+          <DetailsField label='Publisher' text={publication.user.name} />
+          <DetailsField label='Author' text={publication.author ? publication.author : publication.user.name} />
+          <DetailsField label='Publication Date' text={returnTime(publication.date)} />
+          <DetailsField label='Favorites' text={publication.shareCount} />
+          <DetailsField label='Commentaries' text={publication.commentaryCount} />
           <DetailsOptionsView>
-              <DetailBtn onPress={() => {
-                setModalVisible(false)
-                navigation.navigate('ReportForm', {publicationId: id, commentaryId: null})
-              }}>
-                <FontAwesomeIcon icon={faFlag} color='brown' size={20}/>
-                <DetailBtnLabel>Report</DetailBtnLabel>
-              </DetailBtn>
+            <DetailBtn onPress={() => {
+              setModalVisible(false)
+              navigation.navigate('ReportForm', { publicationId: publication.id, commentaryId: null })
+            }}>
+              <FontAwesomeIcon icon={faFlag} color='brown' size={20} />
+              <DetailBtnLabel>Report</DetailBtnLabel>
+            </DetailBtn>
           </DetailsOptionsView>
         </DetailsView>
       </TutorialContainer>

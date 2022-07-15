@@ -13,12 +13,11 @@ import PublicationOptions from '../Publication/PublicationOptions'
 import PublicationDetails from '../Publication/PublicationDetails'
 
 
-export default function FeedPublication({ publication, navigation, setLoading, initialFetch }) {
+export default function FeedPublication({ publication, navigation, initialFetch }) {
 
     const [statePublication, setStatePublication] = React.useState(publication)
     const [text, setText] = React.useState(publication.text)
     const [fullText, setFullText] = React.useState(false)
-    const [publisher, setPublisher] = React.useState(null)
     const [refreshing, setRefreshing] = React.useState(false);
     const { user } = React.useContext(GlobalContext)
 
@@ -41,30 +40,6 @@ export default function FeedPublication({ publication, navigation, setLoading, i
             return
         }
     }
-
-    React.useEffect(() => {
-        const fetchUser = async () => {
-            if (setLoading) setLoading(true)
-            try {
-                const json = await fetch(API_URL + '/profile/' + statePublication.user_id)
-                const resp = await json.json()
-                if (json.status === 200) {
-                    setPublisher(resp.data)
-                }
-            } catch (e) {
-
-            } finally {
-                if (setLoading) setLoading(false)
-            }
-        }
-        if (typeof statePublication !== 'string') {
-            if (statePublication.userId !== user.id) {
-                fetchUser()
-            } else {
-                setPublisher(user)
-            }
-        }
-    }, [])
 
     if (publication === 'reset') return (
         <PublicationView>
@@ -89,9 +64,7 @@ export default function FeedPublication({ publication, navigation, setLoading, i
     )
     return (
         <PublicationView>
-            {publisher && <PublicationDetails date={statePublication.date} publisher={publisher.name}
-            commentaryCount={statePublication.commentaries_count} shareCount={statePublication.share_count}
-            author={statePublication.author} navigation={navigation} id={statePublication.id}/>}
+            <PublicationDetails publication={publication} navigation={navigation}/>
             <ScrollView style={{ maxHeight: '70%', marginVertical: 5 }} refreshControl={
                 <RefreshControl
                     refreshing={refreshing}
@@ -105,9 +78,9 @@ export default function FeedPublication({ publication, navigation, setLoading, i
             </ScrollView>
             <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-between' }}>
                 <PublicationAuthor>{statePublication.author ? '- ' + statePublication.author : ''}</PublicationAuthor>
-                {publisher && <TouchableOpacity onPress={() => navigation.navigate('Profile', { profileId: publisher.id })}>
-                    <PublicationAuthor>By {publisher.name}</PublicationAuthor>
-                </TouchableOpacity>}
+                <TouchableOpacity onPress={() => navigation.navigate('Profile', { profileId: statePublication.user.id })}>
+                    <PublicationAuthor>By {statePublication.user.name}</PublicationAuthor>
+                </TouchableOpacity>
             </View>
             <PublicationActions>
                 <Share content={statePublication} type='publication' />
