@@ -1,7 +1,7 @@
 import { View, Text, useWindowDimensions } from 'react-native'
 import React from 'react'
 import Swiper from 'react-native-swiper'
-import {API_URL} from '../../../enviroment'
+import {API_URL} from '../../../environment'
 import { GlobalContext } from '../../GlobalContext'
 import FeedPublication from './FeedPublication'
 import Empty from '../Empty/Empty'

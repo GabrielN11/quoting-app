@@ -6,7 +6,7 @@ import colors from '../../../assets/constants/colors'
 import Loading from '../../components/Loading/Loading'
 import { GlobalContext } from '../../GlobalContext'
 
-import { API_URL } from '../../../enviroment'
+import { API_URL } from '../../../environment'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function SignUp({ navigation }) {

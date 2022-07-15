@@ -4,7 +4,7 @@ import { FormContainer, FormText, FormInput, FormButton, FormBtnText } from '../
 import GoBack from '../../components/GoBack/GoBack'
 import Loading from '../../components/Loading/Loading'
 import colors from '../../../assets/constants/colors'
-import { API_URL } from '../../../enviroment'
+import { API_URL } from '../../../environment'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function Recovery({ navigation, route }) {

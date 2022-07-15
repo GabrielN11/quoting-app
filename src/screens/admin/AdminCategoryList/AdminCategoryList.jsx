@@ -7,7 +7,7 @@ import { GlobalContext } from '../../../GlobalContext'
 import Loading from '../../../components/Loading/Loading'
 import { CategoryItem, CategoryTitle, ScreenTitle } from './styles'
 import CustomOption from '../../../components/Options/CustomOption'
-import { API_URL } from '../../../../enviroment'
+import { API_URL } from '../../../../environment'
 
 export default function AdminCategoryList({ navigation, route }) {
     const [loading, setLoading] = React.useState(false)

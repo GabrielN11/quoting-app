@@ -5,7 +5,7 @@ import Feed from '../../components/Feed/Feed'
 import Loading from '../../components/Loading/Loading'
 import FeedBar from '../../components/FeedBar/FeedBar'
 import DrawerHeader from '../../components/DrawerHeader/DrawerHeader'
-import { API_URL } from '../../../enviroment'
+import { API_URL } from '../../../environment'
 
 export default function Home({navigation}) {
     const [loading, setLoading] = React.useState(true)

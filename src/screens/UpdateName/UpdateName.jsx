@@ -5,7 +5,7 @@ import colors from '../../../assets/constants/colors'
 import CustomTooltip from '../../components/Tooltip/Tooltip'
 import GoBack from '../../components/GoBack/GoBack'
 import { GlobalContext } from '../../GlobalContext'
-import { API_URL } from '../../../enviroment'
+import { API_URL } from '../../../environment'
 import Loading from '../../components/Loading/Loading'
 
 export default function UpdateName({ route, navigation }) {

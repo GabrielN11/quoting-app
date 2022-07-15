@@ -13,6 +13,7 @@ export const ModalContainer = styled.View`
 export const ModalView = styled.View`
     background-color: ${colors.FONT_DEFAULT_COLOR};
     border-radius: 15px;
+    max-height: 70%;
 `
 
 export const ModalTouchable = styled.TouchableOpacity`

@@ -3,7 +3,7 @@ import React from 'react'
 import { FormContainer, FormText, FormInput, FormButton, FormBtnText } from '../../components/Form/styles'
 import Loading from '../../components/Loading/Loading'
 import colors from '../../../assets/constants/colors'
-import { API_URL } from '../../../enviroment'
+import { API_URL } from '../../../environment'
 
 export default function Reset({ navigation, route }) {
 

@@ -4,7 +4,7 @@ import { FormBtnText, FormButton, FormContainer, FormInput, FormText } from '../
 import colors from '../../../assets/constants/colors'
 import CustomTooltip from '../../components/Tooltip/Tooltip'
 import { GlobalContext } from '../../GlobalContext'
-import { API_URL } from '../../../enviroment'
+import { API_URL } from '../../../environment'
 import Loading from '../../components/Loading/Loading'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 

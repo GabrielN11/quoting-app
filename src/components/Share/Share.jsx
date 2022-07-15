@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faHeart, faHeartCirclePlus } from '@fortawesome/free-solid-svg-icons'
 import colors from '../../../assets/constants/colors'
 import { GlobalContext } from '../../GlobalContext'
-import { API_URL } from '../../../enviroment'
+import { API_URL } from '../../../environment'
 
 export default function Share({ content, type='publication', size=30, ...props }) {
     const [share, setShare] = React.useState(false)

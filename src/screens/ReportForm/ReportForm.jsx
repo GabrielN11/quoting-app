@@ -6,7 +6,7 @@ import colors from '../../../assets/constants/colors'
 import Loading from '../../components/Loading/Loading'
 import { GlobalContext } from '../../GlobalContext'
 
-import { API_URL } from '../../../enviroment'
+import { API_URL } from '../../../environment'
 
 export default function ReportForm({ navigation, route }) {
     const [loading, setLoading] = React.useState(false)

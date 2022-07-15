@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faMessage, faRotate } from '@fortawesome/free-solid-svg-icons'
 import colors from '../../../assets/constants/colors'
 import Share from '../Share/Share'
-import { API_URL } from '../../../enviroment'
+import { API_URL } from '../../../environment'
 import PublicationOptions from '../Publication/PublicationOptions'
 import PublicationDetails from '../Publication/PublicationDetails'
 

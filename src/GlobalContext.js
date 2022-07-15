@@ -1,5 +1,5 @@
 import React from 'react'
-import { API_URL } from '../enviroment';
+import { API_URL } from '../environment';
 export const GlobalContext = React.createContext()
 
 export const GlobalProvider = ({ children }) => {

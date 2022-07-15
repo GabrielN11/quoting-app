@@ -1,7 +1,7 @@
 import { TouchableOpacity, Alert } from 'react-native'
 import React from 'react'
 import { GlobalContext } from '../../GlobalContext'
-import { API_URL } from '../../../enviroment'
+import { API_URL } from '../../../environment'
 import CustomOption from '../Options/CustomOption'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faGear } from '@fortawesome/free-solid-svg-icons'

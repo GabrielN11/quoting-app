@@ -5,7 +5,7 @@ import GoBack from '../../components/GoBack/GoBack'
 import { ProfileText } from '../Profile/styles'
 import Empty from '../../components/Empty/Empty'
 import UserItem from '../../components/User/UserItem'
-import { API_URL } from '../../../enviroment'
+import { API_URL } from '../../../environment'
 import { FormButton, FormBtnText } from '../../components/Form/styles'
 import Loading from '../../components/Loading/Loading'
 

@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { CommentaryInfo, CommentaryText, CommentaryView } from '../../screens/Commentaries/styles'
-import { API_URL } from '../../../enviroment'
+import { API_URL } from '../../../environment'
 import Share from '../Share/Share'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
