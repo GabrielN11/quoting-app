@@ -25,8 +25,8 @@ function FeedBarItem({text, icon, active=true, setFollowMode}){
     return (
         <BarItem>
             <BarButton onPress={() => active ? null : setFollowMode(current => !current)}>
-                <FontAwesomeIcon icon={icon} size={20} color={active ? 'orange' : colors.FONT_DEFAULT_COLOR}/>
-                <Text style={{color: active ? 'orange' : colors.FONT_DEFAULT_COLOR}}>{text}</Text>
+                <FontAwesomeIcon icon={icon} size={20} color={active ? colors.ACTIVE : colors.FONT_DEFAULT_COLOR}/>
+                <Text style={{color: active ? colors.ACTIVE : colors.FONT_DEFAULT_COLOR}}>{text}</Text>
             </BarButton>
         </BarItem>
     )

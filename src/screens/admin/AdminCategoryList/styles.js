@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import colors from '../../../../assets/constants/colors';
 
 export const CategoryItem = styled.TouchableOpacity`
-    background-color: ${({color}) => color ? color : colors.BAR_BACKGROUND};
+    background-color: ${({color}) => color ? color : colors.PRIMARY};
     flex-direction: row;
     align-items: center;
     justify-content: center;

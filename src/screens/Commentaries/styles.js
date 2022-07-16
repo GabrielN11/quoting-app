@@ -20,7 +20,7 @@ export const CommentaryView = styled.View`
     flex-direction: column;
     border-radius: 15px;
     padding: 10px;
-    background-color: ${colors.BAR_BACKGROUND};
+    background-color: ${colors.PRIMARY};
     margin: 10px;
 `
 

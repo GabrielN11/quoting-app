@@ -93,7 +93,7 @@ export default function AdminReport({ navigation, route }) {
                             <Commentary commentary={report.commentary} />
                         </TouchableOpacity>
                     }
-                    <FormButton backgroundColor={closed ? 'brown' : 'darkgreen'}
+                    <FormButton backgroundColor={closed ? colors.ALERT : 'darkgreen'}
                         onPress={alterReportState}>
                         <FormBtnText>
                             {closed ? 'Open Report' : 'Close Report'}

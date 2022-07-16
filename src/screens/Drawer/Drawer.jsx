@@ -26,10 +26,10 @@ export default function DrawerRoutes({route}) {
         drawerContent={(props) => <CustomDrawerContent {...props} setShowTutorial={setShowTutorial}/>}
         screenOptions={{
           drawerStyle: {
-            backgroundColor: colors.BACKGROUND,
+            backgroundColor: colors.BACKGROUND
           },
           swipeEnabled: false,
-          drawerActiveBackgroundColor: colors.BAR_BACKGROUND,
+          drawerActiveBackgroundColor: colors.PRIMARY,
           drawerActiveTintColor: colors.FONT_DEFAULT_COLOR,
           drawerInactiveTintColor: colors.FONT_DEFAULT_COLOR
         }}>
@@ -93,7 +93,7 @@ function CustomDrawerContent(props) {
       {items.map(item => (
         <DrawerItem
           key={item.label}
-          activeBackgroundColor={colors.BAR_BACKGROUND}
+          activeBackgroundColor={colors.PRIMARY}
           activeTintColor={colors.FONT_DEFAULT_COLOR}
           inactiveTintColor={colors.FONT_DEFAULT_COLOR}
           label={item.label}

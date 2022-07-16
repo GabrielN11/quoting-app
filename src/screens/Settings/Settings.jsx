@@ -45,7 +45,7 @@ export default function Settings({ navigation }) {
                         label: 'Logout',
                         icon: faRightFromBracket,
                         action: logout,
-                        background: 'brown'
+                        background: colors.ALERT
                     },
                 ]}
                 renderItem={({ item }) => {

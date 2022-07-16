@@ -45,7 +45,7 @@ const PublicationDetailsModal = ({ publication, setModalVisible, modalVisible, n
         <DetailsView>
           <DetailsClose>
             <TouchableOpacity onPress={() => setModalVisible(false)}>
-              <FontAwesomeIcon icon={faXmark} size={20} color={colors.FONT_DEFAULT_COLOR} />
+              <FontAwesomeIcon icon={faXmark} size={25} color={colors.FONT_DEFAULT_COLOR} />
             </TouchableOpacity>
           </DetailsClose>
           <DetailsField label='Publisher' text={publication.user.name} />
@@ -58,7 +58,7 @@ const PublicationDetailsModal = ({ publication, setModalVisible, modalVisible, n
               setModalVisible(false)
               navigation.navigate('ReportForm', { publicationId: publication.id, commentaryId: null })
             }}>
-              <FontAwesomeIcon icon={faFlag} color='brown' size={20} />
+              <FontAwesomeIcon icon={faFlag} color={colors.ALERT} size={20} />
               <DetailBtnLabel>Report</DetailBtnLabel>
             </DetailBtn>
           </DetailsOptionsView>

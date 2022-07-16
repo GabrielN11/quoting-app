@@ -65,7 +65,7 @@ export default function ReportForm({ navigation, route }) {
         <FormContainer behavior={Platform.OS === "ios" ? "padding" : "height"}>
             <GoBack goBack={navigation.goBack} />
             <FormText style={{ fontFamily: 'Montserrat' }}>
-                Tell us what is the problem below.
+                Report the problem below.
             </FormText>
             <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, paddingVertical: 5 }}>
                 <FormText>Title:</FormText>

@@ -3,7 +3,7 @@ import colors from '../../../assets/constants/colors';
 
 export const PublicationItemButton = styled.TouchableOpacity`
     align-items: stretch;
-    background-color: ${colors.BAR_BACKGROUND};
+    background-color: ${colors.PRIMARY};
     padding: 20px;
     margin: 10px;
     border-radius: 15px;
@@ -43,7 +43,7 @@ export const PublicationDetailsView = styled.View`
 export const DetailsView = styled.View`
     min-width: 60%;
     background-color: ${colors.BACKGROUND};
-    padding: 10px;
+    padding: 15px;
     position: relative;
     border-radius: 15px;
 `
@@ -85,6 +85,6 @@ export const DetailBtn = styled.TouchableOpacity`
 
 export const DetailBtnLabel = styled.Text`
     font-size: 16px;
-    color: brown;
+    color: ${colors.ALERT};
     text-align: center;
 `

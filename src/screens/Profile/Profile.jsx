@@ -112,10 +112,10 @@ export default function Profile({ navigation, route }) {
                 </PinnedView>}
 
                 <ProfileItemsView>
-                    <Item background='darkorange' center screen='UserList' profileUser={profileUser} props={{ type: 'followers' }} text='Followers'
+                    <Item background='#cc7000' center screen='UserList' profileUser={profileUser} props={{ type: 'followers' }} text='Followers'
                         navigation={navigation} />
 
-                    <Item background='#00A3A3' center screen='UserList' profileUser={profileUser} props={{ type: 'following' }} text='Following'
+                    <Item background='#008282' center screen='UserList' profileUser={profileUser} props={{ type: 'following' }} text='Following'
                         navigation={navigation} />
 
                     <Item background={colors.BUTTON_BACKGROUND_PRIMARY} screen='PublicationList' profileUser={profileUser} text='Publications'
@@ -124,7 +124,7 @@ export default function Profile({ navigation, route }) {
                     <Item background='darkgreen' screen='CommentariesList' profileUser={profileUser} text='Commentaries'
                         navigation={navigation} count={profileUser.commentary_count} />
 
-                    <Item background='brown' screen='ShareList' profileUser={profileUser} text='Favorites'
+                    <Item background='#A52A2A' screen='ShareList' profileUser={profileUser} text='Favorites'
                         navigation={navigation} count={profileUser.share_count} />
                 </ProfileItemsView>
             </ScrollView>}

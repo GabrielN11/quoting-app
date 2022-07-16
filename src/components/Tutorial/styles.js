@@ -4,7 +4,7 @@ import colors from '../../../assets/constants/colors';
 export const TutorialContainer = styled.View`
     height: 100%;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
     align-items: center;
     justify-content: center;
 `

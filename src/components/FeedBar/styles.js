@@ -6,7 +6,9 @@ export const BarContainer = styled.View`
     width: 100%;
     flex-direction: row;
     background-color: ${colors.BAR_BACKGROUND};
-
+    border-width: 1px;
+    border-style: solid;
+    border-top-color: #272727;
 `
 
 export const BarItem = styled.View`
@@ -24,7 +26,4 @@ export const BarAdd = styled.View`
     width: 66px;
     height: 66px;
     border-radius: ${66/2}px;
-    background-color: ${colors.BACKGROUND};
-    border: 4px solid ${colors.BAR_BACKGROUND};
-    top: -30px;
 `

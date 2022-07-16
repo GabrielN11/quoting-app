@@ -4,7 +4,7 @@ import colors from '../../../assets/constants/colors'
 export const UserItemButton = styled.TouchableOpacity`
     flex-direction: row;
     align-items: center;
-    background-color: ${colors.BAR_BACKGROUND};
+    background-color: ${colors.PRIMARY};
     padding: 20px;
     margin: 10px;
     border-radius: 15px;

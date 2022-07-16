@@ -5,7 +5,7 @@ import colors from '../../../assets/constants/colors';
 export const TouchableItem = styled.TouchableOpacity`
     margin: 15px;
     padding: 15px;
-    background-color: ${({background}) => background ? background : colors.BAR_BACKGROUND};
+    background-color: ${({background}) => background ? background : colors.PRIMARY};
     align-self: stretch;
     flex-direction: row;
     align-items: center;

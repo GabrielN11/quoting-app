@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import colors from '../../../../assets/constants/colors';
 
 export const ReportItemButton = styled.TouchableOpacity`
-    background-color: ${colors.BAR_BACKGROUND};
+    background-color: ${colors.PRIMARY};
     padding: 10px 15px;
     margin: 10px;
     border-radius: 15px;

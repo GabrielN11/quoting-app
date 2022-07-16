@@ -28,8 +28,8 @@ export default function CategoriesOptions({ icon, setCategory, active, setFollow
     return (
         <BarItem>
             <CustomOption options={options} ButtonComponent={BarButton}>
-                <FontAwesomeIcon icon={icon} size={20} color={!active ? 'orange' : colors.FONT_DEFAULT_COLOR} />
-                <Text style={{ color: !active ? 'orange' : colors.FONT_DEFAULT_COLOR }}>{categoryName}</Text>
+                <FontAwesomeIcon icon={icon} size={20} color={!active ? colors.ACTIVE : colors.FONT_DEFAULT_COLOR} />
+                <Text style={{ color: !active ? colors.ACTIVE : colors.FONT_DEFAULT_COLOR }}>{categoryName}</Text>
             </CustomOption>
         </BarItem>
     )
