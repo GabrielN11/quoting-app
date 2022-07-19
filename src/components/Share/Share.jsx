@@ -6,7 +6,7 @@ import colors from '../../../assets/constants/colors'
 import { GlobalContext } from '../../GlobalContext'
 import { API_URL } from '../../../environment'
 
-export default function Share({ content, type='publication', size=30, ...props }) {
+export default function Share({ content, type = 'publication', size = 30, navigation, ...props }) {
     const [share, setShare] = React.useState(false)
     const [count, setCount] = React.useState(content.share_count)
     const { user } = React.useContext(GlobalContext)
@@ -71,20 +71,25 @@ export default function Share({ content, type='publication', size=30, ...props }
     }
 
     if (content.user_id === user.id) return (
-        <View {...props}>
+        <TouchableOpacity onPress={() => navigation.navigate('ShareUserList', {id: content.id})} {...props}>
             <FontAwesomeIcon icon={faHeart} color={colors.BUTTON_BACKGROUND_PRIMARY} size={size} />
-            <Text style={{ textAlign: 'center', color: colors.FONT_DEFAULT_COLOR, fontSize: size/2 }}>
-                {count}
-            </Text>
-        </View>
-    )
-
-    return (
-        <TouchableOpacity onPress={() => share ? deleteShare() : submitShare()} {...props}>
-            <FontAwesomeIcon icon={share ? faHeart : faHeartCirclePlus} color={share ? '#ff0000' : colors.FONT_DEFAULT_COLOR} size={size} />
-            <Text style={{ textAlign: 'center', color: colors.FONT_DEFAULT_COLOR, fontSize: size/2 }}>
+            <Text style={{ textAlign: 'center', color: colors.FONT_DEFAULT_COLOR, fontSize: size / 2 }}>
                 {count}
             </Text>
         </TouchableOpacity>
+    )
+
+    return (
+        <View>
+            <TouchableOpacity onPress={() => share ? deleteShare() : submitShare()} {...props}>
+                <FontAwesomeIcon icon={share ? faHeart : faHeartCirclePlus} color={share ? '#ff0000' : colors.FONT_DEFAULT_COLOR} size={size} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('ShareUserList', {id: content.id})}>
+                <Text style={{ textAlign: 'center', color: colors.FONT_DEFAULT_COLOR, fontSize: size / 2 }}>
+                    {count}
+                </Text>
+            </TouchableOpacity>
+        </View>
+
     )
 }

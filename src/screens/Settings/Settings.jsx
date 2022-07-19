@@ -4,7 +4,7 @@ import colors from '../../../assets/constants/colors'
 import DrawerHeader from '../../components/DrawerHeader/DrawerHeader'
 import { TextItem, TextTitle, TouchableItem } from './styles'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faCrown, faKey, faPen, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faCrown, faKey, faPen, faRightFromBracket, faList } from '@fortawesome/free-solid-svg-icons'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { GlobalContext } from '../../GlobalContext'
 
@@ -34,6 +34,11 @@ export default function Settings({ navigation }) {
                         label: 'Alter password',
                         icon: faKey,
                         action: () => navigation.navigate('UpdatePassword')
+                    },
+                    {
+                        label: 'Activity History',
+                        icon: faList,
+                        action: () => navigation.navigate('ActivityHistory')
                     },
                     {
                         label: 'Admin Settings',

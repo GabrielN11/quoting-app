@@ -31,7 +31,7 @@ export default function AdminUserList({navigation, route}) {
     async function getAllUsers(){
         setLoading(true);
         try{
-            const json = await fetch(`${API_URL}/admin-${type}-list?page=${page}${search.length > 0 ? `&search=${search}`:''}`, {
+            const json = await fetch(`${API_URL}/${type === 'banned' ? 'admin-banned' : 'user'}-list?page=${page}${search.length > 0 ? `&search=${search}`:''}`, {
                 headers: {
                     'Authorization': 'Bearer ' + user.token
                 }

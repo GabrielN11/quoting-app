@@ -3,12 +3,13 @@ import React from 'react'
 import Home from '../Home/Home';
 import colors from '../../../assets/constants/colors';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faCircleInfo, faCircleQuestion, faGear, faHome, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo, faCircleQuestion, faGear, faHome, faRightFromBracket, faSearch, faUser } from '@fortawesome/free-solid-svg-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { GlobalContext } from '../../GlobalContext';
 import Settings from '../Settings/Settings';
 import Tutorial from '../../components/Tutorial/Tutorial';
 import About from '../About/About';
+import Search from '../Search/Search';
 
 const Drawer = createDrawerNavigator();
 
@@ -36,6 +37,11 @@ export default function DrawerRoutes({route}) {
         <Drawer.Screen name="Home" component={Home} options={{
           headerShown: false, drawerIcon: (focused, size) => (
             <FontAwesomeIcon icon={faHome} size={size} color={colors.FONT_DEFAULT_COLOR} />
+          )
+        }} />
+        <Drawer.Screen name="Search" component={Search} options={{
+          headerShown: false, drawerIcon: (focused, size) => (
+            <FontAwesomeIcon icon={faSearch} size={size} color={colors.FONT_DEFAULT_COLOR} />
           )
         }} />
         <Drawer.Screen name="Settings" component={Settings} options={{

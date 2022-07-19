@@ -85,7 +85,6 @@ export default function Validation({ route, navigation }) {
   }
 
   function handleChange(string){
-    if(string.length > 5 ) return
     setCode(string.toUpperCase())
   }
 

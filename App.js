@@ -36,6 +36,10 @@ import AdminReport from './src/screens/admin/AdminReport/AdminReport';
 import Validation from './src/screens/Validation/Validation';
 import Recovery from './src/screens/Recovery/Recovery';
 import Reset from './src/screens/Reset/Reset';
+import ActivityHistory from './src/screens/ActivityHistoriy/ActivityHistory';
+import SeenPublicationsList from './src/screens/SeenPublicationsList/SeenPublicationsList';
+import ShareUserList from './src/screens/ShareUserList/ShareUserList';
+import PublicationSearchList from './src/screens/PublicationList/PublicationSearchList';
 
 const Stack = createNativeStackNavigator()
 const prefix = Linking.createURL('/');
@@ -93,6 +97,10 @@ export default function App() {
             <Stack.Screen name="Validation" component={Validation} options={{headerShown: false}}/>
             <Stack.Screen name="Recovery" component={Recovery} options={{headerShown: false}}/>
             <Stack.Screen name="Reset" component={Reset} options={{headerShown: false}}/>
+            <Stack.Screen name="ActivityHistory" component={ActivityHistory} options={{headerShown: false}}/>
+            <Stack.Screen name="SeenPublicationsList" component={SeenPublicationsList} options={{headerShown: false}}/>
+            <Stack.Screen name="ShareUserList" component={ShareUserList} options={{headerShown: false}}/>
+            <Stack.Screen name="PublicationSearchList" component={PublicationSearchList} options={{headerShown: false}}/>
           </Stack.Navigator>
         </NavigationContainer>
       </GlobalProvider>

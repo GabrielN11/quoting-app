@@ -31,7 +31,7 @@ export default function Commentary({ commentary, navigation }) {
                 </CommentaryInfo>
                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     <CommentaryOptions commentary={commentary} navigation={navigation} />
-                    <Share content={commentary} type='commentary' size={25} style={{marginLeft: 20}}/>
+                    <Share content={commentary} type='commentary' size={25} style={{marginLeft: 20}} navigation={navigation}/>
                 </View>
             </View>
         </CommentaryView>

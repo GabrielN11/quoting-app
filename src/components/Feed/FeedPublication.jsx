@@ -83,7 +83,7 @@ export default function FeedPublication({ publication, navigation, initialFetch 
                 </TouchableOpacity>
             </View>
             <PublicationActions>
-                <Share content={statePublication} type='publication' />
+                <Share content={statePublication} type='publication' navigation={navigation}/>
                 {(user.id === statePublication.user_id || user.is_admin) && <PublicationOptions navigation={navigation} publication={statePublication} />}
                 <TouchableOpacity onPress={() => navigation.navigate('Commentaries', { publicationId: statePublication.id })}>
                     <FontAwesomeIcon icon={faMessage} color={colors.FONT_DEFAULT_COLOR} size={30} />
