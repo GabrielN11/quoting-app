@@ -76,6 +76,7 @@ export default function SignIn({ navigation }) {
                 <FormText>User name:</FormText>
                 <FormInput placeholder='Type your use name here...'
                     placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}
+                    autoCapitalize='none'
                     value={username}
                     onChangeText={setUsername} 
                     autoFocus
@@ -88,6 +89,7 @@ export default function SignIn({ navigation }) {
                     placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}
                     value={password}
                     onChangeText={setPassword} 
+                    autoCapitalize='none' 
                     returnKeyType="send"
                     ref={passwordFieldRef}
                     onSubmitEditing={() => handleSubmit()}/>

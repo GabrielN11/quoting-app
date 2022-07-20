@@ -15,12 +15,12 @@ export default function AdminSettings({ navigation }) {
                     {
                         label: 'User List',
                         icon: faUser,
-                        action: () => navigation.navigate('AdminUserList', {type: 'user'})
+                        action: () => navigation.navigate('SearchUserList', {type: 'user'})
                     },
                     {
                         label: 'Banned List',
                         icon: faUserSlash,
-                        action: () => navigation.navigate('AdminUserList', {type: 'banned'})
+                        action: () => navigation.navigate('SearchUserList', {type: 'banned'})
                     },
                     {
                         label: 'Categories',

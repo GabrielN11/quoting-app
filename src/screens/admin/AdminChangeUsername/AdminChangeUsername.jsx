@@ -62,7 +62,7 @@ export default function AdminChangeUsername({ navigation, route }) {
             </View>
             <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, marginBottom: 15 }}>
                 <FormText>Type the new Username</FormText>
-                <FormInput onChangeText={setUsername} value={username} autoFocus returnKeyType="send" onSubmitEditing={() => handleSubmit()} />
+                <FormInput onChangeText={setUsername} value={username} autoCapitalize='none' autoFocus returnKeyType="send" onSubmitEditing={() => handleSubmit()} />
             </View>
             <FormButton backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={handleSubmit}>
                 <FormBtnText>Alter Username</FormBtnText>

@@ -51,8 +51,9 @@ const PublicationDetailsModal = ({ publication, setModalVisible, modalVisible, n
           <DetailsField label='Publisher' text={publication.user.name} />
           <DetailsField label='Author' text={publication.author ? publication.author : publication.user.name} />
           <DetailsField label='Publication Date' text={returnTime(publication.date)} />
-          <DetailsField label='Favorites' text={publication.shareCount} />
-          <DetailsField label='Commentaries' text={publication.commentaryCount} />
+          <DetailsField label='Category' text={publication.category.name} />
+          <DetailsField label='Favorites' text={publication.share_count} />
+          <DetailsField label='Commentaries' text={publication.commentaries_count} />
           <DetailsOptionsView>
             <DetailBtn onPress={() => {
               setModalVisible(false)

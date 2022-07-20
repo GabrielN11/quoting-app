@@ -74,12 +74,15 @@ export default function SignUp({ navigation }) {
                     value={username}
                     onChangeText={setUsername}
                     returnKeyType="next"
+                    autoCapitalize='none'
                     onSubmitEditing={() => emailRef.current.focus()}/>
             </View>
             <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, paddingVertical: 5 }}>
                 <FormText>Email:</FormText>
                 <FormInput placeholder='Type your email here...'
                     placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}
+                    keyboardType='email-address'
+                    autoCapitalize='none'
                     value={email}
                     ref={emailRef}
                     onChangeText={setEmail}
@@ -91,6 +94,7 @@ export default function SignUp({ navigation }) {
                 <FormInput secureTextEntry={true} placeholder='Type your password here...'
                     placeholderTextColor={colors.FONT_DEFAULT_PLACEHOLDER}
                     value={password}
+                    autoCapitalize='none'
                     onChangeText={setPassword} 
                     ref={passwordRef}
                     returnKeyType="next"

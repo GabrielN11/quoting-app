@@ -16,7 +16,7 @@ export default function Search({navigation}) {
               <SearchOptionText>Quotes</SearchOptionText>
               <FontAwesomeIcon icon={faQuoteLeft} size={22} color={colors.FONT_DEFAULT_COLOR}/>
           </SearchOption>
-          <SearchOption backgroundColor={colors.ALERT} onPress={() => navigation.navigate('AdminUserList', {type: 'user'})}>
+          <SearchOption backgroundColor={colors.ALERT} onPress={() => navigation.navigate('SearchUserList', {type: 'user'})}>
               <SearchOptionText>People</SearchOptionText>
               <FontAwesomeIcon icon={faUser} size={22} color={colors.FONT_DEFAULT_COLOR}/>
           </SearchOption>

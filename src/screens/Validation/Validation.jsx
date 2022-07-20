@@ -84,10 +84,6 @@ export default function Validation({ route, navigation }) {
     }
   }
 
-  function handleChange(string){
-    setCode(string.toUpperCase())
-  }
-
   return (
     <FormContainer>
       {loading && <Loading />}
@@ -96,7 +92,7 @@ export default function Validation({ route, navigation }) {
       </View>
       <View style={{ alignSelf: 'stretch', paddingHorizontal: 20, marginBottom: 30 }}>
         <FormText>Inform your {recovery ? 'recovery' : 'confirmation'} code:</FormText>
-        <FormInput onChangeText={handleChange} value={code} autoFocus returnKeyType="send" onSubmitEditing={() => recovery ? handleRecovery() : handleValidation()}/>
+        <FormInput onChangeText={setCode} autoCapitalize='characters' value={code} autoFocus returnKeyType="send" onSubmitEditing={() => recovery ? handleRecovery() : handleValidation()}/>
       </View>
       <FormButton backgroundColor={colors.BUTTON_BACKGROUND_PRIMARY} onPress={() => recovery ? handleRecovery() : handleValidation()}>
         <FormBtnText>Validate</FormBtnText>

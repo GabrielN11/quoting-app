@@ -24,7 +24,6 @@ import ShareList from './src/screens/ShareList/ShareList';
 import Publication from './src/screens/Publication/Publication';
 import UserList from './src/screens/UserList/UserList';
 import AdminSettings from './src/screens/admin/AdminSettings/AdminSettings';
-import AdminUserList from './src/screens/admin/AdminUserList/AdminUserList';
 import AdminChangePassword from './src/screens/admin/AdminChangePassword/AdminChangePassword';
 import AdminChangeName from './src/screens/admin/AdminChangeName/AdminChangeName';
 import AdminChangeUsername from './src/screens/admin/AdminChangeUsername/AdminChangeUsername';
@@ -40,6 +39,7 @@ import ActivityHistory from './src/screens/ActivityHistoriy/ActivityHistory';
 import SeenPublicationsList from './src/screens/SeenPublicationsList/SeenPublicationsList';
 import ShareUserList from './src/screens/ShareUserList/ShareUserList';
 import PublicationSearchList from './src/screens/PublicationList/PublicationSearchList';
+import SearchUserList from './src/screens/SearchUserList/SearchUserList';
 
 const Stack = createNativeStackNavigator()
 const prefix = Linking.createURL('/');
@@ -85,7 +85,7 @@ export default function App() {
             <Stack.Screen name="Publication" component={Publication} options={{headerShown: false}}/>
             <Stack.Screen name="UserList" component={UserList} options={{headerShown: false}}/>
             <Stack.Screen name="AdminSettings" component={AdminSettings} options={{headerShown: false}}/>
-            <Stack.Screen name="AdminUserList" component={AdminUserList} options={{headerShown: false}}/>
+            <Stack.Screen name="SearchUserList" component={SearchUserList} options={{headerShown: false}}/>
             <Stack.Screen name="AdminChangePassword" component={AdminChangePassword} options={{headerShown: false}}/>
             <Stack.Screen name="AdminChangeName" component={AdminChangeName} options={{headerShown: false}}/>
             <Stack.Screen name="AdminChangeUsername" component={AdminChangeUsername} options={{headerShown: false}}/>

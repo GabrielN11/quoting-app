@@ -1,19 +1,19 @@
 import { View, Text, ScrollView, TouchableOpacity  } from 'react-native'
 import React from 'react'
-import colors from '../../../../assets/constants/colors'
-import GoBack from '../../../components/GoBack/GoBack'
-import { ProfileText } from '../../Profile/styles'
-import Empty from '../../../components/Empty/Empty'
-import UserItem from '../../../components/User/UserItem'
-import { API_URL } from '../../../../environment'
-import { FormButton, FormBtnText } from '../../../components/Form/styles'
-import { GlobalContext } from '../../../GlobalContext'
-import { CommentaryTextInput } from '../../Commentaries/styles'
+import colors from '../../../assets/constants/colors'
+import GoBack from '../../components/GoBack/GoBack'
+import { ProfileText } from '../Profile/styles'
+import Empty from '../../components/Empty/Empty'
+import UserItem from '../../components/User/UserItem'
+import { API_URL } from '../../../environment'
+import { FormButton, FormBtnText } from '../../components/Form/styles'
+import { GlobalContext } from '../../GlobalContext'
+import { CommentaryTextInput } from '../Commentaries/styles'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import Loading from '../../../components/Loading/Loading'
+import Loading from '../../components/Loading/Loading'
 
-export default function AdminUserList({navigation, route}) {
+export default function SearchUserList({navigation, route}) {
     const [users, setUsers] = React.useState([])
     const [page, setPage] = React.useState(0)
     const [loaded, setLoaded] = React.useState(false)
