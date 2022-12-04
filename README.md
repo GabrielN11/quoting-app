@@ -89,8 +89,6 @@ Check the [releases](https://github.com/GabrielN11/quoting-app/tags "releases") 
 
 ## Download
 
-The application was not published in an app store, but you can try it by downloading an .apk for Android and installing it. This version is for demo only, but all features work normally.
-
-[Click here](https://github.com/GabrielN11/quoting-app/releases/tag/quotingv0.9-beta.3 "Click here") to download the latest release.
+Due to the suspension of Heroku's free plan, Quoting's API is no longer available, therefore this app will not work properly on its own. You can still clone the repositories and create a production enviroment of your own.
 
 
